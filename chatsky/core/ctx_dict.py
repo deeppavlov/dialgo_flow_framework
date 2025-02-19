@@ -384,13 +384,13 @@ class ContextDict(ABC, BaseModel):
         elif isinstance(value, Dict):
             instance = handler(dict())
             if len(value) != 0:
-                instance._items = value["items"]
-                instance._hashes = value["hashes"]
-                instance._keys = value["keys"]
-                instance._added = value["added"]
-                instance._removed = value["removed"]
-                instance._ctx_id = value["ctx_id"]
-                instance._field_name = value["field_name"]
+                instance._items = value.get("items", dict())
+                instance._hashes = value.get("hashes", dict())
+                instance._keys = value.get("keys", set())
+                instance._added = value.get("added", set())
+                instance._removed = value.get("removed", set())
+                instance._ctx_id = value.get("ctx_id")
+                instance._field_name = value.get("field_name")
             else:
                 instance._items = dict()
                 instance._keys = set()

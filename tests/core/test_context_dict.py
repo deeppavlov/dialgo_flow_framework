@@ -214,6 +214,16 @@ class TestContextDict:
                 with pytest.raises(RuntimeError):
                     ctx_dict.extract_items()
             else:
+                # Test serialization
+                dump = ctx_dict.model_dump("python")
+                assert dump["items"] == ctx_dict
+                assert dump["hashes"] == ctx_dict._hashes
+                assert dump["keys"] == ctx_dict.keys()
+                assert dump["added"] == ctx_dict._added
+                assert dump["removed"] == ctx_dict._removed
+                assert dump["ctx_id"] == ctx_dict._ctx_id
+                assert dump["field_name"] == ctx_dict._field_name
+                # Test item extraction
                 field_name, added_values, deleted_values = ctx_dict.extract_items()
                 assert field_name == NameConfig._requests_field
                 assert 2 in [k for k, _ in added_values]
