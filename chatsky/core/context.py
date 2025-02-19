@@ -124,8 +124,8 @@ class Context(ContextMainInfo):
                 labels[0] = start_label
             else:
                 current_turn_id = main.current_turn_id
-                crt_at = main.created_at
-                upd_at = main.updated_at
+                crt_at = main._created_at
+                upd_at = main._updated_at
                 misc = main.misc
                 fw_data = main.framework_data
             logger.debug(f"Context loaded with turns number: {len(labels)}")
