@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/common/interface
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.messengers.common.interface
+   :members:
+   :undoc-members:
+   :show-inheritance:

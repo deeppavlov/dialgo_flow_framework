@@ -1,0 +1,7 @@
+:source_name: chatsky/core/utils
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.core.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

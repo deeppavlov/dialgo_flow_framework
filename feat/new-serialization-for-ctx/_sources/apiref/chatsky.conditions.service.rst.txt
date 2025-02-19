@@ -1,0 +1,7 @@
+:source_name: chatsky/conditions/service
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.conditions.service
+   :members:
+   :undoc-members:
+   :show-inheritance:

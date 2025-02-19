@@ -1,0 +1,7 @@
+:source_name: chatsky/llm/llm_api
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.llm.llm_api
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/telegram/abstract
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.messengers.telegram.abstract
+   :members:
+   :undoc-members:
+   :show-inheritance:

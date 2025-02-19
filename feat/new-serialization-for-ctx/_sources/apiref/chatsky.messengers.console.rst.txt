@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/console
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.messengers.console
+   :members:
+   :undoc-members:
+   :show-inheritance:

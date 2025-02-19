@@ -1,0 +1,7 @@
+:source_name: chatsky/context_storages/protocol
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.context_storages.protocol
+   :members:
+   :undoc-members:
+   :show-inheritance:

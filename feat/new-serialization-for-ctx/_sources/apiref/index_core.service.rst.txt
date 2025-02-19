@@ -1,0 +1,16 @@
+:orphan:
+
+.. This is an auto-generated RST file representing documentation source directory structure
+
+Core.Service
+============
+
+.. autosummary::
+   :toctree:
+
+   chatsky.core.service.types
+   chatsky.core.service.group
+   chatsky.core.service.extra
+   chatsky.core.service.actor
+   chatsky.core.service.component
+   chatsky.core.service.service

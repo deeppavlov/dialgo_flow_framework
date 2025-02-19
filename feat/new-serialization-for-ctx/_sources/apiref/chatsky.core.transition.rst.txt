@@ -1,0 +1,7 @@
+:source_name: chatsky/core/transition
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.core.transition
+   :members:
+   :undoc-members:
+   :show-inheritance:

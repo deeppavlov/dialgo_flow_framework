@@ -1,0 +1,7 @@
+:source_name: chatsky/destinations/standard
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.destinations.standard
+   :members:
+   :undoc-members:
+   :show-inheritance:

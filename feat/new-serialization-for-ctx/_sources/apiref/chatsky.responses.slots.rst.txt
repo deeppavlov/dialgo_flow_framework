@@ -1,0 +1,7 @@
+:source_name: chatsky/responses/slots
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.responses.slots
+   :members:
+   :undoc-members:
+   :show-inheritance:

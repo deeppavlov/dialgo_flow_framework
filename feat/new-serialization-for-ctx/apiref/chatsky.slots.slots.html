@@ -1,0 +1,1520 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>Slots &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apiref/chatsky.slots.slots';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/new-serialization-for-ctx';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LLM Slots" href="chatsky.slots.llm.html" />
+    <link rel="prev" title="Slots" href="index_slots.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_conditions.html">Conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.standard.html">Standard Conditions</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.slots.html">Slot Conditions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.service.html">Service Conditions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.llm.html">LLM Conditions</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_context_storages.html">Context Storages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.database.html">Database</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.sql.html">SQL</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.protocol.html">Protocol</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.mongo.html">Mongo</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.file.html">File</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.memory.html">Memory</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.ydb.html">Yandex DB</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.redis.html">Redis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_core.html">Core</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.transition.html">Transition</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script_parsing.html">Pipeline File Import</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.pipeline.html">Pipeline</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.ctx_utils.html">Context Utils</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.context.html">Context</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script_function.html">Script Function</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script.html">Script</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.node_label.html">Node Label</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.ctx_dict.html">Context Dict</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.message.html">Message</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.utils.html">Utils</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_core.service.html">Core.Service</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.types.html">Types</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.group.html">Service Group</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.extra.html">Extra Handler</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.actor.html">Actor</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.component.html">Component</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.service.html">Service</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_db_benchmark.html">DB Benchmark</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.basic_config.html">Basic Config</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.report.html">Report</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.benchmark.html">Context storage benchmarking</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_destinations.html">Destinations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.destinations.standard.html">Standard Destinations</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_development_utils.html">Development Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.async_helpers.html">Async Helpers</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.extra_field_helpers.html">Extra field helpers</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.json_serialization.html">Serialization</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_llm_integration.html">LLM Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.langchain_context.html">LLM Utils.</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.methods.html">LLM methods</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.llm_api.html">LLM responses.</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.filters.html">Filters</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.prompt.html">Prompt position</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_messenger_interfaces.html">Messenger Interfaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.common.types.html">Types</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.telegram.interface.html">Telegram Interfaces</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.telegram.abstract.html">Telegram Base</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.common.interface.html">Message Interfaces</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.console.html"><code class="docutils literal notranslate"><span class="pre">CLIMessengerInterface</span></code></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_processing.html">Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.processing.slots.html">Slot Processing</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.processing.standard.html">Standard Processing</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_responses.html">Responses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.slots.html">Slot Responses</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.llm.html">LLM responses</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.standard.html">Standard Responses</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index_slots.html">Slots</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Slots</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.slots.llm.html">LLM Slots</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_stats.html">Stats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.instrumentor.html">Instrumentor</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.default_extractors.html">Default Extractors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.cli.html">Command Line Interface</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.utils.html">Utils</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_testing_utils.html">Testing Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.toy_script.html">Toy script</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.cleanup_db.html">Cleanup DB</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.common.html">Common</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../reference.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index_slots.html" class="nav-link">Slots</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Slots</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="slots">
+<span id="module-chatsky.slots.slots"></span><h1>Slots<a class="headerlink" href="#slots" title="Link to this heading">#</a></h1>
+<p>This module defines base classes for slots and some concrete implementations of them.</p>
+</section>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotName">
+<span class="sig-name descname"><span class="pre">SlotName</span></span><a class="headerlink" href="#chatsky.slots.slots.SlotName" title="Link to this definition">#</a></dt>
+<dd><p>A string to identify slots.</p>
+<p>Top-level slots are identified by their key in a <a class="reference internal" href="#chatsky.slots.slots.GroupSlot" title="chatsky.slots.slots.GroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupSlot</span></code></a>.</p>
+<p>E.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GroupSlot</span><span class="p">(</span>
+    <span class="n">user</span><span class="o">=</span><span class="n">RegexpSlot</span><span class="p">(),</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">FunctionSlot</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Has two slots with names “user” and “password”.</p>
+<p>For nested group slots use dots to separate names:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GroupSlot</span><span class="p">(</span>
+    <span class="n">user</span><span class="o">=</span><span class="n">GroupSlot</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">FunctionSlot</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">FunctionSlot</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Has two slots with names “user.name” and “user.password”.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chatsky.slots.slots.recursive_getattr">
+<span class="sig-name descname"><span class="pre">recursive_getattr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#recursive_getattr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.recursive_getattr" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chatsky.slots.slots.recursive_setattr">
+<span class="sig-name descname"><span class="pre">recursive_setattr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#recursive_setattr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.recursive_setattr" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotNotExtracted">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SlotNotExtracted</span></span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotNotExtracted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotNotExtracted" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>This exception can be returned or raised by slot extractor if slot extraction is unsuccessful.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExtractedSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Represents value of an extracted slot.</p>
+<p>Instances of this class are managed by framework and
+are stored in <code class="xref py py-attr docutils literal notranslate"><span class="pre">slot_manager</span></code>.
+They can be accessed via the <code class="docutils literal notranslate"><span class="pre">ctx.framework_data.slot_manager.get_extracted_slot</span></code> method.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExtractedValueSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedValueSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a></p>
+<p>Value extracted from <a class="reference internal" href="#chatsky.slots.slots.ValueSlot" title="chatsky.slots.slots.ValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueSlot</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.is_slot_extracted">
+<span class="sig-name descname"><span class="pre">is_slot_extracted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.is_slot_extracted" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.extracted_value">
+<span class="sig-name descname"><span class="pre">extracted_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.extracted_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.default_value">
+<span class="sig-name descname"><span class="pre">default_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.default_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values">
+<span class="sig-name descname"><span class="pre">pickle_serialize_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedValueSlot.pickle_serialize_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values" title="Link to this definition">#</a></dt>
+<dd><p>Cast values to string via pickle.
+Allows storing arbitrary data in these fields when using context storages.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.pickle_validate_values">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pickle_validate_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedValueSlot.pickle_validate_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.pickle_validate_values" title="Link to this definition">#</a></dt>
+<dd><p>Restore values after being processed with
+<a class="reference internal" href="#chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values" title="chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pickle_serialize_values()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedValueSlot.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#chatsky.slots.slots.ExtractedValueSlot.value" title="Link to this definition">#</a></dt>
+<dd><p>Extracted value or the default value if the slot is not extracted.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedGroupSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExtractedGroupSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedGroupSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedGroupSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ExtractedGroupSlot.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ExtractedGroupSlot.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ExtractedGroupSlot.update" title="Link to this definition">#</a></dt>
+<dd><p>Rebase this extracted groups slot on top of another one.
+This is required to merge slot storage in-context
+with a potentially different slot configuration passed to pipeline.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>old</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedGroupSlot" title="chatsky.slots.slots.ExtractedGroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a></span>) – An instance of <a class="reference internal" href="#chatsky.slots.slots.ExtractedGroupSlot" title="chatsky.slots.slots.ExtractedGroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a> stored in-context.
+Extracted values will be transferred to this object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.BaseSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#BaseSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.BaseSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>BaseSlot is a base class for all slots.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.BaseSlot.get_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#BaseSlot.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.BaseSlot.get_value" title="Link to this definition">#</a></dt>
+<dd><p>Extract slot value from <a class="reference internal" href="chatsky.core.context.html#chatsky.core.context.Context" title="chatsky.core.context.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> and return an instance of <a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.BaseSlot.init_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#BaseSlot.init_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.BaseSlot.init_value" title="Link to this definition">#</a></dt>
+<dd><p>Provide an initial value to fill slot storage with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ValueSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ValueSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ValueSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ValueSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.BaseSlot" title="chatsky.slots.slots.BaseSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSlot</span></code></a></p>
+<p>Value slot is a base class for all slots that are designed to extract concrete values.
+Subclass it, if you want to declare your own slot type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ValueSlot.default_value">
+<span class="sig-name descname"><span class="pre">default_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#chatsky.slots.slots.ValueSlot.default_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ValueSlot.extract_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ValueSlot.extract_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ValueSlot.extract_value" title="Link to this definition">#</a></dt>
+<dd><p>Return value extracted from context.</p>
+<p>Return <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a> to mark extraction as unsuccessful.</p>
+<p>Raising exceptions is also allowed and will result in an unsuccessful extraction as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ValueSlot.get_value">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ValueSlot.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ValueSlot.get_value" title="Link to this definition">#</a></dt>
+<dd><p>Wrapper for <a class="reference internal" href="#chatsky.slots.slots.ValueSlot.extract_value" title="chatsky.slots.slots.ValueSlot.extract_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extract_value()</span></code></a> to handle exceptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedValueSlot" title="chatsky.slots.slots.ExtractedValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedValueSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.ValueSlot.init_value">
+<span class="sig-name descname"><span class="pre">init_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#ValueSlot.init_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.ValueSlot.init_value" title="Link to this definition">#</a></dt>
+<dd><p>Provide an initial value to fill slot storage with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedValueSlot" title="chatsky.slots.slots.ExtractedValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedValueSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.GroupSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GroupSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allow_partial_extraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#GroupSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.GroupSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.BaseSlot" title="chatsky.slots.slots.BaseSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSlot</span></code></a></p>
+<p>Base class for <code class="xref py py-class docutils literal notranslate"><span class="pre">RootSlot</span></code> and <a class="reference internal" href="#chatsky.slots.slots.GroupSlot" title="chatsky.slots.slots.GroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupSlot</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.GroupSlot.allow_partial_extraction">
+<span class="sig-name descname"><span class="pre">allow_partial_extraction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#chatsky.slots.slots.GroupSlot.allow_partial_extraction" title="Link to this definition">#</a></dt>
+<dd><p>If True, extraction returns only successfully extracted child slots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.GroupSlot.get_value">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#GroupSlot.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.GroupSlot.get_value" title="Link to this definition">#</a></dt>
+<dd><p>Extract slot value from <a class="reference internal" href="chatsky.core.context.html#chatsky.core.context.Context" title="chatsky.core.context.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a> and return an instance of <a class="reference internal" href="#chatsky.slots.slots.ExtractedSlot" title="chatsky.slots.slots.ExtractedSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedGroupSlot" title="chatsky.slots.slots.ExtractedGroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.GroupSlot.init_value">
+<span class="sig-name descname"><span class="pre">init_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#GroupSlot.init_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.GroupSlot.init_value" title="Link to this definition">#</a></dt>
+<dd><p>Provide an initial value to fill slot storage with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.ExtractedGroupSlot" title="chatsky.slots.slots.ExtractedGroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.RegexpSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RegexpSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#RegexpSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.RegexpSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.ValueSlot" title="chatsky.slots.slots.ValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueSlot</span></code></a></p>
+<p>RegexpSlot is a slot type that extracts its value using a regular expression.
+You can pass a compiled or a non-compiled pattern to the <cite>regexp</cite> argument.
+If you want to extract a particular group, but not the full match,
+change the <cite>match_group_idx</cite> parameter.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.RegexpSlot.regexp">
+<span class="sig-name descname"><span class="pre">regexp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#chatsky.slots.slots.RegexpSlot.regexp" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.RegexpSlot.match_group_idx">
+<span class="sig-name descname"><span class="pre">match_group_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#chatsky.slots.slots.RegexpSlot.match_group_idx" title="Link to this definition">#</a></dt>
+<dd><p>Index of the group to match.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.RegexpSlot.extract_value">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#RegexpSlot.extract_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.RegexpSlot.extract_value" title="Link to this definition">#</a></dt>
+<dd><p>Return value extracted from context.</p>
+<p>Return <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a> to mark extraction as unsuccessful.</p>
+<p>Raising exceptions is also allowed and will result in an unsuccessful extraction as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.FunctionSlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FunctionSlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#FunctionSlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.FunctionSlot" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.slots.slots.ValueSlot" title="chatsky.slots.slots.ValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueSlot</span></code></a></p>
+<p>A simpler version of <a class="reference internal" href="#chatsky.slots.slots.ValueSlot" title="chatsky.slots.slots.ValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueSlot</span></code></a>.</p>
+<p>Uses a user-defined <cite>func</cite> to extract slot value from the <a class="reference internal" href="chatsky.core.context.html#chatsky.core.context.Context.last_request" title="chatsky.core.context.Context.last_request"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_request</span></code></a> Message.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.FunctionSlot.func">
+<span class="sig-name descname"><span class="pre">func</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable[[Message],</span> <span class="pre">Union[Awaitable[Union[Any,</span> <span class="pre">SlotNotExtracted]],</span> <span class="pre">Any,</span> <span class="pre">SlotNotExtracted]]</span></em><a class="headerlink" href="#chatsky.slots.slots.FunctionSlot.func" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.FunctionSlot.extract_value">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#FunctionSlot.extract_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.FunctionSlot.extract_value" title="Link to this definition">#</a></dt>
+<dd><p>Return value extracted from context.</p>
+<p>Return <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a> to mark extraction as unsuccessful.</p>
+<p>Raising exceptions is also allowed and will result in an unsuccessful extraction as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <a class="reference internal" href="#chatsky.slots.slots.SlotNotExtracted" title="chatsky.slots.slots.SlotNotExtracted"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SlotManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Provides API for managing slots.</p>
+<p>An instance of this class can be accessed via <code class="docutils literal notranslate"><span class="pre">ctx.framework_data.slot_manager</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.slot_storage">
+<span class="sig-name descname"><span class="pre">slot_storage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ExtractedGroupSlot</span></em><a class="headerlink" href="#chatsky.slots.slots.SlotManager.slot_storage" title="Link to this definition">#</a></dt>
+<dd><p>Slot storage. Stored inside ctx.framework_data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.root_slot">
+<span class="sig-name descname"><span class="pre">root_slot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">GroupSlot</span></em><a class="headerlink" href="#chatsky.slots.slots.SlotManager.root_slot" title="Link to this definition">#</a></dt>
+<dd><p>Slot configuration passed during pipeline initialization.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.set_root_slot">
+<span class="sig-name descname"><span class="pre">set_root_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_slot</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.set_root_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.set_root_slot" title="Link to this definition">#</a></dt>
+<dd><p>Set root_slot configuration from pipeline.
+Update extracted slots with the new configuration:</p>
+<p>New slots are added with their <a class="reference internal" href="#chatsky.slots.slots.BaseSlot.init_value" title="chatsky.slots.slots.BaseSlot.init_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_value()</span></code></a>.
+Old extracted slot values are preserved only if their configuration did not change.
+That is if they are still present in the config and if their fundamental type did not change
+(i.e. <cite>GroupSlot</cite> did not turn into a <cite>ValueSlot</cite> or vice versa).</p>
+<p>This method is called by pipeline and is not supposed to be used otherwise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.get_slot">
+<span class="sig-name descname"><span class="pre">get_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.get_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.get_slot" title="Link to this definition">#</a></dt>
+<dd><p>Get slot configuration from the slot name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – If the slot with the specified name does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#chatsky.slots.slots.BaseSlot" title="chatsky.slots.slots.BaseSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSlot</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.extract_slot">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_only</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.extract_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.extract_slot" title="Link to this definition">#</a></dt>
+<dd><p>Extract slot <cite>slot_name</cite> and store extracted value in <cite>slot_storage</cite>.</p>
+<p>Extracted group slots update slot storage instead of overwriting it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – If the slot with the specified name does not exist.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>slot_name</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – Name of the slot to extract.</p></li>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chatsky.core.context.html#chatsky.core.context.Context" title="chatsky.core.context.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a></span>) – Context.</p></li>
+<li><p><strong>success_only</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to store the value only if it is successfully extracted.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.extract_all">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.extract_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.extract_all" title="Link to this definition">#</a></dt>
+<dd><p>Extract all slots from slot configuration <cite>root_slot</cite> and set <cite>slot_storage</cite> to the extracted value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.get_extracted_slot">
+<span class="sig-name descname"><span class="pre">get_extracted_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.get_extracted_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.get_extracted_slot" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve extracted value from <cite>slot_storage</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – If the slot with the specified name does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#chatsky.slots.slots.ExtractedValueSlot" title="chatsky.slots.slots.ExtractedValueSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedValueSlot</span></code></a>, <a class="reference internal" href="#chatsky.slots.slots.ExtractedGroupSlot" title="chatsky.slots.slots.ExtractedGroupSlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.is_slot_extracted">
+<span class="sig-name descname"><span class="pre">is_slot_extracted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.is_slot_extracted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.is_slot_extracted" title="Link to this definition">#</a></dt>
+<dd><p>Return if the specified slot is extracted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – If the slot with the specified name does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.all_slots_extracted">
+<span class="sig-name descname"><span class="pre">all_slots_extracted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.all_slots_extracted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.all_slots_extracted" title="Link to this definition">#</a></dt>
+<dd><p>Return if all slots are extracted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.unset_slot">
+<span class="sig-name descname"><span class="pre">unset_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.unset_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.unset_slot" title="Link to this definition">#</a></dt>
+<dd><p>Mark specified slot as not extracted and clear extracted value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>KeyError</strong> – If the slot with the specified name does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.unset_all_slots">
+<span class="sig-name descname"><span class="pre">unset_all_slots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.unset_all_slots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.unset_all_slots" title="Link to this definition">#</a></dt>
+<dd><p>Mark all slots as not extracted and clear all extracted values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.KwargOnlyFormatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KwargOnlyFormatter</span></span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.KwargOnlyFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.KwargOnlyFormatter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.KwargOnlyFormatter.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.KwargOnlyFormatter.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.KwargOnlyFormatter.get_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.slots.slots.SlotManager.fill_template">
+<span class="sig-name descname"><span class="pre">fill_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/slots/slots.html#SlotManager.fill_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.slots.slots.SlotManager.fill_template" title="Link to this definition">#</a></dt>
+<dd><p>Fill <cite>template</cite> string with extracted slot values and return a formatted string
+or None if an exception has occurred while trying to fill template.</p>
+<p><cite>template</cite> should be a format-string:</p>
+<p>E.g. “Your username is {profile.username}”.</p>
+<p>For the example above, if <code class="docutils literal notranslate"><span class="pre">profile.username</span></code> slot has value “admin”,
+it would return the following text:
+“Your username is admin”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index_slots.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Slots</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chatsky.slots.llm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">LLM Slots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Slots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotName"><code class="docutils literal notranslate"><span class="pre">SlotName</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.recursive_getattr"><code class="docutils literal notranslate"><span class="pre">recursive_getattr()</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.recursive_setattr"><code class="docutils literal notranslate"><span class="pre">recursive_setattr()</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotNotExtracted"><code class="docutils literal notranslate"><span class="pre">SlotNotExtracted</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedSlot"><code class="docutils literal notranslate"><span class="pre">ExtractedSlot</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.is_slot_extracted"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.is_slot_extracted</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.extracted_value"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.extracted_value</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.default_value"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.default_value</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.pickle_serialize_values()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.pickle_validate_values"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.pickle_validate_values()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedValueSlot.value"><code class="docutils literal notranslate"><span class="pre">ExtractedValueSlot.value</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedGroupSlot"><code class="docutils literal notranslate"><span class="pre">ExtractedGroupSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ExtractedGroupSlot.update"><code class="docutils literal notranslate"><span class="pre">ExtractedGroupSlot.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.BaseSlot"><code class="docutils literal notranslate"><span class="pre">BaseSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.BaseSlot.get_value"><code class="docutils literal notranslate"><span class="pre">BaseSlot.get_value()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.BaseSlot.init_value"><code class="docutils literal notranslate"><span class="pre">BaseSlot.init_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ValueSlot"><code class="docutils literal notranslate"><span class="pre">ValueSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ValueSlot.default_value"><code class="docutils literal notranslate"><span class="pre">ValueSlot.default_value</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ValueSlot.extract_value"><code class="docutils literal notranslate"><span class="pre">ValueSlot.extract_value()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ValueSlot.get_value"><code class="docutils literal notranslate"><span class="pre">ValueSlot.get_value()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.ValueSlot.init_value"><code class="docutils literal notranslate"><span class="pre">ValueSlot.init_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.GroupSlot"><code class="docutils literal notranslate"><span class="pre">GroupSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.GroupSlot.allow_partial_extraction"><code class="docutils literal notranslate"><span class="pre">GroupSlot.allow_partial_extraction</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.GroupSlot.get_value"><code class="docutils literal notranslate"><span class="pre">GroupSlot.get_value()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.GroupSlot.init_value"><code class="docutils literal notranslate"><span class="pre">GroupSlot.init_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.RegexpSlot"><code class="docutils literal notranslate"><span class="pre">RegexpSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.RegexpSlot.regexp"><code class="docutils literal notranslate"><span class="pre">RegexpSlot.regexp</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.RegexpSlot.match_group_idx"><code class="docutils literal notranslate"><span class="pre">RegexpSlot.match_group_idx</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.RegexpSlot.extract_value"><code class="docutils literal notranslate"><span class="pre">RegexpSlot.extract_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.FunctionSlot"><code class="docutils literal notranslate"><span class="pre">FunctionSlot</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.FunctionSlot.func"><code class="docutils literal notranslate"><span class="pre">FunctionSlot.func</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.FunctionSlot.extract_value"><code class="docutils literal notranslate"><span class="pre">FunctionSlot.extract_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager"><code class="docutils literal notranslate"><span class="pre">SlotManager</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.slot_storage"><code class="docutils literal notranslate"><span class="pre">SlotManager.slot_storage</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.root_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.root_slot</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.set_root_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.set_root_slot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.get_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.get_slot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.extract_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.extract_slot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.extract_all"><code class="docutils literal notranslate"><span class="pre">SlotManager.extract_all()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.get_extracted_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.get_extracted_slot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.is_slot_extracted"><code class="docutils literal notranslate"><span class="pre">SlotManager.is_slot_extracted()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.all_slots_extracted"><code class="docutils literal notranslate"><span class="pre">SlotManager.all_slots_extracted()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.unset_slot"><code class="docutils literal notranslate"><span class="pre">SlotManager.unset_slot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.unset_all_slots"><code class="docutils literal notranslate"><span class="pre">SlotManager.unset_all_slots()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.KwargOnlyFormatter"><code class="docutils literal notranslate"><span class="pre">SlotManager.KwargOnlyFormatter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.KwargOnlyFormatter.get_value"><code class="docutils literal notranslate"><span class="pre">SlotManager.KwargOnlyFormatter.get_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.slots.slots.SlotManager.fill_template"><code class="docutils literal notranslate"><span class="pre">SlotManager.fill_template()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+    
+    
+
+    <a href="https://github.com/deeppavlov/chatsky/blob/feat/new-serialization-for-ctx/chatsky/slots/slots.py" data-behavior="call-to-action-event" data-response="View on Github" target="_blank">
+        <div id="github-view-link">
+            <span class="pytorch-github call-to-action-any"></span>
+            <div class="call-to-action-desktop-view">View on GitHub</div>
+            <div class="call-to-action-mobile-view">GitHub</div>
+        </div>
+    </a>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

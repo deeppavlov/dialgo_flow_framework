@@ -1,0 +1,13 @@
+:orphan:
+
+.. This is an auto-generated RST index file representing tutorials directory structure
+
+Service
+=======
+
+.. nbgallery::
+   tutorials.service.1_basics.py
+   tutorials.service.2_advanced.py
+   tutorials.service.3_groups.py
+   tutorials.service.4_conditions_and_paths.py
+   tutorials.service.5_extra_handlers.py

@@ -1,0 +1,7 @@
+:source_name: chatsky/core/service/group
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.core.service.group
+   :members:
+   :undoc-members:
+   :show-inheritance:

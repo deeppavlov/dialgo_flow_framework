@@ -1,0 +1,14 @@
+:orphan:
+
+.. This is an auto-generated RST file representing documentation source directory structure
+
+Stats
+=====
+
+.. autosummary::
+   :toctree:
+
+   chatsky.stats.instrumentor
+   chatsky.stats.default_extractors
+   chatsky.stats.cli
+   chatsky.stats.utils

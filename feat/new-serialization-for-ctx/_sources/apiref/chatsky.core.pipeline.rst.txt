@@ -1,0 +1,7 @@
+:source_name: chatsky/core/pipeline
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.core.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:

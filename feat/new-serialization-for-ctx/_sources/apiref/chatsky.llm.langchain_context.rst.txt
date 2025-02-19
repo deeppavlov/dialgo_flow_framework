@@ -1,0 +1,7 @@
+:source_name: chatsky/llm/langchain_context
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.llm.langchain_context
+   :members:
+   :undoc-members:
+   :show-inheritance:

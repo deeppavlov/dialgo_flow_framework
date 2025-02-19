@@ -1,0 +1,7 @@
+:source_name: chatsky/processing/standard
+:doc_version: feat/new-serialization-for-ctx/
+
+.. automodule:: chatsky.processing.standard
+   :members:
+   :undoc-members:
+   :show-inheritance:

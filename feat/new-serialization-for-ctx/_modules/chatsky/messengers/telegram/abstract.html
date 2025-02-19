@@ -1,0 +1,1284 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.messengers.telegram.abstract &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/messengers/telegram/abstract';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/new-serialization-for-ctx';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.messengers.telegram.abstract</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.messengers.telegram.abstract</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Telegram Base</span>
+<span class="sd">-------------</span>
+<span class="sd">This module implements a base interface for interactions with the</span>
+<span class="sd">Telegram API.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.utils.devel.extra_field_helpers</span> <span class="kn">import</span> <span class="n">grab_extra_fields</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.messengers.common</span> <span class="kn">import</span> <span class="n">MessengerInterfaceWithAttachments</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.service.types</span> <span class="kn">import</span> <span class="n">PipelineRunnerFunction</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.message</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Animation</span><span class="p">,</span>
+    <span class="n">Audio</span><span class="p">,</span>
+    <span class="n">CallbackQuery</span><span class="p">,</span>
+    <span class="n">Contact</span><span class="p">,</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Image</span><span class="p">,</span>
+    <span class="n">Invoice</span><span class="p">,</span>
+    <span class="n">Location</span><span class="p">,</span>
+    <span class="n">Message</span><span class="p">,</span>
+    <span class="n">Origin</span><span class="p">,</span>
+    <span class="n">Poll</span><span class="p">,</span>
+    <span class="n">PollOption</span><span class="p">,</span>
+    <span class="n">Sticker</span><span class="p">,</span>
+    <span class="n">Video</span><span class="p">,</span>
+    <span class="n">VideoMessage</span><span class="p">,</span>
+    <span class="n">VoiceMessage</span><span class="p">,</span>
+    <span class="n">MediaGroup</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">telegram</span> <span class="kn">import</span> <span class="p">(</span>
+        <span class="n">InputMediaAnimation</span><span class="p">,</span>
+        <span class="n">InputMediaAudio</span><span class="p">,</span>
+        <span class="n">InputMediaDocument</span><span class="p">,</span>
+        <span class="n">InputMediaPhoto</span><span class="p">,</span>
+        <span class="n">InputMediaVideo</span><span class="p">,</span>
+        <span class="n">Update</span><span class="p">,</span>
+        <span class="n">Message</span> <span class="k">as</span> <span class="n">TelegramMessage</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">telegram.ext</span> <span class="kn">import</span> <span class="n">Application</span><span class="p">,</span> <span class="n">ExtBot</span><span class="p">,</span> <span class="n">MessageHandler</span><span class="p">,</span> <span class="n">CallbackQueryHandler</span>
+    <span class="kn">from</span> <span class="nn">telegram.ext.filters</span> <span class="kn">import</span> <span class="n">ALL</span>
+
+    <span class="n">telegram_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">ExtBot</span> <span class="o">=</span> <span class="n">Any</span>
+    <span class="n">Update</span> <span class="o">=</span> <span class="n">Any</span>
+    <span class="n">TelegramMessage</span> <span class="o">=</span> <span class="n">Any</span>
+
+    <span class="n">telegram_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface">[docs]</a>
+<span class="k">class</span> <span class="nc">_AbstractTelegramInterface</span><span class="p">(</span><span class="n">MessengerInterfaceWithAttachments</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Messenger interface mixin for Telegram API usage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">supported_request_attachment_types</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Location</span><span class="p">,</span>
+        <span class="n">Contact</span><span class="p">,</span>
+        <span class="n">Poll</span><span class="p">,</span>
+        <span class="n">Sticker</span><span class="p">,</span>
+        <span class="n">Audio</span><span class="p">,</span>
+        <span class="n">Video</span><span class="p">,</span>
+        <span class="n">Animation</span><span class="p">,</span>
+        <span class="n">Image</span><span class="p">,</span>
+        <span class="n">Document</span><span class="p">,</span>
+        <span class="n">VoiceMessage</span><span class="p">,</span>
+        <span class="n">VideoMessage</span><span class="p">,</span>
+        <span class="n">Invoice</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">supported_response_attachment_types</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Location</span><span class="p">,</span>
+        <span class="n">Contact</span><span class="p">,</span>
+        <span class="n">Poll</span><span class="p">,</span>
+        <span class="n">Sticker</span><span class="p">,</span>
+        <span class="n">Audio</span><span class="p">,</span>
+        <span class="n">Video</span><span class="p">,</span>
+        <span class="n">Animation</span><span class="p">,</span>
+        <span class="n">Image</span><span class="p">,</span>
+        <span class="n">Document</span><span class="p">,</span>
+        <span class="n">VoiceMessage</span><span class="p">,</span>
+        <span class="n">VideoMessage</span><span class="p">,</span>
+        <span class="n">MediaGroup</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attachments_directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">attachments_directory</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">telegram_available</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;`python-telegram-bot` package is missing.</span><span class="se">\n</span><span class="s2">Try to run `pip install chatsky[telegram]`.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">application</span> <span class="o">=</span> <span class="n">Application</span><span class="o">.</span><span class="n">builder</span><span class="p">()</span><span class="o">.</span><span class="n">token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">MessageHandler</span><span class="p">(</span><span class="n">ALL</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_message</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">CallbackQueryHandler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_callback</span><span class="p">))</span>
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.get_attachment_bytes">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.get_attachment_bytes">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_attachment_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">file</span><span class="o">.</span><span class="n">download_as_bytearray</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.extract_message_from_telegram">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.extract_message_from_telegram">[docs]</a>
+    <span class="k">def</span> <span class="nf">extract_message_from_telegram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">TelegramMessage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert Telegram update to Chatsky message.</span>
+<span class="sd">        Extract text and supported attachments.</span>
+
+<span class="sd">        :param update: Telegram update object.</span>
+<span class="sd">        :return: Chatsky message object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="n">Message</span><span class="p">()</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="n">message</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">text</span> <span class="ow">or</span> <span class="n">update</span><span class="o">.</span><span class="n">caption</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">location</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span><span class="n">Location</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">contact</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Contact</span><span class="p">(</span>
+                    <span class="n">phone_number</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">contact</span><span class="o">.</span><span class="n">phone_number</span><span class="p">,</span>
+                    <span class="n">first_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">contact</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+                    <span class="n">last_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">contact</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+                    <span class="n">user_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">contact</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">invoice</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Invoice</span><span class="p">(</span>
+                    <span class="n">title</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">invoice</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+                    <span class="n">description</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">invoice</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+                    <span class="n">currency</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">invoice</span><span class="o">.</span><span class="n">currency</span><span class="p">,</span>
+                    <span class="n">amount</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">invoice</span><span class="o">.</span><span class="n">total_amount</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">poll</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Poll</span><span class="p">(</span>
+                    <span class="n">question</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">question</span><span class="p">,</span>
+                    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="n">PollOption</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">votes</span><span class="o">=</span><span class="n">option</span><span class="o">.</span><span class="n">voter_count</span><span class="p">)</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">options</span><span class="p">],</span>
+                    <span class="n">is_closed</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">is_closed</span><span class="p">,</span>
+                    <span class="n">is_anonymous</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                    <span class="n">multiple_answers</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">allows_multiple_answers</span><span class="p">,</span>
+                    <span class="n">correct_option_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">correct_option_id</span><span class="p">,</span>
+                    <span class="n">explanation</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">explanation</span><span class="p">,</span>
+                    <span class="n">open_period</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">poll</span><span class="o">.</span><span class="n">open_period</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">sticker</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Sticker</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">sticker</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">is_animated</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">sticker</span><span class="o">.</span><span class="n">is_animated</span><span class="p">,</span>
+                    <span class="n">is_video</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">sticker</span><span class="o">.</span><span class="n">is_video</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">sticker</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">audio</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Image</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">thumbnail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Audio</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">duration</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span>
+                    <span class="n">performer</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">performer</span><span class="p">,</span>
+                    <span class="n">file_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+                    <span class="n">mime_type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+                    <span class="n">thumbnail</span><span class="o">=</span><span class="n">thumbnail</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">video</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Image</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">thumbnail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Video</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">width</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                    <span class="n">duration</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span>
+                    <span class="n">file_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+                    <span class="n">mime_type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+                    <span class="n">thumbnail</span><span class="o">=</span><span class="n">thumbnail</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">animation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Image</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">thumbnail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Animation</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">width</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                    <span class="n">duration</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span>
+                    <span class="n">file_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+                    <span class="n">mime_type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">animation</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+                    <span class="n">thumbnail</span><span class="o">=</span><span class="n">thumbnail</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">update</span><span class="o">.</span><span class="n">photo</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Image</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">picture</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">picture</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">width</span><span class="o">=</span><span class="n">picture</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="n">picture</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">picture</span> <span class="ow">in</span> <span class="n">update</span><span class="o">.</span><span class="n">photo</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">document</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Image</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">thumbnail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">Document</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">file_name</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span>
+                    <span class="n">mime_type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+                    <span class="n">thumbnail</span><span class="o">=</span><span class="n">thumbnail</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">voice</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">VoiceMessage</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">mime_type</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">voice</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">video_note</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">thumbnail</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">Image</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video_note</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span> <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video_note</span><span class="o">.</span><span class="n">thumbnail</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">video_note</span><span class="o">.</span><span class="n">thumbnail</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">VideoMessage</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video_note</span><span class="o">.</span><span class="n">file_id</span><span class="p">,</span>
+                    <span class="n">file_unique_id</span><span class="o">=</span><span class="n">update</span><span class="o">.</span><span class="n">video_note</span><span class="o">.</span><span class="n">file_unique_id</span><span class="p">,</span>
+                    <span class="n">thumbnail</span><span class="o">=</span><span class="n">thumbnail</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">message</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.cast_message_to_telegram_and_send">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.cast_message_to_telegram_and_send">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">cast_message_to_telegram_and_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">ExtBot</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send Chatsky message to Telegram.</span>
+<span class="sd">        Sometimes, if several attachments included into message can not be sent as one update,</span>
+<span class="sd">        several Telegram updates will be produced.</span>
+<span class="sd">        Sometimes, if no text and none of the supported attachments are included,</span>
+<span class="sd">        nothing will happen.</span>
+
+<span class="sd">        :param bot: Telegram bot, that is used for connection to Telegram API.</span>
+<span class="sd">        :param chat_id: Telegram dialog ID that the message will be sent to.</span>
+<span class="sd">        :param message: Chatsky message that will be processed into Telegram updates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span>
+                <span class="n">chat_id</span><span class="p">,</span>
+                <span class="n">message</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                    <span class="n">message</span><span class="p">,</span>
+                    <span class="p">[</span>
+                        <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;disable_web_page_preview&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">attachments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attachment</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">attachments</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Location</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_location</span><span class="p">(</span>
+                        <span class="n">chat_id</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                            <span class="n">attachment</span><span class="p">,</span>
+                            <span class="p">[</span>
+                                <span class="s2">&quot;horizontal_accuracy&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Contact</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_contact</span><span class="p">(</span>
+                        <span class="n">chat_id</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">phone_number</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                            <span class="n">attachment</span><span class="p">,</span>
+                            <span class="p">[</span>
+                                <span class="s2">&quot;vcard&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Poll</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_poll</span><span class="p">(</span>
+                        <span class="n">chat_id</span><span class="p">,</span>
+                        <span class="n">attachment</span><span class="o">.</span><span class="n">question</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">option</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">attachment</span><span class="o">.</span><span class="n">options</span><span class="p">],</span>
+                        <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                            <span class="n">attachment</span><span class="p">,</span>
+                            <span class="p">[</span>
+                                <span class="s2">&quot;is_anonymous&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;type&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;allows_multiple_answers&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;correct_option_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;explanation&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;explanation_parse_mode&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;open_period&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;is_closed&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;question_parse_mode&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Audio</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_audio</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;performer&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;title&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Video</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_video</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;supports_streaming&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;show_caption_above_media&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Animation</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_animation</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;show_caption_above_media&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Image</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_photo</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Sticker</span><span class="p">):</span>
+                    <span class="n">sticker</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">attachment</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">attachment</span><span class="o">.</span><span class="n">id</span>
+                    <span class="k">if</span> <span class="n">sticker</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_sticker</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">sticker</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;emoji&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">Document</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_document</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">VoiceMessage</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_voice</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">VideoMessage</span><span class="p">):</span>
+                    <span class="n">attachment_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">attachment</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">attachment_bytes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_video_note</span><span class="p">(</span>
+                            <span class="n">chat_id</span><span class="p">,</span>
+                            <span class="n">attachment_bytes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                <span class="n">attachment</span><span class="p">,</span>
+                                <span class="p">[</span>
+                                    <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_markup&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                <span class="p">],</span>
+                            <span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span> <span class="n">MediaGroup</span><span class="p">):</span>
+                    <span class="n">files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">media</span> <span class="ow">in</span> <span class="n">attachment</span><span class="o">.</span><span class="n">group</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">Image</span><span class="p">):</span>
+                            <span class="n">media_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">media</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                            <span class="n">files</span> <span class="o">+=</span> <span class="p">[</span>
+                                <span class="n">InputMediaPhoto</span><span class="p">(</span>
+                                    <span class="n">media_bytes</span><span class="p">,</span>
+                                    <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                        <span class="n">media</span><span class="p">,</span>
+                                        <span class="p">[</span>
+                                            <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;show_caption_above_media&quot;</span><span class="p">,</span>
+                                        <span class="p">],</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">Video</span><span class="p">):</span>
+                            <span class="n">media_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">media</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                            <span class="n">files</span> <span class="o">+=</span> <span class="p">[</span>
+                                <span class="n">InputMediaVideo</span><span class="p">(</span>
+                                    <span class="n">media_bytes</span><span class="p">,</span>
+                                    <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                        <span class="n">media</span><span class="p">,</span>
+                                        <span class="p">[</span>
+                                            <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;supports_streaming&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;show_caption_above_media&quot;</span><span class="p">,</span>
+                                        <span class="p">],</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">Animation</span><span class="p">):</span>
+                            <span class="n">media_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">media</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                            <span class="n">files</span> <span class="o">+=</span> <span class="p">[</span>
+                                <span class="n">InputMediaAnimation</span><span class="p">(</span>
+                                    <span class="n">media_bytes</span><span class="p">,</span>
+                                    <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                        <span class="n">media</span><span class="p">,</span>
+                                        <span class="p">[</span>
+                                            <span class="s2">&quot;filename&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;has_spoiler&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+                                            <span class="s2">&quot;show_caption_above_media&quot;</span><span class="p">,</span>
+                                        <span class="p">],</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">Audio</span><span class="p">):</span>
+                            <span class="n">media_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">media</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                            <span class="n">files</span> <span class="o">+=</span> <span class="p">[</span>
+                                <span class="n">InputMediaAudio</span><span class="p">(</span>
+                                    <span class="n">media_bytes</span><span class="p">,</span>
+                                    <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                                        <span class="n">media</span><span class="p">,</span>
+                                        <span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="s2">&quot;caption&quot;</span><span class="p">,</span> <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span> <span class="s2">&quot;performer&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;thumbnail&quot;</span><span class="p">],</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="n">Document</span><span class="p">):</span>
+                            <span class="n">media_bytes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">media</span><span class="o">.</span><span class="n">get_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                            <span class="n">files</span> <span class="o">+=</span> <span class="p">[</span>
+                                <span class="n">InputMediaDocument</span><span class="p">(</span>
+                                    <span class="n">media_bytes</span><span class="p">,</span>
+                                    <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span><span class="n">media</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">,</span> <span class="s2">&quot;caption&quot;</span><span class="p">,</span> <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span> <span class="s2">&quot;thumbnail&quot;</span><span class="p">]),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attachment </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">media</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> can not be sent in a media group.&quot;</span><span class="p">)</span>
+                    <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_media_group</span><span class="p">(</span>
+                        <span class="n">chat_id</span><span class="p">,</span>
+                        <span class="n">files</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">grab_extra_fields</span><span class="p">(</span>
+                            <span class="n">attachment</span><span class="p">,</span>
+                            <span class="p">[</span>
+                                <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;disable_notification&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;protect_content&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;message_effect_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;reply_to_message_id&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;parse_mode&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attachment </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">attachment</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is not supported.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface._on_event">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface._on_event">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_on_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Update</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">create_message</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Update</span><span class="p">],</span> <span class="n">Message</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process Telegram update, run pipeline and send response to Telegram.</span>
+
+<span class="sd">        :param update: Telegram update that will be processed.</span>
+<span class="sd">        :param create_message: function that converts Telegram update to Chatsky message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data_available</span> <span class="o">=</span> <span class="n">update</span><span class="o">.</span><span class="n">message</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">update</span><span class="o">.</span><span class="n">callback_query</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">update</span><span class="o">.</span><span class="n">effective_chat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">data_available</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">create_message</span><span class="p">(</span><span class="n">update</span><span class="p">)</span>
+            <span class="n">message</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">Origin</span><span class="o">.</span><span class="n">model_construct</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">update</span><span class="p">,</span> <span class="n">interface</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pipeline_runner</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">update</span><span class="o">.</span><span class="n">effective_chat</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">last_response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast_message_to_telegram_and_send</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">bot</span><span class="p">,</span> <span class="n">update</span><span class="o">.</span><span class="n">effective_chat</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">last_response</span>
+                <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.on_message">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.on_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Update</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process normal Telegram update, extracting Chatsky message from it</span>
+<span class="sd">        using :py:meth:`~._AbstractTelegramInterface.extract_message_from_telegram`.</span>
+
+<span class="sd">        :param update: Telegram update that will be processed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_event</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_message_from_telegram</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">message</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.on_callback">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.on_callback">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">on_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">update</span><span class="p">:</span> <span class="n">Update</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process Telegram callback update, creating empty Chatsky message</span>
+<span class="sd">        with only one callback query attachment from `callback_query.data` field.</span>
+
+<span class="sd">        :param update: Telegram update that will be processed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_event</span><span class="p">(</span>
+            <span class="n">update</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">Message</span><span class="p">(</span><span class="n">attachments</span><span class="o">=</span><span class="p">[</span><span class="n">CallbackQuery</span><span class="p">(</span><span class="n">query_string</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">callback_query</span><span class="o">.</span><span class="n">data</span><span class="p">)])</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="_AbstractTelegramInterface.connect">
+<a class="viewcode-back" href="../../../../apiref/chatsky.messengers.telegram.abstract.html#chatsky.messengers.telegram.abstract._AbstractTelegramInterface.connect">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline_runner</span><span class="p">:</span> <span class="n">PipelineRunnerFunction</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pipeline_runner</span> <span class="o">=</span> <span class="n">pipeline_runner</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

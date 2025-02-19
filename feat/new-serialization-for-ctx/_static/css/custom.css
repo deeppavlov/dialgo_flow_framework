@@ -1,0 +1,45 @@
+.call-to-action-any {
+    width: 2rem;
+    height: 2rem;
+    margin-inline-end: 10px;
+    background-size: 100% 100%;
+}
+
+.pytorch-colab {
+    background-image: url("../images/logo-colab.svg");
+}
+
+.pytorch-download {
+    background-image: url("../images/logo-download.svg");
+}
+
+.pytorch-github {
+    background-image: url("../images/logo-github.svg");
+}
+
+
+
+.call-to-action-desktop-view {
+    display: none;
+}
+
+.call-to-action-mobile-view {
+    display: block;
+}
+
+#google-colab-link, #download-notebook-link, #github-view-link {
+    padding-bottom: 0.625rem;
+    display: flex;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .call-to-action-desktop-view {
+        display: block;
+    }
+
+    .call-to-action-mobile-view {
+        display: none;
+    }
+}

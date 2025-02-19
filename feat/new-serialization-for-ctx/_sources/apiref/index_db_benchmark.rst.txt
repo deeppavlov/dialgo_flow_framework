@@ -1,0 +1,13 @@
+:orphan:
+
+.. This is an auto-generated RST file representing documentation source directory structure
+
+DB Benchmark
+============
+
+.. autosummary::
+   :toctree:
+
+   chatsky.utils.db_benchmark.basic_config
+   chatsky.utils.db_benchmark.report
+   chatsky.utils.db_benchmark.benchmark

@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.utils.db_benchmark.benchmark &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/utils/db_benchmark/benchmark';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/new-serialization-for-ctx';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.utils.db_benchmark.benchmark</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.utils.db_benchmark.benchmark</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Context storage benchmarking</span>
+<span class="sd">----------------------------</span>
+<span class="sd">This module contains functions for context storages benchmarking.</span>
+
+<span class="sd">The basic function is :py:func:`~.time_context_read_write` but it has a low level interface.</span>
+
+<span class="sd">Higher level wrappers of the function provided by this module are:</span>
+
+<span class="sd">- :py:func:`~.save_results_to_file` -- saves results for a list of benchmark cases.</span>
+<span class="sd">- :py:func:`~.benchmark_all` -- a wrapper of `save_results_to_file`. Creates cases from configs.</span>
+
+<span class="sd">Wrappers use :py:class:`~.BenchmarkConfig` interface to configure benchmarks.</span>
+<span class="sd">A simple configuration class as well as a configuration set are provided by</span>
+<span class="sd">:py:mod:`chatsky.utils.db_benchmark.basic_config`.</span>
+
+<span class="sd">To view files generated by :py:func:`~.save_results_to_file` use either</span>
+<span class="sd">:py:func:`~chatsky.utils.db_benchmark.report.report` or</span>
+<span class="sd">`our streamlit app &lt;../_misc/benchmark_streamlit.py&gt;`_.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Awaitable</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">from</span> <span class="nn">statistics</span> <span class="kn">import</span> <span class="n">mean</span>
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">traceback</span> <span class="kn">import</span> <span class="n">extract_tb</span><span class="p">,</span> <span class="n">StackSummary</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.context_storages</span> <span class="kn">import</span> <span class="n">DBContextStorage</span>
+<span class="kn">from</span> <span class="nn">chatsky.core</span> <span class="kn">import</span> <span class="n">Context</span>
+
+
+<div class="viewcode-block" id="time_context_read_write">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.time_context_read_write">[docs]</a>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">time_context_read_write</span><span class="p">(</span>
+    <span class="n">context_storage</span><span class="p">:</span> <span class="n">DBContextStorage</span><span class="p">,</span>
+    <span class="n">context_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">DBContextStorage</span><span class="p">],</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">Context</span><span class="p">]],</span>
+    <span class="n">context_num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">context_updater</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Context</span><span class="p">],</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">Context</span><span class="p">]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Benchmark `context_storage` by writing and reading `context`\\s generated by `context_factory`</span>
+<span class="sd">    into it / from it `context_num` times.</span>
+<span class="sd">    If `context_updater` is not `None` it is used to update `context`\\s and benchmark update operation.</span>
+
+<span class="sd">    This function clears `context_storage` before and after execution.</span>
+
+<span class="sd">    :param context_storage: Context storage to benchmark.</span>
+<span class="sd">    :param context_factory: A function that creates contexts which will be written into context storage.</span>
+<span class="sd">    :param context_num: A number of times the context will be written and read.</span>
+<span class="sd">    :param context_updater:</span>
+<span class="sd">        None or a function.</span>
+<span class="sd">        If not None, function should accept :py:class:`~.Context` and return an updated :py:class:`~.Context`.</span>
+<span class="sd">        The updated context can be either the same object (at the same pointer) or a different object (e.g. copied).</span>
+<span class="sd">        The updated context should have a higher dialog length than the received context</span>
+<span class="sd">        (to emulate context updating during dialog).</span>
+<span class="sd">        The function should return `None` to stop updating contexts.</span>
+<span class="sd">        For an example of such function, see implementation of</span>
+<span class="sd">        :py:meth:`chatsky.utils.db_benchmark.basic_config.BasicBenchmarkConfig.context_updater`.</span>
+<span class="sd">    :return:</span>
+<span class="sd">        A tuple of 3 elements.</span>
+
+<span class="sd">        The first element -- a list of write times. Its length is equal to `context_num`.</span>
+
+<span class="sd">        The second element -- a list of dictionaries with read times.</span>
+<span class="sd">        Each dictionary maps from int to float. The key in the mapping is the `dialog_len` of the context and the</span>
+<span class="sd">        values are the read times for the corresponding `dialog_len`.</span>
+<span class="sd">        If `context_updater` is None, all dictionaries will have only one key --</span>
+<span class="sd">        dialog length of the context returned by `context_factory`.</span>
+<span class="sd">        Otherwise, the dictionaries will also have a key for each updated context.</span>
+
+<span class="sd">        The third element -- a list of dictionaries with update times.</span>
+<span class="sd">        Structurally the same as the second element, but none of the elements here have a key for</span>
+<span class="sd">        dialog_len of the context returned by `context_factory`.</span>
+<span class="sd">        So if `context_updater` is None, all dictionaries will be empty.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">await</span> <span class="n">context_storage</span><span class="o">.</span><span class="n">clear_all</span><span class="p">()</span>
+
+    <span class="n">write_times</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">read_times</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">update_times</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">context_num</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Iteration&quot;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="k">await</span> <span class="n">context_factory</span><span class="p">(</span><span class="n">context_storage</span><span class="p">)</span>
+
+        <span class="c1"># write operation benchmark</span>
+        <span class="n">write_start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">context</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+        <span class="n">write_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">write_start</span><span class="p">)</span>
+
+        <span class="n">read_times</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+        <span class="n">update_times</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
+
+        <span class="c1"># read operation benchmark</span>
+        <span class="n">read_start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Context</span><span class="o">.</span><span class="n">connected</span><span class="p">(</span><span class="n">context_storage</span><span class="p">,</span> <span class="n">start_label</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;flow&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">),</span> <span class="nb">id</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">read_time</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">read_start</span>
+        <span class="n">read_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">labels</span><span class="p">)]</span> <span class="o">=</span> <span class="n">read_time</span>
+
+        <span class="k">if</span> <span class="n">context_updater</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="k">await</span> <span class="n">context_updater</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+            <span class="k">while</span> <span class="n">context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">update_start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+                <span class="k">await</span> <span class="n">context</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+                <span class="n">update_time</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">update_start</span>
+                <span class="n">update_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">labels</span><span class="p">)]</span> <span class="o">=</span> <span class="n">update_time</span>
+
+                <span class="n">read_start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+                <span class="n">context</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Context</span><span class="o">.</span><span class="n">connected</span><span class="p">(</span><span class="n">context_storage</span><span class="p">,</span> <span class="n">start_label</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;flow&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">),</span> <span class="nb">id</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="n">read_time</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">read_start</span>
+                <span class="n">read_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">labels</span><span class="p">)]</span> <span class="o">=</span> <span class="n">read_time</span>
+
+                <span class="n">context</span> <span class="o">=</span> <span class="k">await</span> <span class="n">context_updater</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="n">context_storage</span><span class="o">.</span><span class="n">clear_all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">write_times</span><span class="p">,</span> <span class="n">read_times</span><span class="p">,</span> <span class="n">update_times</span></div>
+
+
+
+<div class="viewcode-block" id="DBFactory">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.DBFactory">[docs]</a>
+<span class="k">class</span> <span class="nc">DBFactory</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for storing information about context storage to benchmark.</span>
+<span class="sd">    Also used to create a context storage from the configuration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;URI of the context storage.&quot;&quot;&quot;</span>
+    <span class="n">factory_module</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;chatsky.context_storages&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A module containing `factory`.&quot;&quot;&quot;</span>
+    <span class="n">factory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;context_storage_factory&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the context storage factory. (function that creates context storages from URIs)&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DBFactory.db">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.DBFactory.db">[docs]</a>
+    <span class="k">def</span> <span class="nf">db</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a context storage using `factory` from `uri`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factory_module</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BenchmarkConfig">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkConfig">[docs]</a>
+<span class="k">class</span> <span class="nc">BenchmarkConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration for a benchmark.</span>
+
+<span class="sd">    Defines methods and parameters required to run :py:func:`~.time_context_read_write`.</span>
+<span class="sd">    Also defines a method (`info`) for displaying information about this configuration.</span>
+
+<span class="sd">    A simple way to configure benchmarks is provided by</span>
+<span class="sd">    :py:class:`~.chatsky.utils.db_benchmark.basic_config.BasicBenchmarkConfig`.</span>
+
+<span class="sd">    Inherit from this class only if `BasicBenchmarkConfig` is not enough for your benchmarking needs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">context_num</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Number of times the contexts will be benchmarked.</span>
+<span class="sd">    Increasing this number decreases standard error of the mean for benchmarked data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BenchmarkConfig.get_context">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkConfig.get_context">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">DBContextStorage</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Context</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return context to benchmark read and write operations with.</span>
+
+<span class="sd">        This function will be called `context_num` times.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="BenchmarkConfig.info">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkConfig.info">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a dictionary with information about this configuration.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+
+<div class="viewcode-block" id="BenchmarkConfig.context_updater">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkConfig.context_updater">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">context_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Context</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update context with new dialog turns or return `None` to stop updates.</span>
+
+<span class="sd">        This function is used to benchmark update and read operations.</span>
+
+<span class="sd">        This function will be called AT LEAST `context_num` times.</span>
+
+<span class="sd">        :return: Updated context or `None` to stop updating context.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BenchmarkCase">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkCase">[docs]</a>
+<span class="k">class</span> <span class="nc">BenchmarkCase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents a benchmark case and includes</span>
+<span class="sd">    information about it, its configuration and configuration of a context storage to benchmark.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of a benchmark case.&quot;&quot;&quot;</span>
+    <span class="n">db_factory</span><span class="p">:</span> <span class="n">DBFactory</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DBFactory that specifies context storage to benchmark.&quot;&quot;&quot;</span>
+    <span class="n">benchmark_config</span><span class="p">:</span> <span class="n">BenchmarkConfig</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Benchmark configuration.&quot;&quot;&quot;</span>
+    <span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">()))</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unique id of the case. Defaults to a random uuid.&quot;&quot;&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the case. Defaults to an empty string.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BenchmarkCase.set_average_results">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkCase.set_average_results">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_average_results</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Modify `benchmark` dictionary to include averaged benchmark results.</span>
+
+<span class="sd">        Add field &quot;average_results&quot; to the benchmark that contains the following fields:</span>
+
+<span class="sd">            - average_write_time</span>
+<span class="sd">            - average_read_time</span>
+<span class="sd">            - average_update_time</span>
+<span class="sd">            - read_times_grouped_by_context_num -- a list of read times.</span>
+<span class="sd">              Each element is the average of read times with the same context_num.</span>
+<span class="sd">            - read_times_grouped_by_dialog_len -- a dictionary of read times.</span>
+<span class="sd">              Its values are the averages of read times with the same dialog_len,</span>
+<span class="sd">              its keys are dialog_len values.</span>
+<span class="sd">            - update_times_grouped_by_context_num</span>
+<span class="sd">            - update_times_grouped_by_dialog_len</span>
+<span class="sd">            - pretty_write -- average write time with only 3 significant digits.</span>
+<span class="sd">            - pretty_read</span>
+<span class="sd">            - pretty_update</span>
+<span class="sd">            - pretty_read+update -- sum of average read and update times with only 3 significant digits.</span>
+
+<span class="sd">        :param benchmark:</span>
+<span class="sd">            A dictionary returned by `BenchmarkCase._run`.</span>
+<span class="sd">            Should include a &quot;success&quot; and &quot;result&quot; fields.</span>
+<span class="sd">            &quot;success&quot; field should be true.</span>
+<span class="sd">            &quot;result&quot; field should be a dictionary with the values returned by</span>
+<span class="sd">            :py:func:`~.time_context_read_write` and keys</span>
+<span class="sd">            &quot;write_times&quot;, &quot;read_times&quot; and &quot;update_times&quot;.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span> <span class="nf">get_complex_stats</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[],</span> <span class="p">{},</span> <span class="kc">None</span>
+
+            <span class="n">average_grouped_by_context_num</span> <span class="o">=</span> <span class="p">[</span><span class="n">mean</span><span class="p">(</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">for</span> <span class="n">times</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+            <span class="n">average_grouped_by_dialog_len</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">mean</span><span class="p">([</span><span class="n">times</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">times</span> <span class="ow">in</span> <span class="n">results</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+            <span class="n">average</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">average_grouped_by_context_num</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">average_grouped_by_context_num</span><span class="p">,</span> <span class="n">average_grouped_by_dialog_len</span><span class="p">,</span> <span class="n">average</span>
+
+        <span class="n">read_stats</span> <span class="o">=</span> <span class="n">get_complex_stats</span><span class="p">(</span><span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;read_times&quot;</span><span class="p">])</span>
+        <span class="n">update_stats</span> <span class="o">=</span> <span class="n">get_complex_stats</span><span class="p">(</span><span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;update_times&quot;</span><span class="p">])</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;average_write_time&quot;</span><span class="p">:</span> <span class="n">mean</span><span class="p">(</span><span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">][</span><span class="s2">&quot;write_times&quot;</span><span class="p">]),</span>
+            <span class="s2">&quot;average_read_time&quot;</span><span class="p">:</span> <span class="n">read_stats</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s2">&quot;average_update_time&quot;</span><span class="p">:</span> <span class="n">update_stats</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="s2">&quot;read_times_grouped_by_context_num&quot;</span><span class="p">:</span> <span class="n">read_stats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;read_times_grouped_by_dialog_len&quot;</span><span class="p">:</span> <span class="n">read_stats</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">&quot;update_times_grouped_by_context_num&quot;</span><span class="p">:</span> <span class="n">update_stats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;update_times_grouped_by_dialog_len&quot;</span><span class="p">:</span> <span class="n">update_stats</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;pretty_write&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_write_time&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_write_time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;pretty_read&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_read_time&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_read_time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;pretty_update&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_update_time&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_update_time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="s2">&quot;pretty_read+update&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_read_time&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_update_time&quot;</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_read_time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;average_update_time&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+        <span class="n">benchmark</span><span class="p">[</span><span class="s2">&quot;average_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="BenchmarkCase._run">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkCase._run">[docs]</a>
+    <span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">write_times</span><span class="p">,</span> <span class="n">read_times</span><span class="p">,</span> <span class="n">update_times</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="n">time_context_read_write</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">db_factory</span><span class="o">.</span><span class="n">db</span><span class="p">(),</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">benchmark_config</span><span class="o">.</span><span class="n">get_context</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">benchmark_config</span><span class="o">.</span><span class="n">context_num</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">benchmark_config</span><span class="o">.</span><span class="n">context_updater</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;write_times&quot;</span><span class="p">:</span> <span class="n">write_times</span><span class="p">,</span>
+                    <span class="s2">&quot;read_times&quot;</span><span class="p">:</span> <span class="n">read_times</span><span class="p">,</span>
+                    <span class="s2">&quot;update_times&quot;</span><span class="p">:</span> <span class="n">update_times</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)),</span>
+                    <span class="s2">&quot;traceback&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">StackSummary</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">__traceback__</span><span class="p">))</span><span class="o">.</span><span class="n">format</span><span class="p">()),</span>
+                <span class="p">},</span>
+            <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="BenchmarkCase.run">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.BenchmarkCase.run">[docs]</a>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run benchmark, return results.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">            A dictionary with 3 keys: &quot;success&quot;, &quot;result&quot;, &quot;average_results&quot;.</span>
+
+<span class="sd">            Success is a bool value. It is false if an exception was raised during benchmarking.</span>
+
+<span class="sd">            Result is either an exception message or a dictionary with 3 keys</span>
+<span class="sd">            (&quot;write_times&quot;, &quot;read_times&quot;, &quot;update_times&quot;).</span>
+<span class="sd">            Values of those fields are the values returned by :py:func:`~.time_context_read_write`.</span>
+
+<span class="sd">            Average results field is as described in :py:meth:`~.BenchmarkCase.set_average_results`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">benchmark</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run</span><span class="p">()</span>
+        <span class="n">BenchmarkCase</span><span class="o">.</span><span class="n">set_average_results</span><span class="p">(</span><span class="n">benchmark</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">benchmark</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="save_results_to_file">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.save_results_to_file">[docs]</a>
+<span class="k">def</span> <span class="nf">save_results_to_file</span><span class="p">(</span>
+    <span class="n">benchmark_cases</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BenchmarkCase</span><span class="p">],</span>
+    <span class="n">file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">exist_ok</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Benchmark all `benchmark_cases` and save results to a file.</span>
+
+<span class="sd">    Result are saved in json format with this schema:</span>
+<span class="sd">    `utils/db_benchmark/benchmark_schema.json &lt;../_misc/benchmark_schema.json&gt;`_.</span>
+
+<span class="sd">    Files created by this function cen be viewed either by using :py:func:`~chatsky.utils.db_benchmark.report.report` or</span>
+<span class="sd">    streamlit app located in the utils directory:</span>
+<span class="sd">    `utils/db_benchmark/benchmark_streamlit.py &lt;../_misc/benchmark_streamlit.py&gt;`_.</span>
+
+<span class="sd">    :param benchmark_cases: A list of benchmark cases that specify benchmarks.</span>
+<span class="sd">    :param file: File to save results to.</span>
+<span class="sd">    :param name: Name of the benchmark set.</span>
+<span class="sd">    :param description: Description of the benchmark set.</span>
+<span class="sd">    :param exist_ok: Whether to continue if the file already exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span> <span class="k">if</span> <span class="n">exist_ok</span> <span class="k">else</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">result</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span>
+            <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">uuid</span><span class="p">,</span>
+            <span class="s2">&quot;benchmarks&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="p">}</span>
+        <span class="n">cases</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">benchmark_cases</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">case</span><span class="p">:</span> <span class="n">BenchmarkCase</span>
+        <span class="k">for</span> <span class="n">case</span> <span class="ow">in</span> <span class="n">cases</span><span class="p">:</span>
+            <span class="n">cases</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Benchmarking: </span><span class="si">{</span><span class="n">case</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">[</span><span class="s2">&quot;benchmarks&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="o">**</span><span class="n">case</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;benchmark_config&quot;</span><span class="p">}),</span>
+                    <span class="s2">&quot;benchmark_config&quot;</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">case</span><span class="o">.</span><span class="n">benchmark_config</span><span class="o">.</span><span class="n">info</span><span class="p">()),</span>
+                    <span class="o">**</span><span class="n">case</span><span class="o">.</span><span class="n">run</span><span class="p">(),</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">fd</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="benchmark_all">
+<a class="viewcode-back" href="../../../../apiref/chatsky.utils.db_benchmark.benchmark.html#chatsky.utils.db_benchmark.benchmark.benchmark_all">[docs]</a>
+<span class="k">def</span> <span class="nf">benchmark_all</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">db_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">benchmark_configs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">BenchmarkConfig</span><span class="p">],</span>
+    <span class="n">exist_ok</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A wrapper for :py:func:`~.save_results_to_file`.</span>
+
+<span class="sd">    Generates `benchmark_cases` from `db_uri` and `benchmark_configs`:</span>
+<span class="sd">    `db_uri` is used to initialize :py:class:`~.DBFactory` instance</span>
+<span class="sd">    which is then used along with `benchmark_configs` to initialize :py:class:`~.BenchmarkCase` instances.</span>
+
+<span class="sd">    :param file: File to save results to.</span>
+<span class="sd">    :param name: Name of the benchmark set.</span>
+<span class="sd">    :param description: Description of the benchmark set. The same description is used for benchmark cases.</span>
+<span class="sd">    :param db_uri: URI of the database to benchmark</span>
+<span class="sd">    :param benchmark_configs: Mapping from case names to configs.</span>
+<span class="sd">    :param exist_ok: Whether to continue if the file already exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">save_results_to_file</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">BenchmarkCase</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">case_name</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+                <span class="n">db_factory</span><span class="o">=</span><span class="n">DBFactory</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">db_uri</span><span class="p">),</span>
+                <span class="n">benchmark_config</span><span class="o">=</span><span class="n">benchmark_config</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">benchmark_config</span> <span class="ow">in</span> <span class="n">benchmark_configs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">],</span>
+        <span class="n">file</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">,</span>
+        <span class="n">exist_ok</span><span class="o">=</span><span class="n">exist_ok</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
