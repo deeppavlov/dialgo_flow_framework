@@ -53,20 +53,18 @@ async def test_get_context(context_storage: JSONContextStorage):
     await copy_ctx.requests.update({0: Message(misc={"0": ">e"}), 1: Message(misc={"0": "zv"})})
     await copy_ctx.responses.update({0: Message(misc={"0": "3 "}), 1: Message(misc={"0": "sh"})})
     copy_ctx.misc.update({"0": " d]", "1": " (b"})
-    exclude = {"id", "current_turn_id", "created_at", "updated_at"}
-    assert context.model_dump(exclude=exclude) == copy_ctx.model_dump(exclude=exclude)
+    assert context.model_dump(exclude={"id", "current_turn_id"}) == copy_ctx.model_dump(exclude={"id", "current_turn_id"})
 
 
 async def test_benchmark_config(context_storage: JSONContextStorage, monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(random, "choice", lambda x: ".")
-    exclude = {"id", "created_at", "updated_at"}
 
     config = bm.BasicBenchmarkConfig(
         from_dialog_len=1, to_dialog_len=5, message_dimensions=(2, 2), misc_dimensions=(3, 3, 3)
     )
     context = await config.get_context(context_storage)
     actual_context = await get_context(context_storage, 1, (2, 2), (3, 3, 3))
-    assert context.model_dump(exclude=exclude) == actual_context.model_dump(exclude=exclude)
+    assert context.model_dump(exclude={"id"}) == actual_context.model_dump(exclude={"id"})
 
     info = await config.info()
     for size in ("starting_context_size", "final_context_size", "misc_size", "message_size"):
@@ -86,12 +84,11 @@ async def test_benchmark_config(context_storage: JSONContextStorage, monkeypatch
             assert len(context.labels) == len(context.requests) == len(context.responses) == index + 1
 
             actual_context = await get_context(context_storage, index + 1, (2, 2), (3, 3, 3))
-            assert context.model_dump(exclude=exclude) == actual_context.model_dump(exclude=exclude)
+            assert context.model_dump(exclude={"id"}) == actual_context.model_dump(exclude={"id"})
 
 
 async def test_context_updater_with_steps(context_storage: JSONContextStorage, monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(random, "choice", lambda x: ".")
-    exclude = {"id", "created_at", "updated_at"}
 
     config = bm.BasicBenchmarkConfig(
         from_dialog_len=1, to_dialog_len=11, step_dialog_len=3, message_dimensions=(2, 2), misc_dimensions=(3, 3, 3)
@@ -111,7 +108,7 @@ async def test_context_updater_with_steps(context_storage: JSONContextStorage, m
             assert len(context.labels) == len(context.requests) == len(context.responses) == index
 
             actual_context = await get_context(context_storage, index, (2, 2), (3, 3, 3))
-            assert context.model_dump(exclude=exclude) == actual_context.model_dump(exclude=exclude)
+            assert context.model_dump(exclude={"id"}) == actual_context.model_dump(exclude={"id"})
 
 
 async def test_time_context_read_write(context_storage: JSONContextStorage):

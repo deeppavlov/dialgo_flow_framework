@@ -132,14 +132,14 @@ class Context(ContextMainInfo):
             instance = cls(
                 id=id,
                 current_turn_id=current_turn_id,
-                created_at=crt_at,
-                updated_at=upd_at,
                 misc=misc,
                 framework_data=fw_data,
                 labels=labels,
                 requests=requests,
                 responses=responses,
             )
+            instance._created_at = crt_at
+            instance._updated_at = upd_at
             instance._storage = storage
             return instance
 

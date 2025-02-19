@@ -170,7 +170,7 @@ class TestContextStorages:
 
     @pytest.fixture
     async def ctx_info(self):
-        yield ContextMainInfo(current_turn_id=1, created_at=1, updated_at=1)
+        yield ContextMainInfo(current_turn_id=1)
 
     @pytest.fixture
     async def add_context(self):
@@ -214,7 +214,7 @@ class TestContextStorages:
         assert await db.load_main_info("1") == ctx_info
         assert await db.load_main_info("2") == ctx_info
 
-        new_info = ContextMainInfo(current_turn_id=2, created_at=1, updated_at=3)
+        new_info = ContextMainInfo(current_turn_id=2)
         await db.update_context("1", new_info)
         assert await db.load_main_info("1") == new_info
         assert await db.load_main_info("2") == ctx_info
@@ -304,7 +304,7 @@ class TestContextStorages:
         await db.delete_context("1")
 
         assert await db.load_main_info("1") is None
-        assert await db.load_main_info("2") == ContextMainInfo(current_turn_id=1, created_at=1, updated_at=1)
+        assert await db.load_main_info("2") == ContextMainInfo(current_turn_id=1)
 
         assert set(await db.load_field_keys("1", "labels")) == set()
         assert set(await db.load_field_keys("2", "labels")) == {0}
@@ -326,13 +326,12 @@ class TestContextStorages:
             str_key = str(key)
             key_misc = {f"{key}": key + 2}
             await asyncio.sleep(random.random() / 100)
-            await db.update_context(
-                str_key, ContextMainInfo(current_turn_id=key, created_at=key + 1, updated_at=key, misc=key_misc)
-            )
+            ctx_info = ContextMainInfo(current_turn_id=key, misc=key_misc)
+            ctx_info._created_at = key + 1
+            ctx_info._updated_at = key
+            await db.update_context(str_key, ctx_info)
             await asyncio.sleep(random.random() / 100)
-            assert await db.load_main_info(str_key) == ContextMainInfo(
-                current_turn_id=key, created_at=key + 1, updated_at=key, misc=key_misc
-            )
+            assert await db.load_main_info(str_key) == ctx_info
 
             for idx in range(1, 20):
                 requests_update = [(0, bytes(2 * key + idx)), (idx, bytes(key + idx))]
