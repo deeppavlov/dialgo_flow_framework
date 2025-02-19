@@ -140,8 +140,8 @@ class ContextMainInfo(BaseModel):
         if isinstance(value, ContextMainInfo):
             return value
         elif isinstance(value, Dict):
-            created_at = value.pop("created_at")
-            updated_at = value.pop("updated_at")
+            created_at = value.pop("created_at", time_ns())
+            updated_at = value.pop("updated_at", time_ns())
             instance = handler(value)
             instance._created_at = created_at
             instance._updated_at = updated_at
