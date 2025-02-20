@@ -702,10 +702,12 @@
 
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
-            <span class="n">exclude</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">}</span>
-            <span class="n">self_dump</span><span class="p">,</span> <span class="n">other_dump</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-            <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="n">other_dump</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">self_dump</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ContextMainInfo</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">misc</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">misc</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">framework_data</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">framework_data</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin_interface</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">origin_interface</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
 
 </pre></div>
