@@ -23,7 +23,7 @@ from time import time_ns
 from typing import Any, Callable, Iterable, Optional, Dict, TYPE_CHECKING, Tuple, overload
 import logging
 
-from pydantic import BaseModel, Field, PrivateAttr, TypeAdapter, model_validator
+from pydantic import BaseModel, Field, PrivateAttr, model_validator
 
 from chatsky.context_storages.database import DBContextStorage, NameConfig
 from chatsky.core.message import Message
