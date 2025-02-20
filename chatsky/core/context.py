@@ -289,14 +289,12 @@ class Context(ContextMainInfo):
     def __eq__(self, value: object) -> bool:
         if isinstance(value, Context):
             return (
-                self.id == value.id
-                and self.current_turn_id == value.current_turn_id
+                super().__eq__(value)
                 and self.labels == value.labels
                 and self.requests == value.requests
                 and self.responses == value.responses
                 and self.misc == value.misc
                 and self.framework_data == value.framework_data
-                and self._storage == value._storage
             )
         else:
             return False

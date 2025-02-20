@@ -189,7 +189,7 @@ class TestContextDict:
         # Checking non-empty dict validation
         empty_dict[0] = Message("msg")
         empty_dict._added = set()
-        assert empty_dict == MessageContextDict.model_validate({0: Message("msg")})
+        assert empty_dict == MessageContextDict.model_validate({"items": {0: Message("msg")}})
 
     async def test_serialize_store(
         self, empty_dict: ContextDict, attached_dict: ContextDict, prefilled_dict: ContextDict
@@ -208,7 +208,7 @@ class TestContextDict:
             # Removing the first added item
             del ctx_dict[0]
             # Checking only the changed keys were serialized
-            assert set(ctx_dict.model_dump(mode="json").keys()) == {"2"}
+            assert set(ctx_dict.model_dump(mode="json")["keys"]) == {"2"}
             # Throw error if store in disconnected
             if ctx_dict is empty_dict:
                 with pytest.raises(RuntimeError):
