@@ -147,8 +147,8 @@ class ContextMainInfo(BaseModel):
             created_at = value.pop("created_at", time_ns())
             updated_at = value.pop("updated_at", time_ns())
             instance = handler(value)
-            instance._created_at = created_at
-            instance._updated_at = updated_at
+            instance._created_at = TypeAdapter(int).validate_python(created_at)
+            instance._updated_at = TypeAdapter(int).validate_python(updated_at)
             return instance
         else:
             raise ValueError(f"Unknown type of ContextMainInfo value: {type(value).__name__}!")

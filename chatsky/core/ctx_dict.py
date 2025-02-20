@@ -384,13 +384,13 @@ class ContextDict(ABC, BaseModel):
         elif isinstance(value, Dict):
             instance = handler(dict())
             if len(value) != 0:
-                instance._items = value.get("items", dict())
-                instance._hashes = value.get("hashes", dict())
-                instance._keys = value.get("keys", set(instance._items.keys()))
-                instance._added = value.get("added", set())
-                instance._removed = value.get("removed", set())
-                instance._ctx_id = value.get("ctx_id")
-                instance._field_name = value.get("field_name")
+                instance._items = TypeAdapter(Dict[int, BaseModel]).validate_python(value.get("items", dict()))
+                instance._hashes = TypeAdapter(Dict[int, int]).validate_python(value.get("hashes", dict()))
+                instance._keys = TypeAdapter(Set[int]).validate_python(value.get("keys", set(instance._items.keys())))
+                instance._added = TypeAdapter(Set[int]).validate_python(value.get("added", set()))
+                instance._removed = TypeAdapter(Set[int]).validate_python(value.get("removed", set()))
+                instance._ctx_id = TypeAdapter(str).validate_python(value.get("ctx_id"))
+                instance._field_name = TypeAdapter(str).validate_python(value.get("field_name"))
             else:
                 instance._items = dict()
                 instance._keys = set()
