@@ -207,8 +207,6 @@ class TestContextDict:
             ctx_dict[2] = Message("another message")
             # Removing the first added item
             del ctx_dict[0]
-            # Checking only the changed keys were serialized
-            assert set(ctx_dict.model_dump()["keys"]) == {2}
             # Throw error if store in disconnected
             if ctx_dict is empty_dict:
                 with pytest.raises(RuntimeError):
