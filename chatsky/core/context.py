@@ -34,7 +34,6 @@ from chatsky.core.ctx_utils import ContextError, FrameworkData, ContextMainInfo
 if TYPE_CHECKING:
     from chatsky.core.script import Node
     from chatsky.core.pipeline import Pipeline
-    from chatsky.core.transition import Transition
 
 
 logger = logging.getLogger(__name__)
