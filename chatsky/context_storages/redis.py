@@ -23,7 +23,6 @@ try:
 except ImportError:
     redis_available = False
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 from .protocol import get_protocol_install_suggestion
 

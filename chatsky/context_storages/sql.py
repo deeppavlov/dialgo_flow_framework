@@ -208,9 +208,7 @@ class SQLContextStorage(DBContextStorage):
         async with self.engine.begin() as conn:
             result = (await conn.execute(stmt)).fetchone()
             return (
-                None
-                if result is None
-                else {f: result[i + 1] for i, f in enumerate(NameConfig.get_context_main_fields)}
+                None if result is None else {f: result[i + 1] for i, f in enumerate(NameConfig.get_context_main_fields)}
             )
 
     async def _update_context(

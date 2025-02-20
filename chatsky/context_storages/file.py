@@ -12,7 +12,6 @@ from typing import Any, List, Set, Tuple, Dict, Optional
 
 from pydantic import BaseModel, Field
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT
 
 try:

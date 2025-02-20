@@ -409,7 +409,7 @@ class ContextDict(ABC, BaseModel):
                 "added": self._added,
                 "removed": self._removed,
                 "ctx_id": self._ctx_id,
-                "field_name": self._field_name
+                "field_name": self._field_name,
             }
         )
         return model_dict

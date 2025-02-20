@@ -13,7 +13,16 @@ from json import loads
 from time import time_ns
 from typing import Any, Callable, Optional, Dict, TYPE_CHECKING
 
-from pydantic import BaseModel, Field, PrivateAttr, TypeAdapter, field_serializer, field_validator, model_serializer, model_validator
+from pydantic import (
+    BaseModel,
+    Field,
+    PrivateAttr,
+    TypeAdapter,
+    field_serializer,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from chatsky.slots.slots import SlotManager
 
@@ -127,12 +136,7 @@ class ContextMainInfo(BaseModel):
     @model_serializer(mode="wrap", when_used="always")
     def _serialize_model(self, original_serializer) -> Dict[str, Any]:
         model_dict = original_serializer(self)
-        model_dict.update(
-            {
-                "created_at": self._created_at,
-                "updated_at": self._updated_at
-            }
-        )
+        model_dict.update({"created_at": self._created_at, "updated_at": self._updated_at})
         return model_dict
 
     @model_validator(mode="wrap")

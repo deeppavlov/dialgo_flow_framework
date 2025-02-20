@@ -80,11 +80,7 @@ class MongoContextStorage(DBContextStorage):
             {NameConfig._id_column: ctx_id},
             NameConfig.get_context_main_fields,
         )
-        return (
-            {f: result[f] for f in NameConfig.get_context_main_fields}
-            if result is not None
-            else None
-        )
+        return {f: result[f] for f in NameConfig.get_context_main_fields} if result is not None else None
 
     async def _inner_update_context(
         self,

@@ -20,7 +20,7 @@ from __future__ import annotations
 from asyncio import gather
 from uuid import uuid4
 from time import time_ns
-from typing import Any, Callable, Iterable, List, Optional, Dict, TYPE_CHECKING, Tuple, overload
+from typing import Any, Callable, Iterable, Optional, Dict, TYPE_CHECKING, Tuple, overload
 import logging
 
 from pydantic import BaseModel, Field, PrivateAttr, TypeAdapter, model_validator
