@@ -389,8 +389,8 @@ class ContextDict(ABC, BaseModel):
                 instance._keys = TypeAdapter(Set[int]).validate_python(value.get("keys", set(instance._items.keys())))
                 instance._added = TypeAdapter(Set[int]).validate_python(value.get("added", set()))
                 instance._removed = TypeAdapter(Set[int]).validate_python(value.get("removed", set()))
-                instance._ctx_id = TypeAdapter(str).validate_python(value.get("ctx_id"))
-                instance._field_name = TypeAdapter(str).validate_python(value.get("field_name"))
+                instance._ctx_id = TypeAdapter(str).validate_python(value.get("ctx_id", str()))
+                instance._field_name = TypeAdapter(str).validate_python(value.get("field_name", str()))
             else:
                 instance._items = dict()
                 instance._keys = set()

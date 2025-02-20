@@ -216,7 +216,7 @@ class TestContextDict:
             else:
                 # Test serialization
                 dump = ctx_dict.model_dump()
-                assert dump["items"] == ctx_dict
+                assert dump["items"] == ctx_dict._items
                 assert dump["hashes"] == ctx_dict._hashes
                 assert dump["keys"] == ctx_dict.keys()
                 assert dump["added"] == ctx_dict._added
