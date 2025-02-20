@@ -35,7 +35,7 @@ class HasLabel(BaseCondition):
     model: ExtrasBaseAPIModel
     threshold: float = 0.9
 
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args)
 
     async def call(self, ctx: Context) -> bool:

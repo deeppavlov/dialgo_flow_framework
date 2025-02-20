@@ -10,7 +10,8 @@ import asyncio
 from async_lru import alru_cache
 import json
 from urllib.parse import urljoin
-from typing import Optional
+from typing import Optional, List
+from pydantic import BaseModel
 
 try:
     import httpx
@@ -22,8 +23,35 @@ except ImportError:
     rasa_available = False
 
 from http import HTTPStatus
-from chatsky.ml.utils import RasaResponse
 from chatsky.ml.models.base_model import ExtrasBaseAPIModel
+
+LABEL_KEY = "labels"
+
+
+class RasaIntent(BaseModel):
+    """Class for integration with Rasa NLU server HTTP API."""
+
+    confidence: float
+    name: str
+
+
+class RasaEntity(BaseModel):
+    """Class for integration with Rasa NLU server HTTP API."""
+
+    start: int
+    end: int
+    confidence: Optional[float]
+    value: str
+    entity: str
+
+
+class RasaResponse(BaseModel):
+    """Class for integration with Rasa NLU server HTTP API."""
+
+    text: str
+    intent_ranking: Optional[List[RasaIntent]] = None
+    intent: Optional[RasaIntent] = None
+    entities: Optional[List[RasaEntity]] = None
 
 
 class RasaModel(ExtrasBaseAPIModel):
