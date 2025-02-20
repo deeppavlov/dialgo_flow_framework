@@ -12,7 +12,7 @@ take advantage of the scalability and high-availability features provided by the
 
 from asyncio import gather
 from os.path import join
-from typing import Awaitable, Callable, Set, Tuple, List, Optional
+from typing import Any, Awaitable, Callable, Dict, Set, Tuple, List, Optional
 from urllib.parse import urlsplit
 
 try:
@@ -31,7 +31,6 @@ try:
 except ImportError:
     ydb_available = False
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 from .protocol import get_protocol_install_suggestion
 
@@ -136,8 +135,8 @@ class YDBContextStorage(DBContextStorage):
 
         await self.pool.retry_operation(callee)
 
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
-        async def callee(session: Session) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
+        async def callee(session: Session) -> Optional[Dict[str, Any]]:
             query = f"""
                 PRAGMA TablePathPrefix("{self.database}");
                 DECLARE ${NameConfig._id_column} AS Utf8;
@@ -153,9 +152,7 @@ class YDBContextStorage(DBContextStorage):
                 commit_tx=True,
             )
             return (
-                ContextMainInfo.model_validate(
-                    {f: result_sets[0].rows[0][f] for f in NameConfig.get_context_main_fields}
-                )
+                {f: result_sets[0].rows[0][f] for f in NameConfig.get_context_main_fields}
                 if len(result_sets[0].rows) > 0
                 else None
             )
@@ -165,13 +162,12 @@ class YDBContextStorage(DBContextStorage):
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
         async def callee(session: Session) -> None:
             transaction = await session.transaction(SerializableReadWrite()).begin()
             if ctx_info is not None:
-                ctx_info_dump = ctx_info.model_dump(mode="python")
                 query = f"""
                     PRAGMA TablePathPrefix("{self.database}");
                     DECLARE ${NameConfig._id_column} AS Utf8;
@@ -188,7 +184,7 @@ class YDBContextStorage(DBContextStorage):
                     {
                         f"${NameConfig._id_column}": ctx_id,
                     }
-                    | {f"${f}": ctx_info_dump[f] for f in NameConfig.get_context_main_fields},
+                    | {f"${f}": ctx_info[f] for f in NameConfig.get_context_main_fields},
                 )
             for field_name, items in field_info:
                 declare, prepare, values = list(), dict(), list()

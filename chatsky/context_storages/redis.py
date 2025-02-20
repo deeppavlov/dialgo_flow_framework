@@ -14,7 +14,7 @@ and powerful choice for data storage and management.
 """
 
 from asyncio import gather
-from typing import List, Set, Tuple, Optional
+from typing import Any, Dict, List, Set, Tuple, Optional
 
 try:
     from redis.asyncio import Redis
@@ -23,7 +23,6 @@ try:
 except ImportError:
     redis_available = False
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 from .protocol import get_protocol_install_suggestion
 
@@ -79,28 +78,25 @@ class RedisContextStorage(DBContextStorage):
     def _bytes_to_keys(keys: List[bytes]) -> List[int]:
         return [int(f.decode("utf-8")) for f in keys]
 
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
         if await self.database.exists(f"{self._main_key}:{ctx_id}"):
             retrieved_fields = await gather(
                 *[self.database.hget(f"{self._main_key}:{ctx_id}", f) for f in NameConfig.get_context_main_fields]
             )
-            return ContextMainInfo.model_validate(
-                {f: v for f, v in zip(NameConfig.get_context_main_fields, retrieved_fields)}
-            )
+            return {f: v for f, v in zip(NameConfig.get_context_main_fields, retrieved_fields)}
         else:
             return None
 
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
         update_main, update_values, delete_keys = list(), list(), list()
         if ctx_info is not None:
-            ctx_info_dump = ctx_info.model_dump(mode="python")
             update_main = [
-                (f, ctx_info_dump[f] if isinstance(ctx_info_dump[f], bytes) else str(ctx_info_dump[f]))
+                (f, ctx_info[f] if isinstance(ctx_info[f], bytes) else str(ctx_info[f]))
                 for f in NameConfig.get_context_main_fields
             ]
         for field_name, items in field_info:

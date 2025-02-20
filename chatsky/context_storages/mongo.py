@@ -25,7 +25,6 @@ except ImportError:
 
     mongo_available = False
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 from .protocol import get_protocol_install_suggestion
 
@@ -76,21 +75,17 @@ class MongoContextStorage(DBContextStorage):
             ),
         )
 
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
         result = await self.main_table.find_one(
             {NameConfig._id_column: ctx_id},
             NameConfig.get_context_main_fields,
         )
-        return (
-            ContextMainInfo.model_validate({f: result[f] for f in NameConfig.get_context_main_fields})
-            if result is not None
-            else None
-        )
+        return {f: result[f] for f in NameConfig.get_context_main_fields} if result is not None else None
 
     async def _inner_update_context(
         self,
         ctx_id: str,
-        ctx_info_dump: Optional[Dict],
+        ctx_info_dump: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
         session: Optional[AsyncIOMotorClientSession],
     ) -> None:
@@ -123,16 +118,15 @@ class MongoContextStorage(DBContextStorage):
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
-        ctx_info_dump = ctx_info.model_dump(mode="python") if ctx_info is not None else None
         if self._transactions_enabled:
             async with await self._mongo.start_session() as session:
                 async with session.start_transaction():
-                    await self._inner_update_context(ctx_id, ctx_info_dump, field_info, session)
+                    await self._inner_update_context(ctx_id, ctx_info, field_info, session)
         else:
-            await self._inner_update_context(ctx_id, ctx_info_dump, field_info, None)
+            await self._inner_update_context(ctx_id, ctx_info, field_info, None)
 
     async def _delete_context(self, ctx_id: str) -> None:
         await gather(

@@ -4,9 +4,8 @@ Memory
 The Memory module provides an in-RAM version of the :py:class:`.DBContextStorage` class.
 """
 
-from typing import List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 
 
@@ -44,13 +43,13 @@ class MemoryContextStorage(DBContextStorage):
     async def _connect(self):
         pass
 
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
         return self._main_storage.get(ctx_id, None)
 
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
         if ctx_info is not None:

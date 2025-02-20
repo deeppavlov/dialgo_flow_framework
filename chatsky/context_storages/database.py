@@ -15,12 +15,15 @@ from functools import wraps
 from importlib import import_module
 from logging import getLogger
 from pathlib import Path
-from typing import Any, Awaitable, Callable, Dict, List, Literal, Optional, Tuple, Union, Set
+from typing import TYPE_CHECKING, Any, Awaitable, Callable, Dict, List, Literal, Optional, Tuple, Union, Set
 
 from chatsky.core.ctx_utils import ContextMainInfo
 from chatsky.utils.decorations import classproperty
 from chatsky.utils.logging import collapse_num_list
 from .protocol import PROTOCOLS
+
+if TYPE_CHECKING:
+    from chatsky.core.context import Context
 
 _SUBSCRIPT_TYPE = Union[Literal["__all__"], int, Set[int]]
 _SUBSCRIPT_DICT = Dict[Literal["labels", "requests", "responses"], _SUBSCRIPT_TYPE]
@@ -169,7 +172,7 @@ class DBContextStorage(ABC):
         self.connected = True
 
     @abstractmethod
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
         raise NotImplementedError
 
     @_lock
@@ -184,13 +187,13 @@ class DBContextStorage(ABC):
         logger.debug(f"Loading main info for {ctx_id}...")
         result = await self._load_main_info(ctx_id)
         logger.debug(f"Main info loaded for {ctx_id}")
-        return result
+        return ContextMainInfo.model_validate(result) if result is not None else None
 
     @abstractmethod
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
         raise NotImplementedError
@@ -199,7 +202,7 @@ class DBContextStorage(ABC):
     async def update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo] = None,
+        ctx_info: Optional[Union[ContextMainInfo, Context]] = None,
         field_info: Optional[List[Tuple[str, List[Tuple[int, bytes]], List[int]]]] = None,
     ) -> None:
         """
@@ -225,7 +228,8 @@ class DBContextStorage(ABC):
             else:
                 field_info += [(k, None) for k in deleted]
                 logger.debug(f"\tDeleting fields for {field}: {collapse_num_list(deleted)}...")
-        await self._update_context(ctx_id, ctx_info, list(joined_field_info.items()))
+        ctx_info_dump = ContextMainInfo.model_dump(ctx_info, mode="python") if ctx_info is not None else None
+        await self._update_context(ctx_id, ctx_info_dump, list(joined_field_info.items()))
         logger.debug(f"Context updated for {ctx_id}")
 
     @abstractmethod

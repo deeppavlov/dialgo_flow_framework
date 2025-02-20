@@ -16,7 +16,7 @@ public-domain, SQL database engine.
 from __future__ import annotations
 from asyncio import gather
 from importlib import import_module
-from typing import Callable, Collection, List, Optional, Set, Tuple
+from typing import Any, Callable, Collection, Dict, List, Optional, Set, Tuple
 from logging import getLogger
 
 try:
@@ -69,7 +69,6 @@ try:
 except (ImportError, ModuleNotFoundError):
     sqlite_available = False
 
-from chatsky.core.ctx_utils import ContextMainInfo
 from .database import DBContextStorage, _SUBSCRIPT_DICT, NameConfig
 from .protocol import get_protocol_install_suggestion
 
@@ -204,32 +203,27 @@ class SQLContextStorage(DBContextStorage):
             install_suggestion = get_protocol_install_suggestion("sqlite")
             raise ImportError("Package `sqlalchemy` and/or `aiosqlite` is missing.\n" + install_suggestion)
 
-    async def _load_main_info(self, ctx_id: str) -> Optional[ContextMainInfo]:
+    async def _load_main_info(self, ctx_id: str) -> Optional[Dict[str, Any]]:
         stmt = select(self.main_table).where(self.main_table.c[NameConfig._id_column] == ctx_id)
         async with self.engine.begin() as conn:
             result = (await conn.execute(stmt)).fetchone()
             return (
-                None
-                if result is None
-                else ContextMainInfo.model_validate(
-                    {f: result[i + 1] for i, f in enumerate(NameConfig.get_context_main_fields)}
-                )
+                None if result is None else {f: result[i + 1] for i, f in enumerate(NameConfig.get_context_main_fields)}
             )
 
     async def _update_context(
         self,
         ctx_id: str,
-        ctx_info: Optional[ContextMainInfo],
+        ctx_info: Optional[Dict[str, Any]],
         field_info: List[Tuple[str, List[Tuple[int, Optional[bytes]]]]],
     ) -> None:
         main_update_stmt, turns_update_stmts = None, list()
         if ctx_info is not None:
-            ctx_info_dump = ctx_info.model_dump(mode="python")
             main_insert_stmt = self._INSERT_CALLABLE(self.main_table).values(
                 {
                     NameConfig._id_column: ctx_id,
                 }
-                | {f: ctx_info_dump[f] for f in NameConfig.get_context_main_fields}
+                | {f: ctx_info[f] for f in NameConfig.get_context_main_fields}
             )
             main_update_stmt = _get_upsert_stmt(
                 self.dialect,

@@ -11,9 +11,18 @@ from __future__ import annotations
 from asyncio import Event
 from json import loads
 from time import time_ns
-from typing import Any, Optional, Dict, TYPE_CHECKING
+from typing import Any, Callable, Optional, Dict, TYPE_CHECKING
 
-from pydantic import BaseModel, Field, PrivateAttr, TypeAdapter, field_serializer, field_validator
+from pydantic import (
+    BaseModel,
+    Field,
+    PrivateAttr,
+    TypeAdapter,
+    field_serializer,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 from chatsky.slots.slots import SlotManager
 
@@ -79,12 +88,12 @@ class ContextMainInfo(BaseModel):
     Current turn number, specifies the last turn number,
     that is also the last turn available in `labels`, `requests`, and `responses`.
     """
-    created_at: int = Field(default_factory=time_ns, frozen=True)
+    _created_at: int = PrivateAttr(default_factory=time_ns)
     """
     Timestamp when the context was **first time saved to database**.
     It is set (and managed) by :py:class:`~chatsky.context_storages.DBContextStorage`.
     """
-    updated_at: int = Field(default_factory=time_ns, frozen=True)
+    _updated_at: int = PrivateAttr(default_factory=time_ns)
     """
     Timestamp when the context was **last time saved to database**.
     It is set (and managed) by :py:class:`~chatsky.context_storages.DBContextStorage`.
@@ -124,7 +133,31 @@ class ContextMainInfo(BaseModel):
     def _serialize_framework_data(self, framework_data: FrameworkData) -> bytes:
         return framework_data.model_dump_json().encode()
 
+    @model_serializer(mode="wrap", when_used="always")
+    def _serialize_model(self, original_serializer) -> Dict[str, Any]:
+        model_dict = original_serializer(self)
+        model_dict.update({"created_at": self._created_at, "updated_at": self._updated_at})
+        return model_dict
+
+    @model_validator(mode="wrap")
+    def _validate_model(value: Any, handler: Callable[[Any], "ContextMainInfo"], _) -> "ContextMainInfo":
+        if isinstance(value, ContextMainInfo):
+            return value
+        elif isinstance(value, Dict):
+            created_at = value.pop("created_at", time_ns())
+            updated_at = value.pop("updated_at", time_ns())
+            instance = handler(value)
+            instance._created_at = TypeAdapter(int).validate_python(created_at)
+            instance._updated_at = TypeAdapter(int).validate_python(updated_at)
+            return instance
+        else:
+            raise ValueError(f"Unknown type of ContextMainInfo value: {type(value).__name__}!")
+
     def __eq__(self, other: Any) -> bool:
-        if isinstance(other, BaseModel):
-            return self.model_dump() == other.model_dump()
+        if isinstance(other, ContextMainInfo):
+            return (
+                self.misc == other.misc
+                and self.framework_data == other.framework_data
+                and self.origin_interface == other.origin_interface
+            )
         return super().__eq__(other)

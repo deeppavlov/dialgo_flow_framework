@@ -10,7 +10,7 @@ from chatsky.core.ctx_utils import ContextMainInfo
 class TestContextDict:
     @staticmethod
     async def update_context_dict(db: MemoryContextStorage, ctx_dict: ContextDict, ctx_id):
-        await db.update_context(ctx_id, ContextMainInfo(current_turn_id=0), [ctx_dict.extract_sync()])
+        await db.update_context(ctx_id, ContextMainInfo(current_turn_id=0), [ctx_dict.extract_items()])
 
     @pytest.fixture(scope="function")
     async def empty_dict(self) -> ContextDict:
@@ -28,7 +28,7 @@ class TestContextDict:
         # Attached pre-filled context dictionary
         ctx_id = "ctx1"
         storage = MemoryContextStorage(rewrite_existing=True, partial_read_config={"requests": 1})
-        main_info = ContextMainInfo(current_turn_id=0, created_at=0, updated_at=0)
+        main_info = ContextMainInfo(current_turn_id=0)
         requests = [
             (1, Message("longer text", misc={"k": "v"}).model_dump_json().encode()),
             (2, Message("text 2", misc={"1": 0, "2": 8}).model_dump_json().encode()),
@@ -189,7 +189,7 @@ class TestContextDict:
         # Checking non-empty dict validation
         empty_dict[0] = Message("msg")
         empty_dict._added = set()
-        assert empty_dict == MessageContextDict.model_validate({0: Message("msg")})
+        assert empty_dict == MessageContextDict.model_validate({"items": {0: Message("msg")}})
 
     async def test_serialize_store(
         self, empty_dict: ContextDict, attached_dict: ContextDict, prefilled_dict: ContextDict
@@ -207,14 +207,22 @@ class TestContextDict:
             ctx_dict[2] = Message("another message")
             # Removing the first added item
             del ctx_dict[0]
-            # Checking only the changed keys were serialized
-            assert set(ctx_dict.model_dump(mode="json").keys()) == {"2"}
             # Throw error if store in disconnected
             if ctx_dict is empty_dict:
                 with pytest.raises(RuntimeError):
-                    ctx_dict.extract_sync()
+                    ctx_dict.extract_items()
             else:
-                field_name, added_values, deleted_values = ctx_dict.extract_sync()
+                # Test serialization
+                dump = ctx_dict.model_dump()
+                assert dump["items"] == {k: v.model_dump() for k, v in ctx_dict._items.items()}
+                assert dump["hashes"] == ctx_dict._hashes
+                assert dump["keys"] == set(ctx_dict.keys())
+                assert dump["added"] == ctx_dict._added
+                assert dump["removed"] == ctx_dict._removed
+                assert dump["ctx_id"] == ctx_dict._ctx_id
+                assert dump["field_name"] == ctx_dict._field_name
+                # Test item extraction
+                field_name, added_values, deleted_values = ctx_dict.extract_items()
                 assert field_name == NameConfig._requests_field
                 assert 2 in [k for k, _ in added_values]
                 assert deleted_values == [0]

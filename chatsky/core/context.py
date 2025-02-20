@@ -23,7 +23,7 @@ from time import time_ns
 from typing import Any, Callable, Iterable, Optional, Dict, TYPE_CHECKING, Tuple, overload
 import logging
 
-from pydantic import BaseModel, Field, PrivateAttr, TypeAdapter, model_validator
+from pydantic import BaseModel, Field, PrivateAttr, model_validator
 
 from chatsky.context_storages.database import DBContextStorage, NameConfig
 from chatsky.core.message import Message
@@ -124,22 +124,22 @@ class Context(ContextMainInfo):
                 labels[0] = start_label
             else:
                 current_turn_id = main.current_turn_id
-                crt_at = main.created_at
-                upd_at = main.updated_at
+                crt_at = main._created_at
+                upd_at = main._updated_at
                 misc = main.misc
                 fw_data = main.framework_data
             logger.debug(f"Context loaded with turns number: {len(labels)}")
             instance = cls(
                 id=id,
                 current_turn_id=current_turn_id,
-                created_at=crt_at,
-                updated_at=upd_at,
                 misc=misc,
                 framework_data=fw_data,
                 labels=labels,
                 requests=requests,
                 responses=responses,
             )
+            instance._created_at = crt_at
+            instance._updated_at = upd_at
             instance._storage = storage
             return instance
 
@@ -289,14 +289,12 @@ class Context(ContextMainInfo):
     def __eq__(self, value: object) -> bool:
         if isinstance(value, Context):
             return (
-                self.id == value.id
-                and self.current_turn_id == value.current_turn_id
+                super().__eq__(value)
                 and self.labels == value.labels
                 and self.requests == value.requests
                 and self.responses == value.responses
                 and self.misc == value.misc
                 and self.framework_data == value.framework_data
-                and self._storage == value._storage
             )
         else:
             return False
@@ -322,18 +320,12 @@ class Context(ContextMainInfo):
         elif isinstance(value, Dict):
             instance = handler(value)
             labels_obj = value.get("labels", dict())
-            if isinstance(labels_obj, Dict):
-                labels_obj = TypeAdapter(Dict[int, AbsoluteNodeLabel]).validate_python(labels_obj)
             instance.labels = LabelContextDict.model_validate(labels_obj)
             instance.labels._ctx_id = instance.id
             requests_obj = value.get("requests", dict())
-            if isinstance(requests_obj, Dict):
-                requests_obj = TypeAdapter(Dict[int, Message]).validate_python(requests_obj)
             instance.requests = MessageContextDict.model_validate(requests_obj)
             instance.requests._ctx_id = instance.id
             responses_obj = value.get("responses", dict())
-            if isinstance(responses_obj, Dict):
-                responses_obj = TypeAdapter(Dict[int, Message]).validate_python(responses_obj)
             instance.responses = MessageContextDict.model_validate(responses_obj)
             instance.responses._ctx_id = instance.id
             return instance
@@ -350,17 +342,11 @@ class Context(ContextMainInfo):
 
         if self._storage is not None:
             logger.debug(f"Storing context: {self.id}...")
-            main_into = ContextMainInfo(
-                current_turn_id=self.current_turn_id,
-                created_at=self.created_at,
-                updated_at=time_ns(),
-                misc=self.misc,
-                framework_data=self.framework_data,
-            )
-            labels_data = self.labels.extract_sync()
-            requests_data = self.requests.extract_sync()
-            responses_data = self.responses.extract_sync()
-            await self._storage.update_context(self.id, main_into, [labels_data, requests_data, responses_data])
+            self._updated_at = time_ns()
+            labels_data = self.labels.extract_items()
+            requests_data = self.requests.extract_items()
+            responses_data = self.responses.extract_items()
+            await self._storage.update_context(self.id, self, [labels_data, requests_data, responses_data])
             logger.debug(f"Context stored: {self.id}")
         else:
             raise RuntimeError(f"{type(self).__name__} is not attached to any context storage.")
