@@ -152,5 +152,6 @@ class ContextMainInfo(BaseModel):
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, BaseModel):
             exclude = {"created_at", "updated_at"}
-            return self.model_dump(exclude=exclude) == other.model_dump(exclude=exclude)
+            self_dump, other_dump = self.model_dump(), other.model_dump()
+            return all(v == other_dump[k] for k, v in self_dump.items() if k not in exclude)
         return super().__eq__(other)
