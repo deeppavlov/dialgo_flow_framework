@@ -218,7 +218,7 @@ class TestContextDict:
                 dump = ctx_dict.model_dump()
                 assert dump["items"] == {k: v.model_dump() for k, v in ctx_dict._items.items()}
                 assert dump["hashes"] == ctx_dict._hashes
-                assert dump["keys"] == ctx_dict.keys()
+                assert dump["keys"] == set(ctx_dict.keys())
                 assert dump["added"] == ctx_dict._added
                 assert dump["removed"] == ctx_dict._removed
                 assert dump["ctx_id"] == ctx_dict._ctx_id

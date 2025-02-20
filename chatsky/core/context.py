@@ -320,18 +320,12 @@ class Context(ContextMainInfo):
         elif isinstance(value, Dict):
             instance = handler(value)
             labels_obj = value.get("labels", dict())
-            if isinstance(labels_obj, Dict):
-                labels_obj = TypeAdapter(Dict[int, AbsoluteNodeLabel]).validate_python(labels_obj)
             instance.labels = LabelContextDict.model_validate(labels_obj)
             instance.labels._ctx_id = instance.id
             requests_obj = value.get("requests", dict())
-            if isinstance(requests_obj, Dict):
-                requests_obj = TypeAdapter(Dict[int, Message]).validate_python(requests_obj)
             instance.requests = MessageContextDict.model_validate(requests_obj)
             instance.requests._ctx_id = instance.id
             responses_obj = value.get("responses", dict())
-            if isinstance(responses_obj, Dict):
-                responses_obj = TypeAdapter(Dict[int, Message]).validate_python(responses_obj)
             instance.responses = MessageContextDict.model_validate(responses_obj)
             instance.responses._ctx_id = instance.id
             return instance
