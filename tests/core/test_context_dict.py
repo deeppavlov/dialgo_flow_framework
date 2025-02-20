@@ -208,7 +208,7 @@ class TestContextDict:
             # Removing the first added item
             del ctx_dict[0]
             # Checking only the changed keys were serialized
-            assert set(ctx_dict.model_dump(mode="json")["keys"]) == {"2"}
+            assert set(ctx_dict.model_dump(mode="json")["keys"]) == {2}
             # Throw error if store in disconnected
             if ctx_dict is empty_dict:
                 with pytest.raises(RuntimeError):

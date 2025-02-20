@@ -315,7 +315,7 @@ def test_serializable():
 
 
 async def test_old_slot_storage_update():
-    ctx = Context(requests={"items": {0: Message(text="text")}})
+    ctx = Context.model_validate({"requests": {"items": {0: Message(text="text")}}})
 
     slot1 = FunctionSlot(func=lambda msg: len(msg.text) + 2, default_value="1")
     init_slot1 = slot1.init_value()
