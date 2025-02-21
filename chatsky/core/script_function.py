@@ -31,7 +31,8 @@ class BaseScriptFunc(BaseModel, ABC, frozen=True):  # generic doesn't work well 
 
     Defines :py:meth:`wrapped_call` that wraps :py:meth:`call` and handles exceptions and types conversions.
     """
-    timeout: Optional[int]
+
+    timeout: Optional[float] = None
     """Sets timeout time in seconds for __call__"""
 
     return_type: ClassVar[Union[type, Tuple[type, ...]]]
@@ -66,21 +67,17 @@ class BaseScriptFunc(BaseModel, ABC, frozen=True):  # generic doesn't work well 
 
         :return: An instance of :py:attr:`return_type`.
         :raises TypeError: If :py:meth:`call` returned value of incorrect type.
+        :raises TimeoutError: If :py:attr:`timeout` occurs.
         """
-        try:
-            async with asyncio.timeout(self.timeout):
-                result = await wrap_sync_function_in_async(self.call, ctx)
-                if not isinstance(self.return_type, tuple) and issubclass(self.return_type, BaseModel):
-                    result = self.return_type.model_validate(result, context={"ctx": ctx}).model_copy(deep=True)
-                if not isinstance(result, self.return_type):
-                    raise TypeError(
-                        f"Function `call` of {self.__class__.__name__} should return {self.return_type!r}. "
-                        f"Got instead: {result!r}"
-                    )
-                return result
-        except TimeoutError:
-            return 0
-        # How to add exception that will show in wraped_call
+        result = await asyncio.wait_for(wrap_sync_function_in_async(self.call, ctx), timeout=self.timeout)
+        if not isinstance(self.return_type, tuple) and issubclass(self.return_type, BaseModel):
+            result = self.return_type.model_validate(result, context={"ctx": ctx}).model_copy(deep=True)
+        if not isinstance(result, self.return_type):
+            raise TypeError(
+                f"Function `call` of {self.__class__.__name__} should return {self.return_type!r}. "
+                f"Got instead: {result!r}"
+            )
+        return result
 
 
 class ConstScriptFunc(BaseScriptFunc):
