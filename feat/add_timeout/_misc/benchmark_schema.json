@@ -1,0 +1,184 @@
+{
+  "title": "Benchmark set",
+  "description": "A structure containing results of multiple benchmarks",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Name of the benchmark set",
+      "type": "string"
+    },
+    "description": {
+      "description": "Description of the benchmark set",
+      "type": "string"
+    },
+    "uuid": {
+      "description": "Unique id of the benchmark set",
+      "type": "string"
+    },
+    "benchmarks": {
+      "description": "A list of benchmarks in the set with results",
+      "type": "array",
+      "items": {
+        "title": "Benchmark",
+        "description": "A singular benchmark with results",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the benchmark",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of the benchmark",
+            "type": "string"
+          },
+          "uuid": {
+            "description": "Unique id of the benchmark",
+            "type": "string"
+          },
+          "success": {
+            "description": "Whether benchmark process did not raise an exception",
+            "type": "boolean"
+          },
+          "db_factory": {
+            "description": "Configuration of the context storage that was benchmarked",
+            "type": "object",
+            "properties": {
+              "uri": {
+                "description": "URI of the context storage",
+                "type": "string"
+              },
+              "factory_module": {
+                "description": "A module containing context storage factory",
+                "type": "string"
+              },
+              "factory": {
+                "description": "Name of a context storage factory inside the module",
+                "type": "string"
+              }
+            },
+            "required": ["uri", "factory_module", "factory"]
+          },
+          "benchmark_config": {
+            "description": "Configuration of the benchmark",
+            "type": "object"
+          },
+          "result": {
+            "description": "Raw benchmark results or exception info",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "write_times": {
+                    "description": "List of write times; list index corresponds to context_num",
+                    "type": "array",
+                    "items": {"type": "number", "minimum": 0}
+                  },
+                  "read_times": {
+                    "description": "List of read times w.r.t. dialog_len; list index corresponds to context_num",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "description": "Dictionary in which keys are equal to dialog_len of a context and values to read time of a context"
+                    }
+                  },
+                  "update_times": {
+                    "description": "List of update times w.r.t. dialog_len; list index corresponds to context_num",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "description": "Dictionary in which keys are equal to dialog_len of a context and values to update time of a context"
+                    }
+                  }
+                },
+                "required": ["write_times", "read_times", "update_times"]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "description": "Class name of the exception",
+                    "type": "string"
+                  },
+                  "msg": {
+                    "description": "Exception message",
+                    "type": "string"
+                  },
+                  "traceback": {
+                    "description": "String representation of exception traceback",
+                    "type": "string"
+                  }
+                },
+                "required": ["type", "msg", "traceback"]
+              }
+            ]
+
+          },
+          "average_results": {
+            "description": "Calculated average statistics for benchmark results",
+            "type": "object",
+            "properties": {
+              "average_write_time": {"type": "number"},
+              "average_read_time": {"type": "number"},
+              "average_update_time": {"type": "number"},
+              "read_times_grouped_by_context_num": {
+                "description": "List of read times w.r.t. context_num (each number is an average read time for that context_num)",
+                "type": "array",
+                "items": {"type": "number", "minimum": 0}
+              },
+              "read_times_grouped_by_dialog_len": {
+                "description": "Mapping from dialog_len to read times (each value is an average read time for that dialog_len)",
+                "type": "object",
+                "items": {"type": "number", "minimum": 0}
+              },
+              "update_times_grouped_by_context_num": {
+                "description": "List of update times w.r.t. context_num (each number is an average update time for that context_num)",
+                "type": "array",
+                "items": {"type": "number", "minimum": 0}
+              },
+              "update_times_grouped_by_dialog_len": {
+                "description": "Mapping from dialog_len to update times (each value is an average update time for that dialog_len)",
+                "type": "object",
+                "items": {"type": "number", "minimum": 0}
+              },
+              "pretty_write": {
+                "description": "Average write time with 3 significant digits",
+                "type": "number",
+                "minimum": 0
+              },
+              "pretty_read": {
+                "description": "Average read time with 3 significant digits",
+                "type": "number",
+                "minimum": 0
+              },
+              "pretty_update": {
+                "description": "Average update time with 3 significant digits",
+                "type": "number",
+                "minimum": 0
+              },
+              "pretty_read+update": {
+                "description": "Sum of average read and update times with 3 significant digits",
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "average_write_time",
+              "average_read_time",
+              "average_update_time",
+              "read_times_grouped_by_context_num",
+              "read_times_grouped_by_dialog_len",
+              "update_times_grouped_by_context_num",
+              "update_times_grouped_by_dialog_len",
+              "pretty_write",
+              "pretty_read",
+              "pretty_update",
+              "pretty_read+update"
+            ]
+          }
+        },
+        "required": ["name", "description", "uuid", "success", "db_factory", "benchmark_config", "result"]
+      }
+    }
+  },
+  "required": ["name", "description", "uuid", "benchmarks"]
+}

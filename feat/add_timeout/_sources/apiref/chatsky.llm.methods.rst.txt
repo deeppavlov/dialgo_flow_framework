@@ -1,0 +1,7 @@
+:source_name: chatsky/llm/methods
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.llm.methods
+   :members:
+   :undoc-members:
+   :show-inheritance:

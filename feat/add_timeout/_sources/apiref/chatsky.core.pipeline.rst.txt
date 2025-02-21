@@ -1,0 +1,7 @@
+:source_name: chatsky/core/pipeline
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.core.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:

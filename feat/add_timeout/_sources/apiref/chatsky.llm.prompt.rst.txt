@@ -1,0 +1,7 @@
+:source_name: chatsky/llm/prompt
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.llm.prompt
+   :members:
+   :undoc-members:
+   :show-inheritance:

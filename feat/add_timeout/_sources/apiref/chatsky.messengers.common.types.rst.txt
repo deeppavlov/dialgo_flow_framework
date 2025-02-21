@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/common/types
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.messengers.common.types
+   :members:
+   :undoc-members:
+   :show-inheritance:

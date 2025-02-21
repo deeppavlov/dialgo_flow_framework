@@ -1,0 +1,7 @@
+:source_name: chatsky/core/script
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.core.script
+   :members:
+   :undoc-members:
+   :show-inheritance:

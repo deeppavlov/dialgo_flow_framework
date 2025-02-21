@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/console
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.messengers.console
+   :members:
+   :undoc-members:
+   :show-inheritance:

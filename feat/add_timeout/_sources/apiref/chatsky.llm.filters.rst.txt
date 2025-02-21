@@ -1,0 +1,7 @@
+:source_name: chatsky/llm/filters
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.llm.filters
+   :members:
+   :undoc-members:
+   :show-inheritance:

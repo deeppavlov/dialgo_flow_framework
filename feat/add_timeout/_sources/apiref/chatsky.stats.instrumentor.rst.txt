@@ -1,0 +1,7 @@
+:source_name: chatsky/stats/instrumentor
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.stats.instrumentor
+   :members:
+   :undoc-members:
+   :show-inheritance:

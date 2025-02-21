@@ -1,0 +1,1030 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>Basic Concepts &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guides/basic_conceptions';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/add_timeout';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LLM Integration" href="llm_integration.html" />
+    <link rel="prev" title="User guides" href="../user_guides.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_integration.html">LLM Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slot_extraction.html">Slot Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_guide.html">Context guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superset_guide.html">Superset guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_guide.html">Optimization Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_import.html">Pipeline YAML import guide</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guides.html" class="nav-link">User guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Basic Concepts</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="basic-concepts">
+<h1>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Chatsky is a modern tool for designing conversational services.</p>
+<p>Chatsky introduces a specialized Domain-Specific Language (DSL) based on standard Python functions and data structures
+which makes it very easy for developers with any level of expertise to design a script for user - bot interaction.
+The script comes in a form of a <em>dialog graph</em> where
+each node equals a specific state of the dialog, i.e. a specific conversation turn.
+The graph includes the majority of the conversation logic, and covers one or several user scenarios, all in a single Python dict.</p>
+<p>In this tutorial, we describe the basics of Chatsky API,
+and walk you through the process of creating and maintaining a conversational service with the help of Chatsky.</p>
+</section>
+<section id="creating-conversational-services-with-chatsky">
+<h2>Creating Conversational Services with Chatsky<a class="headerlink" href="#creating-conversational-services-with-chatsky" title="Link to this heading">#</a></h2>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
+<p>To get started with Chatsky, you need to install its core dependencies, which can be done using the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>chatsky
+</pre></div>
+</div>
+</section>
+<section id="defining-dialogue-goals-and-user-scenarios">
+<h3>Defining Dialogue Goals and User Scenarios<a class="headerlink" href="#defining-dialogue-goals-and-user-scenarios" title="Link to this heading">#</a></h3>
+<p>To create a conversational service using Chatsky, you start by defining the overall dialogue goal
+and breaking down the dialogue into smaller scenarios based on the user intents or actions that you want to cover.
+Chatsky’s Domain-Specific Language makes it easy to break down the dialog script into <cite>flows</cite>, i.e. named groups of nodes
+unified by a specific purpose.</p>
+<p>For instance, if one of the dialog options that we provide to the user is to play a game,
+the bot can have a ‘game’ flow that contains dialog states related to this subject, while other flows
+cover other topics, e.g. ‘time’ flow can include questions and answers related to telling the time,
+‘weather’ to telling the weather, etc.</p>
+</section>
+<section id="creating-dialogue-flows-for-user-scenarios">
+<h3>Creating Dialogue Flows for User Scenarios<a class="headerlink" href="#creating-dialogue-flows-for-user-scenarios" title="Link to this heading">#</a></h3>
+<p>Once you have Chatsky installed, you can define dialog flows targeting various user scenarios
+and combine them in a global script object. A flow consists of one or more nodes
+that represent conversation turns.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In other words, the script object has 3 levels of nestedness:
+<strong>script - flow - node</strong></p>
+</div>
+<p>Let’s assume that the only user scenario of the service is the chat bot playing ping pong with the user.
+The practical implementation of this is that the bot is supposed to reply ‘pong’ to messages that say ‘ping’
+and handle any other messages as exceptions. The pseudo-code for the said flow would be as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1. User starts a conversation
+2. Respond with &quot;Hi!&quot;
+
+If user writes &quot;Hello!&quot;:
+    3. Respond with &quot;Let&#39;s play ping-pong!&quot;
+
+    If user afterwards writes &quot;Ping&quot; or &quot;ping&quot; or &quot;Ping!&quot; or &quot;ping!&quot;:
+        4. Respond with &quot;Pong!&quot;
+        Repeat this behaviour
+
+If user writes something else:
+    5. Respond with &quot;That was against the rules&quot;
+    Go to responding with &quot;2&quot; after user replies
+</pre></div>
+</div>
+<p>This leaves us with a single dialog flow in the dialog graph that we lay down below, with the annotations for
+each part of the graph available under the code snippet.</p>
+</section>
+<section id="example-flow-script">
+<h3>Example flow &amp; script<a class="headerlink" href="#example-flow-script" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">chatsky</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">TRANSITIONS</span><span class="p">,</span> <span class="n">RESPONSE</span><span class="p">,</span> <span class="n">Transition</span> <span class="k">as</span> <span class="n">Tr</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">chatsky.conditions</span> <span class="k">as</span> <span class="nn">cnd</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">chatsky.destinations</span> <span class="k">as</span> <span class="nn">dst</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">ping_pong_script</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 6</span>    <span class="s2">&quot;greeting_flow&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos"> 7</span>        <span class="s2">&quot;start_node&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos"> 8</span>            <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="p">[</span><span class="n">Tr</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&quot;greeting_node&quot;</span><span class="p">,</span> <span class="n">cnd</span><span class="o">=</span><span class="n">cnd</span><span class="o">.</span><span class="n">ExactMatch</span><span class="p">(</span><span class="s2">&quot;/start&quot;</span><span class="p">))]</span>
+<span class="linenos"> 9</span>            <span class="c1"># start node handles the initial handshake (command /start)</span>
+<span class="linenos">10</span>        <span class="p">},</span>
+<span class="linenos">11</span>        <span class="s2">&quot;greeting_node&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">12</span>            <span class="n">RESPONSE</span><span class="p">:</span> <span class="s2">&quot;Hi!&quot;</span><span class="p">,</span>
+<span class="linenos">13</span>            <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos">14</span>                <span class="n">Tr</span><span class="p">(</span>
+<span class="linenos">15</span>                    <span class="n">dst</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;ping_pong_flow&quot;</span><span class="p">,</span> <span class="s2">&quot;game_start_node&quot;</span><span class="p">),</span>
+<span class="linenos">16</span>                    <span class="n">cnd</span><span class="o">=</span><span class="n">cnd</span><span class="o">.</span><span class="n">ExactMatch</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
+<span class="linenos">17</span>                <span class="p">)</span>
+<span class="linenos">18</span>            <span class="p">]</span>
+<span class="linenos">19</span>        <span class="p">},</span>
+<span class="linenos">20</span>        <span class="s2">&quot;fallback_node&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">21</span>            <span class="n">RESPONSE</span><span class="p">:</span> <span class="s2">&quot;That was against the rules&quot;</span><span class="p">,</span>
+<span class="linenos">22</span>            <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="p">[</span><span class="n">Tr</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&quot;greeting_node&quot;</span><span class="p">)],</span>
+<span class="linenos">23</span>                            <span class="c1"># this transition is unconditional</span>
+<span class="linenos">24</span>        <span class="p">},</span>
+<span class="linenos">25</span>    <span class="p">},</span>
+<span class="linenos">26</span>    <span class="s2">&quot;ping_pong_flow&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">27</span>        <span class="s2">&quot;game_start_node&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">28</span>            <span class="n">RESPONSE</span><span class="p">:</span> <span class="s2">&quot;Let&#39;s play ping-pong!&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>            <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="p">[</span><span class="n">Tr</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="s2">&quot;response_node&quot;</span><span class="p">,</span> <span class="n">cnd</span><span class="o">=</span><span class="n">cnd</span><span class="o">.</span><span class="n">ExactMatch</span><span class="p">(</span><span class="s2">&quot;Ping!&quot;</span><span class="p">))],</span>
+<span class="linenos">30</span>        <span class="p">},</span>
+<span class="linenos">31</span>        <span class="s2">&quot;response_node&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">32</span>            <span class="n">RESPONSE</span><span class="p">:</span> <span class="s2">&quot;Pong!&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>            <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="p">[</span><span class="n">Tr</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="n">dst</span><span class="o">.</span><span class="n">Current</span><span class="p">(),</span> <span class="n">cnd</span><span class="o">=</span><span class="n">cnd</span><span class="o">.</span><span class="n">ExactMatch</span><span class="p">(</span><span class="s2">&quot;Ping!&quot;</span><span class="p">))],</span>
+<span class="linenos">34</span>        <span class="p">},</span>
+<span class="linenos">35</span>    <span class="p">},</span>
+<span class="linenos">36</span><span class="p">}</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+<span class="linenos">39</span>    <span class="n">ping_pong_script</span><span class="p">,</span>
+<span class="linenos">40</span>    <span class="n">start_label</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;greeting_flow&quot;</span><span class="p">,</span> <span class="s2">&quot;start_node&quot;</span><span class="p">),</span>
+<span class="linenos">41</span>    <span class="n">fallback_label</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;greeting_flow&quot;</span><span class="p">,</span> <span class="s2">&quot;fallback_node&quot;</span><span class="p">),</span>
+<span class="linenos">42</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">45</span>    <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>An example chat with this bot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>request: /start
+response: text=&#39;Hi!&#39;
+request: Hello!
+response: text=&#39;Let&#39;s play ping-pong!&#39;
+request: Ping!
+response: text=&#39;Pong!&#39;
+request: Bye
+response: text=&#39;That was against the rules&#39;
+</pre></div>
+</div>
+<p>The order of request processing is, essentially:</p>
+<ol class="arabic simple">
+<li><p>Obtain user request</p></li>
+<li><p>Travel to the next node (chosen based on transitions of the current node)</p></li>
+<li><p>Send the response of the new node</p></li>
+</ol>
+<p>Below is a breakdown of key features used in the example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ping_pong_script</span></code>: The dialog <strong>script</strong> mentioned above is a dictionary that has one or more
+dialog flows as its values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ping_pong_flow</span></code> is the game emulation flow; it contains linked
+conversation nodes and possibly some extra data, transitions, etc.</p></li>
+<li><p>A node object is an atomic part of the script.
+The required fields of a node object are <code class="docutils literal notranslate"><span class="pre">RESPONSE</span></code> and <code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">RESPONSE</span></code> field specifies the response that the dialog agent gives to the user in the current turn.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code> field specifies the edges of the dialog graph that link the dialog states.
+This is a list of <code class="docutils literal notranslate"><span class="pre">Transition</span></code> instances. They specify the destination node of the potential transition
+and a condition for the transition to be valid.
+In the example script, we use build-in functions: <code class="docutils literal notranslate"><span class="pre">ExactMatch</span></code> requires the user request to
+fully match the provided text, while <code class="docutils literal notranslate"><span class="pre">Current</span></code> makes a transition to the current node.
+However, passing custom callbacks that implement arbitrary logic is also an option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_node</span></code> is the initial node, which contains an empty response and only transfers user to another node
+according to the first message user sends.
+It transfers user to <code class="docutils literal notranslate"><span class="pre">greeting_node</span></code> if user writes text message exactly equal to “Hello!”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">greeting_node</span></code> is the node that will greet user and propose him a ping-pong game.
+It transfers user to <code class="docutils literal notranslate"><span class="pre">response_node</span></code> if user writes text message exactly equal to “Ping!”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">response_node</span></code> is the node that will play ping-pong game with the user.
+It transfers user to <code class="docutils literal notranslate"><span class="pre">response_node</span></code> if user writes text message exactly equal to “Ping!”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fallback_node</span></code> is an “exception handling node”; user will be transferred here if
+none of the transition conditions (see <code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code>) is satisfied.
+It transfers user to <code class="docutils literal notranslate"><span class="pre">greeting_node</span></code> no matter what user writes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipeline</span></code> is a special object that traverses the script graph based on the values of user input.
+It is also capable of executing custom actions that you want to run on every turn of the conversation.
+The pipeline can be initialized with a script, and with labels of two nodes:
+the entrypoint of the graph, aka the ‘start node’, and the ‘fallback node’
+(if not provided it defaults to ‘start node’).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference external" href="../tutorials/tutorials.script.core.1_basics.html">tutorial on basic dialog structure</a>.</p>
+</div>
+</section>
+<section id="processing-definition">
+<h3>Processing Definition<a class="headerlink" href="#processing-definition" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The topic of this section is explained in greater detail in the following tutorials:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.7_pre_response_processing.html">Pre-response processing</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.9_pre_transition_processing.html">Pre-transition processing</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.pipeline.2_pre_and_post_processors.html">Pipeline processors</a></p></li>
+</ul>
+</div>
+<p>Processing user requests and extracting additional parameters is a crucial part of building a conversational bot.
+Chatsky allows you to define how user requests will be processed to extract additional parameters.
+This is done by passing callbacks to a special <code class="docutils literal notranslate"><span class="pre">PROCESSING</span></code> fields in a Node dict.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PRE_RESPONSE</span></code> will happen <strong>after</strong> a transition has been made but <strong>before</strong> response generation. See <a class="reference external" href="../tutorials/tutorials.script.core.7_pre_response_processing.html">tutorial on pre-response processing</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRE_TRANSITION</span></code> will happen <strong>after</strong> obtaining user request but <strong>before</strong> transition to the next node. See <a class="reference external" href="../tutorials/tutorials.script.core.9_pre_transition_processing.html">tutorial on pre-transition processing</a>.</p></li>
+</ul>
+<p>Depending on the requirements of your bot and the dialog goal, you may need to interact with external databases or APIs to retrieve data.
+For instance, if a user wants to know a schedule, you may need to access a database and extract parameters such as date and location.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">chatsky</span> <span class="kn">import</span> <span class="n">BaseProcessing</span><span class="p">,</span> <span class="n">PRE_TRANSITION</span>
+<span class="o">...</span>
+<span class="k">class</span> <span class="nc">UseAPI</span><span class="p">(</span><span class="n">BaseProcessing</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+        <span class="c1"># save to the context field for custom info</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">misc</span><span class="p">[</span><span class="s2">&quot;api_call_results&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://schedule.api/day1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="n">node</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">RESPONSE</span><span class="p">:</span> <span class="o">...</span>
+    <span class="n">TRANSITIONS</span><span class="p">:</span> <span class="o">...</span>
+    <span class="n">PRE_TRANSITION</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;use_api&quot;</span><span class="p">:</span> <span class="n">UseAPI</span><span class="p">()}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function uses <code class="docutils literal notranslate"><span class="pre">Context</span></code> to store the result of a request for other functions to use.
+Context is a data structure that keeps all the information about a specific conversation.</p>
+<p>To learn more about <code class="docutils literal notranslate"><span class="pre">Context</span></code> see the <a class="reference external" href="../user_guides/context_guide.html">relevant guide</a>.</p>
+</div>
+<p>If you retrieve data from the database or API, it’s important to validate it to ensure it meets expectations.</p>
+</section>
+<section id="generating-a-bot-response">
+<h3>Generating a bot Response<a class="headerlink" href="#generating-a-bot-response" title="Link to this heading">#</a></h3>
+<p>Response is defined in the <code class="docutils literal notranslate"><span class="pre">RESPONSE</span></code> section of each node and should be either a <code class="docutils literal notranslate"><span class="pre">Message</span></code> object,
+that can contain text, images, audios, attachments, etc., or a callback that returns a <code class="docutils literal notranslate"><span class="pre">Message</span></code>.
+The latter allows you to customize the response based on the specific scenario and user input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">Message</span></code> object can be instantiated from a string (filling its <code class="docutils literal notranslate"><span class="pre">text</span></code> field).
+We’ve used this feature for <code class="docutils literal notranslate"><span class="pre">RESPONSE</span></code> and will use it now.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">misc</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vegan&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Here is a list of vegan cafes.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;Here is a list of cafes.&quot;</span>
+</pre></div>
+</div>
+<p>For more information on responses, see the <a class="reference external" href="../tutorials/tutorials.script.core.3_responses.html">tutorial on response functions</a>.</p>
+</section>
+<section id="handling-fallbacks">
+<h3>Handling Fallbacks<a class="headerlink" href="#handling-fallbacks" title="Link to this heading">#</a></h3>
+<p>In Chatsky, you should provide handling for situations where the user makes requests
+that do not trigger any of the transitions specified in the script graph.
+To cover that use case, Chatsky requires you to define a fallback node that the agent will move to
+when no adequate transition has been found.</p>
+<p>Like other nodes, the fallback node can either use a message or a callback to produce a response
+which gives you a lot of freedom in creating situationally appropriate error messages.
+Create friendly error messages and, if possible, suggest alternative options.
+This ensures a smoother user experience even when the bot encounters unexpected inputs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate a special fallback response depending on the situation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">last_label</span> <span class="o">==</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">start_label</span> <span class="ow">and</span> <span class="n">ctx</span><span class="o">.</span><span class="n">last_request</span><span class="o">.</span><span class="n">text</span> <span class="o">!=</span> <span class="s2">&quot;/start&quot;</span><span class="p">:</span>
+            <span class="c1"># start_label can be obtained from the pipeline instance stored inside context</span>
+            <span class="k">return</span> <span class="s2">&quot;You should&#39;ve started the dialog with &#39;/start&#39;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;That was against the rules!</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;You should&#39;ve written &#39;Ping&#39;, not &#39;</span><span class="si">{</span><span class="n">ctx</span><span class="o">.</span><span class="n">last_request</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&#39;!&quot;</span>
+            <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-and-debugging">
+<h2>Testing and Debugging<a class="headerlink" href="#testing-and-debugging" title="Link to this heading">#</a></h2>
+<p>Periodically testing the conversational service is crucial to ensure it works correctly.
+You should also be prepared to debug the code and dialogue logic if problems are discovered during testing.
+Thorough testing helps identify and resolve any potential problems in the conversation flow.</p>
+<p>The basic testing procedure offered by Chatsky is end-to-end testing of the pipeline and the script
+which ensures that the pipeline yields correct responses for any given input.
+It requires a sequence of user request - bot response pairs that form the happy path of your
+conversational service.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">happy_path</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;/start&quot;</span><span class="p">,</span> <span class="s2">&quot;Hi!&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">,</span> <span class="s2">&quot;Let&#39;s play ping-pong!&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Ping!&quot;</span><span class="p">,</span> <span class="s2">&quot;Pong!&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>A special function is then used to ascertain complete identity of the messages taken from
+the happy path and the pipeline. The function will play out a dialog with the pipeline acting as a user while checking returned messages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chatsky.utils.testing.common</span> <span class="kn">import</span> <span class="n">check_happy_path</span>
+
+<span class="n">check_happy_path</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">happy_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="monitoring-and-analytics">
+<h2>Monitoring and Analytics<a class="headerlink" href="#monitoring-and-analytics" title="Link to this heading">#</a></h2>
+<p>Setting up bot performance monitoring and usage analytics is essential to monitor its operation and identify potential issues.
+Monitoring helps you understand how users are interacting with the bot and whether any improvements are needed.
+Analytics data can provide valuable insights for refining the bot’s behavior and responses.</p>
+<p>Chatsky provides a <cite>statistics</cite> module as an out-of-the-box solution for collecting arbitrary statistical metrics
+from your service. Setting up the data collection is as easy as instantiating the relevant class in the same
+context with the pipeline.
+What’s more, the data you obtain can be visualized right away using Apache Superset as a charting engine.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More information is available in the respective <a class="reference external" href="../user_guides/superset_guide.html">guide</a>.</p>
+</div>
+</section>
+<section id="iterative-improvement">
+<h2>Iterative Improvement<a class="headerlink" href="#iterative-improvement" title="Link to this heading">#</a></h2>
+<p>To continually enhance your chat-bot’s performance, monitor user feedback and analyze data on bot usage.
+For instance, the statistics or the charts may reveal that some flow is visited by users more frequently or
+less frequently than planned. This would mean that adjustments to the transition structure
+of the graph need to be made.</p>
+<p>Gradually improve the transition logic and response content based on the data received.
+This iterative approach ensures that the bot becomes more effective over time.</p>
+</section>
+<section id="data-protection">
+<h2>Data Protection<a class="headerlink" href="#data-protection" title="Link to this heading">#</a></h2>
+<p>Data protection is a critical consideration in bot development, especially when handling sensitive information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Chatsky framework helps ensure the safety of your application by storing the history and other user data present
+in the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object under unique ids and abstracting the storage logic away from the user interface.
+As a result, it offers the basic level of data protection making it impossible to gain unlawful access to personal information.</p>
+</div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<p>Creating documentation is essential for teamwork and future bot maintenance.
+Document how different parts of the script work and how the bot covers the expected interaction scenarios.
+It is especially important to document the purpose and functionality of callback functions and pipeline services
+that you may have in your project, using Python docstrings.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FavCuisineResponse</span><span class="p">(</span><span class="n">BaseResponse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function returns a user-targeted response depending on the value</span>
+<span class="sd">    of the &#39;cuisine preference&#39; slot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>This documentation serves as a reference for developers involved in the project.</p>
+</section>
+<section id="scaling">
+<h2>Scaling<a class="headerlink" href="#scaling" title="Link to this heading">#</a></h2>
+<p>If your bot becomes popular and requires scaling, consider scalability during development.
+Scalability ensures that the bot can handle a growing user base without performance issues.
+While having only one application instance will suffice in most cases, there are many ways
+how you can adapt the application to a high load environment.</p>
+<ul class="simple">
+<li><p>With the database connection support that Chatsky offers out of the box, Chatsky projects can be easily scaled through sharing the same database between multiple application instances. However, using an external database is required due to the fact that this is the only kind of storage that can be efficiently shared between processes.</p></li>
+<li><p>Likewise, using multiple database instances to ensure the availability of data is also an option.</p></li>
+<li><p>The structure of the <cite>Context</cite> object makes it easy to vertically partition the data storing different subsets of data across multiple database instances.</p></li>
+</ul>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.1_basics.html">Tutorial on basic dialog structure</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.4_transitions.html">Tutorial on transitions</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.2_conditions.html">Tutorial on conditions</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.3_responses.html">Tutorial on response functions</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.7_pre_response_processing.html">Tutorial on pre-response processing</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.9_pre_transition_processing.html">Tutorial on pre-transition processing</a></p></li>
+<li><p><a class="reference external" href="../user_guides/context_guide.html">Guide on Context</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.5_global_local.html">Tutorial on global and local nodes</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.6_context_serialization.html">Tutorial on context serialization</a></p></li>
+<li><p><a class="reference external" href="../tutorials/tutorials.script.core.8_misc.html">Tutorial on script MISC</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../user_guides.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">User guides</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="llm_integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">LLM Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-conversational-services-with-chatsky">Creating Conversational Services with Chatsky</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-dialogue-goals-and-user-scenarios">Defining Dialogue Goals and User Scenarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-dialogue-flows-for-user-scenarios">Creating Dialogue Flows for User Scenarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-flow-script">Example flow &amp; script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#processing-definition">Processing Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-bot-response">Generating a bot Response</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-fallbacks">Handling Fallbacks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-debugging">Testing and Debugging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-and-analytics">Monitoring and Analytics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-improvement">Iterative Improvement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-protection">Data Protection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling">Scaling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

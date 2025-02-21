@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/testing/toy_script
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.utils.testing.toy_script
+   :members:
+   :undoc-members:
+   :show-inheritance:

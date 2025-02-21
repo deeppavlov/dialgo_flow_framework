@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.context_storages.database &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/context_storages/database';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/add_timeout';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.context_storages.database</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.context_storages.database</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Database</span>
+<span class="sd">--------</span>
+<span class="sd">The `Database` module provides classes for managing the context storage of a dialog system.</span>
+<span class="sd">The module can be used to store information such as the current state of the conversation</span>
+<span class="sd">and other data. This module includes the intermediate class (:py:class:`.DBContextStorage`) is a class</span>
+<span class="sd">that developers can inherit from in order to create their own context storage solutions.</span>
+<span class="sd">This class implements the basic functionality and can be extended to add additional features as needed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">import_module</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.core.ctx_utils</span> <span class="kn">import</span> <span class="n">ContextMainInfo</span>
+<span class="kn">from</span> <span class="nn">chatsky.utils.decorations</span> <span class="kn">import</span> <span class="n">classproperty</span>
+<span class="kn">from</span> <span class="nn">chatsky.utils.logging</span> <span class="kn">import</span> <span class="n">collapse_num_list</span>
+<span class="kn">from</span> <span class="nn">.protocol</span> <span class="kn">import</span> <span class="n">PROTOCOLS</span>
+
+<span class="n">_SUBSCRIPT_TYPE</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;__all__&quot;</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
+<span class="n">_SUBSCRIPT_DICT</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">,</span> <span class="s2">&quot;requests&quot;</span><span class="p">,</span> <span class="s2">&quot;responses&quot;</span><span class="p">],</span> <span class="n">_SUBSCRIPT_TYPE</span><span class="p">]</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="NameConfig">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.NameConfig">[docs]</a>
+<span class="k">class</span> <span class="nc">NameConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration of names of different database parts,</span>
+<span class="sd">    including table names, column names, field names, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_main_table</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;main&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;main&quot;</span>
+    <span class="n">_turns_table</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;turns&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;turns&quot;</span>
+    <span class="n">_key_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;key&quot;</span>
+    <span class="n">_id_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span>
+    <span class="n">_current_turn_id_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;current_turn_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;current_turn_id&quot;</span>
+    <span class="n">_created_at_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;created_at&quot;</span>
+    <span class="n">_updated_at_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;updated_at&quot;</span>
+    <span class="n">_misc_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;misc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;misc&quot;</span>
+    <span class="n">_framework_data_column</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;framework_data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;framework_data&quot;</span>
+    <span class="n">_labels_field</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;labels&quot;</span>
+    <span class="n">_requests_field</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;requests&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;requests&quot;</span>
+    <span class="n">_responses_field</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;responses&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;responses&quot;</span>
+
+    <span class="nd">@classproperty</span>
+    <span class="k">def</span> <span class="nf">get_context_main_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_created_at_column</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_misc_column</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="p">,</span>
+        <span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="_lock">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database._lock">[docs]</a>
+<span class="k">def</span> <span class="nf">_lock</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">Any</span><span class="p">]]):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">wrapped</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">DBContextStorage</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Initializing ContextStorage in-place, that is NOT thread-safe and in general should be avoided!&quot;</span>
+            <span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_concurrent</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sync_lock</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">await</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">await</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapped</span></div>
+
+
+
+<div class="viewcode-block" id="DBContextStorage">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage">[docs]</a>
+<span class="k">class</span> <span class="nc">DBContextStorage</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base context storage class.</span>
+<span class="sd">    Includes a set of methods for storing and reading different context parts.</span>
+
+<span class="sd">    :param path: Path to the storage instance.</span>
+<span class="sd">    :param rewrite_existing: Whether `TURNS` modified locally should be updated in database or not.</span>
+<span class="sd">    :param partial_read_config: Dictionary of subscripts for all possible turn items.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_default_subscript_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rewrite_existing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">partial_read_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_SUBSCRIPT_DICT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot;://&quot;</span><span class="p">)</span>
+        <span class="n">configuration</span> <span class="o">=</span> <span class="n">partial_read_config</span> <span class="k">if</span> <span class="n">partial_read_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_path</span> <span class="o">=</span> <span class="n">path</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Full path to access the context storage, as it was provided by user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `full_path` without a prefix defining db used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewrite_existing</span> <span class="o">=</span> <span class="n">rewrite_existing</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Whether to rewrite existing data in the storage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Subscripts control how many elements will be loaded from the database.</span>
+<span class="sd">        Can be an integer, meaning the number of *last* elements to load.</span>
+<span class="sd">        A special value for loading all the elements at once: &quot;__all__&quot;.</span>
+<span class="sd">        Can also be a set of keys that should be loaded.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_lock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Synchronization lock for the databases that don&#39;t support</span>
+<span class="sd">        asynchronous atomic reads and writes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flag that marks if the storage is connected to the backend.</span>
+<span class="sd">        Should be set in `pipeline.run` or later (lazily).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_subscript_value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid subscript value (</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">) for field </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">is_concurrent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the database backend support asynchronous IO.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="DBContextStorage._validate_field_name">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._validate_field_name">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_validate_field_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">field_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid value &#39;</span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">&#39; for argument &#39;field_name&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">field_name</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._connect">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._connect">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.connect">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.connect">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Connect to the backend context storage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connecting to context storage </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._load_main_info">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._load_main_info">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_main_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.load_main_info">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.load_main_info">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">load_main_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load main information about the context.</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        :return: Context main information (from `MAIN` table).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading main info for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_main_info</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Main info loaded for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._update_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._update_context">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_update_context</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ctx_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">],</span>
+        <span class="n">field_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]]]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.update_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.update_context">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_context</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ctx_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">field_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update context information.</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        :param ctx_info: Context main information (will be written to MAIN table).</span>
+<span class="sd">        :param field_info: Context turns information (will be written to TURNS table).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">joined_field_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">field_info</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span> <span class="k">if</span> <span class="n">field_info</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">field_info</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Updating context for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">added</span><span class="p">,</span> <span class="n">deleted</span> <span class="ow">in</span> <span class="n">field_info</span><span class="p">:</span>
+            <span class="n">field_info</span> <span class="o">=</span> <span class="n">joined_field_info</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_validate_field_name</span><span class="p">(</span><span class="n">field</span><span class="p">),</span> <span class="nb">list</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">added</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">No fields to add in </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">field_info</span> <span class="o">+=</span> <span class="n">added</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Adding fields for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">added</span><span class="p">))</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">deleted</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">No fields to delete in </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">field_info</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">deleted</span><span class="p">]</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Deleting fields for </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">(</span><span class="n">deleted</span><span class="p">)</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_context</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">,</span> <span class="n">ctx_info</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">joined_field_info</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context updated for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._delete_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._delete_context">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_delete_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.delete_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.delete_context">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete context from context storage.</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting context </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_context</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2"> deleted&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._load_field_latest">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._load_field_latest">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_latest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.load_field_latest">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.load_field_latest">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">load_field_latest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the latest field data (specified by `subscript` value).</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        :param field_name: Field name to load from `TURNS` table.</span>
+<span class="sd">        :return: List of tuples (step number, serialized value).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading latest items for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_field_latest</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_field_name</span><span class="p">(</span><span class="n">field_name</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Latest field loaded for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">result</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._load_field_keys">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._load_field_keys">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.load_field_keys">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.load_field_keys">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">load_field_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load all field keys.</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        :param field_name: Field name to load from `TURNS` table.</span>
+<span class="sd">        :return: List of all the step numbers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading field keys for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_field_keys</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_field_name</span><span class="p">(</span><span class="n">field_name</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field keys loaded for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._load_field_items">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._load_field_items">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.load_field_items">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.load_field_items">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">load_field_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load field items (specified by key list).</span>
+<span class="sd">        The items that are equal to `None` will be ignored.</span>
+
+<span class="sd">        :param ctx_id: Context identifier.</span>
+<span class="sd">        :param field_name: Field name to load from `TURNS` table.</span>
+<span class="sd">        :param keys: List of keys to load.</span>
+<span class="sd">        :return: List of tuples (step number, serialized value).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading field items for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_field_items</span><span class="p">(</span><span class="n">ctx_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_field_name</span><span class="p">(</span><span class="n">field_name</span><span class="p">),</span> <span class="n">keys</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field items loaded for </span><span class="si">{</span><span class="n">ctx_id</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">collapse_num_list</span><span class="p">([</span><span class="n">k</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">result</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage._clear_all">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage._clear_all">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_clear_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="DBContextStorage.clear_all">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage.clear_all">[docs]</a>
+    <span class="nd">@_lock</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">clear_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear all the chatsky tables and records.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Clearing all&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clear_all</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DBContextStorage</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">full_path</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">full_path</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">path</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewrite_existing</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">rewrite_existing</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="context_storage_factory">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.context_storage_factory">[docs]</a>
+<span class="k">def</span> <span class="nf">context_storage_factory</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBContextStorage</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use context_storage_factory to lazy import context storage types and instantiate them.</span>
+<span class="sd">    The function takes a database connection URI or its equivalent. It should be prefixed with database name,</span>
+<span class="sd">    followed by the symbol triplet &#39;://&#39;.</span>
+
+<span class="sd">    Then, you should list the connection parameters like this: user:password@host:port/database</span>
+<span class="sd">    The whole URI will then look like this:</span>
+
+<span class="sd">    - shelve://path_to_the_file/file_name</span>
+<span class="sd">    - json://path_to_the_file/file_name</span>
+<span class="sd">    - pickle://path_to_the_file/file_name</span>
+<span class="sd">    - sqlite+aiosqlite://path_to_the_file/file_name</span>
+<span class="sd">    - redis://:pass@localhost:6378/0</span>
+<span class="sd">    - mongodb://admin:pass@localhost:27016/admin</span>
+<span class="sd">    - mysql+asyncmy://root:pass@localhost:3306/test</span>
+<span class="sd">    - postgresql+asyncpg://postgres:pass@localhost:5430/test</span>
+<span class="sd">    - grpc://localhost:2134/local</span>
+<span class="sd">    - grpcs://localhost:2134/local</span>
+
+<span class="sd">    For context storages that write to local files, the function expects a file path instead of connection params:</span>
+<span class="sd">    json://file.json</span>
+<span class="sd">    When using sqlite backend your prefix should contain three slashes if you use Windows, or four in other cases:</span>
+<span class="sd">    sqlite:////file.db</span>
+
+<span class="sd">    For MemoryContextStorage pass an empty string as ``path``.</span>
+
+<span class="sd">    If you want to use additional parameters in class constructors, you can pass them to this function as kwargs.</span>
+
+<span class="sd">    :param path: Path to the file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="s2">&quot;memory&quot;</span>
+        <span class="n">_class</span> <span class="o">=</span> <span class="s2">&quot;MemoryContextStorage&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">prefix</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot;://&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">prefix</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">sql_prefix</span><span class="p">)</span> <span class="k">for</span> <span class="n">sql_prefix</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;sqlite&quot;</span><span class="p">,</span> <span class="s2">&quot;mysql&quot;</span><span class="p">,</span> <span class="s2">&quot;postgresql&quot;</span><span class="p">)):</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># this takes care of alternative sql drivers</span>
+        <span class="k">if</span> <span class="n">prefix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">PROTOCOLS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        URI path should be prefixed with one of the following:</span><span class="se">\n</span>
+<span class="s2">        </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROTOCOLS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span>
+<span class="s2">        For more information, see the function doc:</span><span class="se">\n</span><span class="si">{</span><span class="n">context_storage_factory</span><span class="o">.</span><span class="vm">__doc__</span><span class="si">}</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+            <span class="p">)</span>
+        <span class="n">_class</span><span class="p">,</span> <span class="n">module</span> <span class="o">=</span> <span class="n">PROTOCOLS</span><span class="p">[</span><span class="n">prefix</span><span class="p">][</span><span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">PROTOCOLS</span><span class="p">[</span><span class="n">prefix</span><span class="p">][</span><span class="s2">&quot;module&quot;</span><span class="p">]</span>
+    <span class="n">target_class</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s2">&quot;chatsky.context_storages&quot;</span><span class="p">),</span> <span class="n">_class</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">target_class</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+:source_name: chatsky/conditions/service
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.conditions.service
+   :members:
+   :undoc-members:
+   :show-inheritance:

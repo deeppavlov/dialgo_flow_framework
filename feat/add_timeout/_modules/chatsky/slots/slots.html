@@ -1,0 +1,1168 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.slots.slots &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/slots/slots';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/add_timeout';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.slots.slots</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.slots.slots</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Slots</span>
+<span class="sd">-----</span>
+<span class="sd">This module defines base classes for slots and some concrete implementations of them.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypeAlias</span><span class="p">,</span> <span class="n">Annotated</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">Formatter</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">model_validator</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">field_serializer</span><span class="p">,</span> <span class="n">field_validator</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.utils.devel.async_helpers</span> <span class="kn">import</span> <span class="n">wrap_sync_function_in_async</span>
+<span class="kn">from</span> <span class="nn">chatsky.utils.devel.json_serialization</span> <span class="kn">import</span> <span class="n">pickle_serializer</span><span class="p">,</span> <span class="n">pickle_validator</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">chatsky.core</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Message</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="n">SlotName</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="nb">str</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A string to identify slots.</span>
+
+<span class="sd">Top-level slots are identified by their key in a :py:class:`~.GroupSlot`.</span>
+
+<span class="sd">E.g.</span>
+
+<span class="sd">.. code:: python</span>
+
+<span class="sd">    GroupSlot(</span>
+<span class="sd">        user=RegexpSlot(),</span>
+<span class="sd">        password=FunctionSlot,</span>
+<span class="sd">    )</span>
+
+<span class="sd">Has two slots with names &quot;user&quot; and &quot;password&quot;.</span>
+
+<span class="sd">For nested group slots use dots to separate names:</span>
+
+<span class="sd">.. code:: python</span>
+
+<span class="sd">    GroupSlot(</span>
+<span class="sd">        user=GroupSlot(</span>
+<span class="sd">            name=FunctionSlot,</span>
+<span class="sd">            password=FunctionSlot,</span>
+<span class="sd">        )</span>
+<span class="sd">    )</span>
+
+<span class="sd">Has two slots with names &quot;user.name&quot; and &quot;user.password&quot;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="recursive_getattr">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.recursive_getattr">[docs]</a>
+<span class="k">def</span> <span class="nf">recursive_getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">two_arg_getattr</span><span class="p">(</span><span class="n">__o</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="c1"># pydantic handles exception when accessing a non-existing extra-field on its own</span>
+        <span class="c1"># return None by default to avoid that</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__o</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">two_arg_getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">slot_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)])</span></div>
+
+
+
+<div class="viewcode-block" id="recursive_setattr">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.recursive_setattr">[docs]</a>
+<span class="k">def</span> <span class="nf">recursive_setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">parent_slot</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">slot</span> <span class="o">=</span> <span class="n">slot_name</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sep</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span><span class="p">:</span>
+        <span class="n">parent_obj</span> <span class="o">=</span> <span class="n">recursive_getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">parent_slot</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">parent_obj</span> <span class="o">=</span> <span class="n">obj</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ExtractedGroupSlot</span><span class="p">):</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">parent_obj</span><span class="p">,</span> <span class="n">slot</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">parent_obj</span><span class="p">,</span> <span class="n">slot</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SlotNotExtracted">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotNotExtracted">[docs]</a>
+<span class="k">class</span> <span class="nc">SlotNotExtracted</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This exception can be returned or raised by slot extractor if slot extraction is unsuccessful.&quot;&quot;&quot;</span>
+
+    <span class="k">pass</span></div>
+
+
+
+<div class="viewcode-block" id="ExtractedSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">ExtractedSlot</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents value of an extracted slot.</span>
+
+<span class="sd">    Instances of this class are managed by framework and</span>
+<span class="sd">    are stored in :py:attr:`~chatsky.core.context.FrameworkData.slot_manager`.</span>
+<span class="sd">    They can be accessed via the ``ctx.framework_data.slot_manager.get_extracted_slot`` method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">__slot_extracted__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the slot is extracted.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">__unset__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark slot as not extracted and clear extracted data (except for default value).&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;String representation is used to fill templates.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+
+<div class="viewcode-block" id="ExtractedValueSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedValueSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">ExtractedValueSlot</span><span class="p">(</span><span class="n">ExtractedSlot</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Value extracted from :py:class:`~.ValueSlot`.&quot;&quot;&quot;</span>
+
+    <span class="n">is_slot_extracted</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">extracted_value</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="n">default_value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ExtractedValueSlot.pickle_serialize_values">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedValueSlot.pickle_serialize_values">[docs]</a>
+    <span class="nd">@field_serializer</span><span class="p">(</span><span class="s2">&quot;extracted_value&quot;</span><span class="p">,</span> <span class="s2">&quot;default_value&quot;</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">pickle_serialize_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cast values to string via pickle.</span>
+<span class="sd">        Allows storing arbitrary data in these fields when using context storages.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pickle_serializer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="ExtractedValueSlot.pickle_validate_values">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedValueSlot.pickle_validate_values">[docs]</a>
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;extracted_value&quot;</span><span class="p">,</span> <span class="s2">&quot;default_value&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">pickle_validate_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restore values after being processed with</span>
+<span class="sd">        :py:meth:`pickle_serialize_values`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pickle_validator</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__slot_extracted__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_slot_extracted</span>
+
+    <span class="k">def</span> <span class="nf">__unset__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_slot_extracted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extracted_value</span> <span class="o">=</span> <span class="n">SlotNotExtracted</span><span class="p">(</span><span class="s2">&quot;Slot manually unset.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extracted value or the default value if the slot is not extracted.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extracted_value</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_slot_extracted</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_value</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ExtractedGroupSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedGroupSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">ExtractedGroupSlot</span><span class="p">(</span><span class="n">ExtractedSlot</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="s2">&quot;allow&quot;</span><span class="p">):</span>
+    <span class="n">__pydantic_extra__</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+        <span class="nb">str</span><span class="p">,</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="s2">&quot;ExtractedGroupSlot&quot;</span><span class="p">,</span> <span class="s2">&quot;ExtractedValueSlot&quot;</span><span class="p">],</span> <span class="n">Field</span><span class="p">(</span><span class="n">union_mode</span><span class="o">=</span><span class="s2">&quot;left_to_right&quot;</span><span class="p">)]</span>
+    <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__slot_extracted__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">slot</span><span class="o">.</span><span class="n">__slot_extracted__</span> <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+
+    <span class="k">def</span> <span class="nf">__unset__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">__unset__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+
+<div class="viewcode-block" id="ExtractedGroupSlot.update">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ExtractedGroupSlot.update">[docs]</a>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old</span><span class="p">:</span> <span class="s2">&quot;ExtractedGroupSlot&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rebase this extracted groups slot on top of another one.</span>
+<span class="sd">        This is required to merge slot storage in-context</span>
+<span class="sd">        with a potentially different slot configuration passed to pipeline.</span>
+
+<span class="sd">        :param old: An instance of :py:class:`~.ExtractedGroupSlot` stored in-context.</span>
+<span class="sd">            Extracted values will be transferred to this object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="n">old</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">slot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="p">:</span>
+                <span class="n">new_slot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span>
+                <span class="n">old_slot</span> <span class="o">=</span> <span class="n">old</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_slot</span><span class="p">,</span> <span class="n">ExtractedGroupSlot</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">old_slot</span><span class="p">,</span> <span class="n">ExtractedGroupSlot</span><span class="p">):</span>
+                    <span class="n">new_slot</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">old_slot</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_slot</span><span class="p">,</span> <span class="n">ExtractedValueSlot</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">old_slot</span><span class="p">,</span> <span class="n">ExtractedValueSlot</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="p">[</span><span class="n">slot</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_slot</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BaseSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.BaseSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">BaseSlot</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    BaseSlot is a base class for all slots.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BaseSlot.get_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.BaseSlot.get_value">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedSlot</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract slot value from :py:class:`~.Context` and return an instance of :py:class:`~.ExtractedSlot`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="BaseSlot.init_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.BaseSlot.init_value">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">init_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedSlot</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provide an initial value to fill slot storage with.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ValueSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ValueSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">ValueSlot</span><span class="p">(</span><span class="n">BaseSlot</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Value slot is a base class for all slots that are designed to extract concrete values.</span>
+<span class="sd">    Subclass it, if you want to declare your own slot type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">default_value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ValueSlot.extract_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ValueSlot.extract_value">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">extract_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return value extracted from context.</span>
+
+<span class="sd">        Return :py:exc:`~.SlotNotExtracted` to mark extraction as unsuccessful.</span>
+
+<span class="sd">        Raising exceptions is also allowed and will result in an unsuccessful extraction as well.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+
+<div class="viewcode-block" id="ValueSlot.get_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ValueSlot.get_value">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedValueSlot</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper for :py:meth:`~.ValueSlot.extract_value` to handle exceptions.&quot;&quot;&quot;</span>
+        <span class="n">extracted_value</span> <span class="o">=</span> <span class="n">SlotNotExtracted</span><span class="p">(</span><span class="s2">&quot;Caught an exit exception.&quot;</span><span class="p">)</span>
+        <span class="n">is_slot_extracted</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">extracted_value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">wrap_sync_function_in_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extract_value</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+            <span class="n">is_slot_extracted</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extracted_value</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception occurred during </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> extraction.&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+            <span class="n">extracted_value</span> <span class="o">=</span> <span class="n">error</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_slot_extracted</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Slot </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> was not extracted: </span><span class="si">{</span><span class="n">extracted_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ExtractedValueSlot</span><span class="o">.</span><span class="n">model_construct</span><span class="p">(</span>
+                <span class="n">is_slot_extracted</span><span class="o">=</span><span class="n">is_slot_extracted</span><span class="p">,</span>
+                <span class="n">extracted_value</span><span class="o">=</span><span class="n">extracted_value</span><span class="p">,</span>
+                <span class="n">default_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">default_value</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ValueSlot.init_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.ValueSlot.init_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">init_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedValueSlot</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ExtractedValueSlot</span><span class="o">.</span><span class="n">model_construct</span><span class="p">(</span>
+            <span class="n">is_slot_extracted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">extracted_value</span><span class="o">=</span><span class="n">SlotNotExtracted</span><span class="p">(</span><span class="s2">&quot;Initial slot extraction.&quot;</span><span class="p">),</span>
+            <span class="n">default_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">default_value</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="GroupSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.GroupSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">GroupSlot</span><span class="p">(</span><span class="n">BaseSlot</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="s2">&quot;allow&quot;</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for :py:class:`~.RootSlot` and :py:class:`~.GroupSlot`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__pydantic_extra__</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="s2">&quot;GroupSlot&quot;</span><span class="p">,</span> <span class="s2">&quot;ValueSlot&quot;</span><span class="p">],</span> <span class="n">Field</span><span class="p">(</span><span class="n">union_mode</span><span class="o">=</span><span class="s2">&quot;left_to_right&quot;</span><span class="p">)]]</span>
+    <span class="n">allow_partial_extraction</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If True, extraction returns only successfully extracted child slots.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allow_partial_extraction</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">allow_partial_extraction</span><span class="o">=</span><span class="n">allow_partial_extraction</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__check_extra_field_names__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extra field names cannot be dunder names or contain dots.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;.&quot;</span> <span class="ow">in</span> <span class="n">field</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extra field name cannot contain dots: </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">field</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;__&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extra field names cannot be dunder: </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="GroupSlot.get_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.GroupSlot.get_value">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedGroupSlot</span><span class="p">:</span>
+        <span class="n">child_values</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">extracted_values</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">child_value</span><span class="p">,</span> <span class="n">child_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">child_values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">child_value</span><span class="o">.</span><span class="n">__slot_extracted__</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">allow_partial_extraction</span><span class="p">:</span>
+                <span class="n">extracted_values</span><span class="p">[</span><span class="n">child_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">child_value</span>
+
+        <span class="k">return</span> <span class="n">ExtractedGroupSlot</span><span class="p">(</span><span class="o">**</span><span class="n">extracted_values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GroupSlot.init_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.GroupSlot.init_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">init_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtractedGroupSlot</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ExtractedGroupSlot</span><span class="p">(</span>
+            <span class="o">**</span><span class="p">{</span><span class="n">child_name</span><span class="p">:</span> <span class="n">child</span><span class="o">.</span><span class="n">init_value</span><span class="p">()</span> <span class="k">for</span> <span class="n">child_name</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="RegexpSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.RegexpSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">RegexpSlot</span><span class="p">(</span><span class="n">ValueSlot</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    RegexpSlot is a slot type that extracts its value using a regular expression.</span>
+<span class="sd">    You can pass a compiled or a non-compiled pattern to the `regexp` argument.</span>
+<span class="sd">    If you want to extract a particular group, but not the full match,</span>
+<span class="sd">    change the `match_group_idx` parameter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">regexp</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">match_group_idx</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="s2">&quot;Index of the group to match.&quot;</span>
+
+<div class="viewcode-block" id="RegexpSlot.extract_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.RegexpSlot.extract_value">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">extract_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">]:</span>
+        <span class="n">request_text</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">last_request</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">search</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regexp</span><span class="p">,</span> <span class="n">request_text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">search</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">match_group_idx</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">search</span>
+            <span class="k">else</span> <span class="n">SlotNotExtracted</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to match pattern </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">regexp</span><span class="si">!r}</span><span class="s2"> in </span><span class="si">{</span><span class="n">request_text</span><span class="si">!r}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="FunctionSlot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.FunctionSlot">[docs]</a>
+<span class="k">class</span> <span class="nc">FunctionSlot</span><span class="p">(</span><span class="n">ValueSlot</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simpler version of :py:class:`~.ValueSlot`.</span>
+
+<span class="sd">    Uses a user-defined `func` to extract slot value from the :py:attr:`~.Context.last_request` Message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Message</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">Awaitable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">]],</span> <span class="n">Any</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">]]</span>
+
+<div class="viewcode-block" id="FunctionSlot.extract_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.FunctionSlot.extract_value">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">extract_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">SlotNotExtracted</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">wrap_sync_function_in_async</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">last_request</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SlotManager">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager">[docs]</a>
+<span class="k">class</span> <span class="nc">SlotManager</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provides API for managing slots.</span>
+
+<span class="sd">    An instance of this class can be accessed via ``ctx.framework_data.slot_manager``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">slot_storage</span><span class="p">:</span> <span class="n">ExtractedGroupSlot</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">ExtractedGroupSlot</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Slot storage. Stored inside ctx.framework_data.&quot;&quot;&quot;</span>
+    <span class="n">root_slot</span><span class="p">:</span> <span class="n">GroupSlot</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">GroupSlot</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Slot configuration passed during pipeline initialization.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SlotManager.set_root_slot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.set_root_slot">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_root_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_slot</span><span class="p">:</span> <span class="n">GroupSlot</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set root_slot configuration from pipeline.</span>
+<span class="sd">        Update extracted slots with the new configuration:</span>
+
+<span class="sd">        New slots are added with their :py:meth:`~.BaseSlot.init_value`.</span>
+<span class="sd">        Old extracted slot values are preserved only if their configuration did not change.</span>
+<span class="sd">        That is if they are still present in the config and if their fundamental type did not change</span>
+<span class="sd">        (i.e. `GroupSlot` did not turn into a `ValueSlot` or vice versa).</span>
+
+<span class="sd">        This method is called by pipeline and is not supposed to be used otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_slot</span> <span class="o">=</span> <span class="n">root_slot</span>
+        <span class="n">new_slot_storage</span> <span class="o">=</span> <span class="n">root_slot</span><span class="o">.</span><span class="n">init_value</span><span class="p">()</span>
+        <span class="n">new_slot_storage</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span> <span class="o">=</span> <span class="n">new_slot_storage</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.get_slot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.get_slot">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSlot</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get slot configuration from the slot name.</span>
+
+<span class="sd">        :raises KeyError: If the slot with the specified name does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">slot</span> <span class="o">=</span> <span class="n">recursive_getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_slot</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span> <span class="n">BaseSlot</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">slot</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find slot </span><span class="si">{</span><span class="n">slot_name</span><span class="si">!r}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.extract_slot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.extract_slot">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">extract_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">success_only</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract slot `slot_name` and store extracted value in `slot_storage`.</span>
+
+<span class="sd">        Extracted group slots update slot storage instead of overwriting it.</span>
+
+<span class="sd">        :raises KeyError: If the slot with the specified name does not exist.</span>
+
+<span class="sd">        :param slot_name: Name of the slot to extract.</span>
+<span class="sd">        :param ctx: Context.</span>
+<span class="sd">        :param success_only: Whether to store the value only if it is successfully extracted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">slot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slot</span><span class="p">(</span><span class="n">slot_name</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slot</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">__slot_extracted__</span> <span class="ow">or</span> <span class="n">success_only</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">recursive_setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.extract_all">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.extract_all">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">extract_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract all slots from slot configuration `root_slot` and set `slot_storage` to the extracted value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_slot</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.get_extracted_slot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.get_extracted_slot">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_extracted_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ExtractedValueSlot</span><span class="p">,</span> <span class="n">ExtractedGroupSlot</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve extracted value from `slot_storage`.</span>
+
+<span class="sd">        :raises KeyError: If the slot with the specified name does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">slot</span> <span class="o">=</span> <span class="n">recursive_getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span> <span class="n">ExtractedSlot</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">slot</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find slot </span><span class="si">{</span><span class="n">slot_name</span><span class="si">!r}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.is_slot_extracted">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.is_slot_extracted">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_slot_extracted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return if the specified slot is extracted.</span>
+
+<span class="sd">        :raises KeyError: If the slot with the specified name does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_extracted_slot</span><span class="p">(</span><span class="n">slot_name</span><span class="p">)</span><span class="o">.</span><span class="n">__slot_extracted__</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.all_slots_extracted">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.all_slots_extracted">[docs]</a>
+    <span class="k">def</span> <span class="nf">all_slots_extracted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return if all slots are extracted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="o">.</span><span class="n">__slot_extracted__</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.unset_slot">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.unset_slot">[docs]</a>
+    <span class="k">def</span> <span class="nf">unset_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark specified slot as not extracted and clear extracted value.</span>
+
+<span class="sd">        :raises KeyError: If the slot with the specified name does not exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_extracted_slot</span><span class="p">(</span><span class="n">slot_name</span><span class="p">)</span><span class="o">.</span><span class="n">__unset__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.unset_all_slots">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.unset_all_slots">[docs]</a>
+    <span class="k">def</span> <span class="nf">unset_all_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark all slots as not extracted and clear all extracted values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="o">.</span><span class="n">__unset__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SlotManager.KwargOnlyFormatter">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.KwargOnlyFormatter">[docs]</a>
+    <span class="k">class</span> <span class="nc">KwargOnlyFormatter</span><span class="p">(</span><span class="n">Formatter</span><span class="p">):</span>
+<div class="viewcode-block" id="SlotManager.KwargOnlyFormatter.get_value">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.KwargOnlyFormatter.get_value">[docs]</a>
+        <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="SlotManager.fill_template">
+<a class="viewcode-back" href="../../../apiref/chatsky.slots.slots.html#chatsky.slots.slots.SlotManager.fill_template">[docs]</a>
+    <span class="k">def</span> <span class="nf">fill_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill `template` string with extracted slot values and return a formatted string</span>
+<span class="sd">        or None if an exception has occurred while trying to fill template.</span>
+
+<span class="sd">        `template` should be a format-string:</span>
+
+<span class="sd">        E.g. &quot;Your username is {profile.username}&quot;.</span>
+
+<span class="sd">        For the example above, if ``profile.username`` slot has value &quot;admin&quot;,</span>
+<span class="sd">        it would return the following text:</span>
+<span class="sd">        &quot;Your username is admin&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">KwargOnlyFormatter</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slot_storage</span><span class="o">.</span><span class="n">__pydantic_extra__</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;An exception occurred during template filling.&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">exc</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

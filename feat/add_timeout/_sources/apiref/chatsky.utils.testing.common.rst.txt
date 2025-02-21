@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/testing/common
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.utils.testing.common
+   :members:
+   :undoc-members:
+   :show-inheritance:

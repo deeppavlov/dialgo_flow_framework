@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>4. Conditions and paths &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/tutorials.service.4_conditions_and_paths';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/add_timeout';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Extra handlers" href="tutorials.service.5_extra_handlers.html" />
+    <link rel="prev" title="3. Service Groups" href="tutorials.service.3_groups.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_context_storages.html">Context Storages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.1_basics.html">1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.2_postgresql.html">2. PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.3_mongodb.html">3. MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.4_redis.html">4. Redis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.5_mysql.html">5. MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.6_sqlite.html">6. SQLite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.7_yandex_database.html">7. Yandex DataBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.8_partial_updates.html">8. Partial context updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.context_storages.9_db_benchmarking.html">9. Context storage benchmarking</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_interfaces.html">Interfaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.telegram.1_basic.html">Telegram: 1. Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.telegram.2_attachments.html">Telegram: 2. Attachments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.telegram.3_advanced.html">Telegram: 3. Advanced</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.web_api_interface.1_fastapi.html">Web API: 1. FastAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.web_api_interface.2_websocket_chat.html">Web API: 2. WebSocket Chat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.web_api_interface.3_load_testing_with_locust.html">Web API: 3. Load testing with Locust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.messengers.web_api_interface.4_streamlit_chat.html">Web API: 4. Streamlit chat interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_llm_integration.html">LLM Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.llm.1_basics.html">LLM: 1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.llm.2_prompt_usage.html">LLM: 2. Prompt Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.llm.3_filtering_history.html">LLM: 3. Filtering History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.llm.4_structured_output.html">LLM: 4. Structured Output</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_script.html">Script</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.1_basics.html">Core: 1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.2_conditions.html">Core: 2. Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.3_responses.html">Core: 3. Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.4_transitions.html">Core: 4. Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.5_global_local.html">Core: 5. Global and Local nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.6_context_serialization.html">Core: 6. Context serialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.7_pre_response_processing.html">Core: 7. Pre-response processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.8_misc.html">Core: 8. Misc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.core.9_pre_transition_processing.html">Core: 9. Pre-transition processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.responses.1_media.html">Responses: 1. Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.script.responses.2_multi_message.html">Responses: 2. Multi Message</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index_service.html">Service</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorials.service.1_basics.html">1. Basic services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.service.2_advanced.html">2. Advanced services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.service.3_groups.html">3. Service Groups</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4. Conditions and paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.service.5_extra_handlers.html">5. Extra handlers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_slots.html">Slots</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.slots.1_basic_example.html">1. Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.slots.2_partial_extraction.html">2. Partial slot extraction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_stats.html">Stats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.stats.1_extractor_functions.html">1. Extractor Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.stats.2_pipeline_integration.html">2. Pipeline Integration</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index_service.html" class="nav-link">Service</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">4. Conditions and paths</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="4.-Conditions-and-paths">
+<h1>4. Conditions and paths<a class="headerlink" href="#4.-Conditions-and-paths" title="Link to this heading">#</a></h1>
+<p>This tutorial explains how a unique path is generated for each component and how to add a condition for component execution.</p>
+<p><a class="reference internal" href="../apiref/chatsky.conditions.service.html"><span class="doc">API ref for service conditions</span></a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># installing dependencies</span>
+<span class="o">%</span><span class="k">pip</span> install -q chatsky==0.10.0
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Note: you may need to restart the kernel to use updated packages.
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.conditions</span> <span class="kn">import</span> <span class="n">Not</span><span class="p">,</span> <span class="n">All</span><span class="p">,</span> <span class="n">ServiceFinished</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.service</span> <span class="kn">import</span> <span class="n">Service</span><span class="p">,</span> <span class="n">ServiceGroup</span>
+<span class="kn">from</span> <span class="nn">chatsky</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">Context</span><span class="p">,</span> <span class="n">AnyCondition</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.utils.testing.common</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_happy_path</span><span class="p">,</span>
+    <span class="n">is_interactive_mode</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">chatsky.utils.testing.toy_script</span> <span class="kn">import</span> <span class="n">HAPPY_PATH</span><span class="p">,</span> <span class="n">TOY_SCRIPT_KWARGS</span>
+
+<span class="n">reload</span><span class="p">(</span><span class="n">logging</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="Component-paths">
+<h2>Component paths<a class="headerlink" href="#Component-paths" title="Link to this heading">#</a></h2>
+<p>Each component has a unique path that can be used as an ID for that component.</p>
+<p>A path of a component is a “.” concatenation of names of service groups this component is in and the name of this component.</p>
+<p>For example, if component “c” is in group “b” which itself is in group “a” then path of “c” is “a.b.c”.</p>
+<div class="admonition warning">
+<p class="admonition-title">Naming services</p>
+<p>When choosing a name for a component, keep in mind that it should be unique among other components in the same service group.</p>
+</div>
+<section id="Computed-names">
+<h3>Computed names<a class="headerlink" href="#Computed-names" title="Link to this heading">#</a></h3>
+<p>If a component does not have a name, one is provided to it:</p>
+<ol class="arabic">
+<li><p>Each component has <code class="docutils literal notranslate"><span class="pre">computed_name</span></code> property which returns a default name. All service groups have “service_group” as their computed name. For services the computed name is the name of the handler <strong>or</strong> of the service class if handler is not present.</p>
+<p>E.g. A service with handler <code class="docutils literal notranslate"><span class="pre">my_func</span></code> has computed name “my_func”; and if service <code class="docutils literal notranslate"><span class="pre">MyService</span></code> is a subclass of <code class="docutils literal notranslate"><span class="pre">Service</span></code> and does not define <code class="docutils literal notranslate"><span class="pre">handler</span></code> its computed name is “MyService”.</p>
+</li>
+<li><p>If there are two or more components in a service group with the same computed name, they are assigned names with an incrementing postfix. For example, if there are two service groups with no name in pre-services they will be named “service_group#0” and “service_group#1”.</p></li>
+</ol>
+</section>
+<section id="Names-of-basic-components">
+<h3>Names of basic components<a class="headerlink" href="#Names-of-basic-components" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Main component (pipeline) has an empty name;</p></li>
+<li><p>Name of the pre services group is “pre”;</p></li>
+<li><p>Name of the post services group is “post”;</p></li>
+<li><p>Name of the actor service is “actor”.</p></li>
+</ul>
+<p>For example, if you have <code class="docutils literal notranslate"><span class="pre">pre_services=[my_func]</span></code>, the full path of the <code class="docutils literal notranslate"><span class="pre">my_func</span></code> component is “.pre.my_func”.</p>
+</section>
+</section>
+<section id="Component-start-condition">
+<h2>Component start condition<a class="headerlink" href="#Component-start-condition" title="Link to this heading">#</a></h2>
+<p>Any component (service or service group) can have a <code class="docutils literal notranslate"><span class="pre">start_condition</span></code>.</p>
+<p>Start condition is a <code class="docutils literal notranslate"><span class="pre">BaseCondition</span></code> that determines whether the component should be executed.</p>
+<p>For more information about conditions, see the <a class="reference internal" href="tutorials.script.core.2_conditions.html"><span class="doc">condition tutorial</span></a>.</p>
+<section id="Component-status">
+<h3>Component status<a class="headerlink" href="#Component-status" title="Link to this heading">#</a></h3>
+<p>At any time each component has a certain status:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NOT_RUN</span></code> - Component hasn’t bee executed yet or start condition returned False.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RUNNING</span></code> - Component is currently being executed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> - Component finished successfully.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FAILED</span></code> - Component execution failed.</p></li>
+</ul>
+<p>For more information, see <a class="reference internal" href="../apiref/chatsky.core.ctx_utils.html#chatsky.core.ctx_utils.FrameworkData.service_states"><span class="std std-ref">service_states</span></a>.</p>
+</section>
+<section id="ServiceFinished-condition">
+<h3>ServiceFinished condition<a class="headerlink" href="#ServiceFinished-condition" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ServiceFinished</span></code> is a condition that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if another service has the <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> status.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ServiceFinished</span></code> accepts the following constructor parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code> (required) - a path of another component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wait</span></code> - whether it should wait for the component to complete. This means that the component status cannot be <code class="docutils literal notranslate"><span class="pre">NOT_RUN</span></code> or <code class="docutils literal notranslate"><span class="pre">RUNNING</span></code> at the time of the check. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning!</p>
+<p>It is possible for the pipeline to get stuck in infinite waiting with the <code class="docutils literal notranslate"><span class="pre">ServiceFinished</span></code> condition.</p>
+<p>Either disable <code class="docutils literal notranslate"><span class="pre">wait</span></code> or set a timeout for the service.</p>
+</div>
+<p>For more information about <code class="docutils literal notranslate"><span class="pre">ServiceFinished</span></code>, see <a class="reference internal" href="../apiref/chatsky.conditions.service.html#chatsky.conditions.service.ServiceFinished"><span class="std std-ref">API ref</span></a>.</p>
+</section>
+</section>
+<section id="Code-explanation">
+<h2>Code explanation<a class="headerlink" href="#Code-explanation" title="Link to this heading">#</a></h2>
+<p>In this example, two conditionally executed services are illustrated.</p>
+<p>The service named <code class="docutils literal notranslate"><span class="pre">running_service</span></code> is executed only if both <code class="docutils literal notranslate"><span class="pre">SimpleServices</span></code> in pre service group have finished successfully.</p>
+<p><code class="docutils literal notranslate"><span class="pre">never_running_service</span></code> is executed only if <code class="docutils literal notranslate"><span class="pre">running_service</span></code> is not finished, which should never happen.</p>
+<p>Lastly, <code class="docutils literal notranslate"><span class="pre">context_printing_service</span></code> prints pipeline runtime information, that contains execution state of all previously run services.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Service &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; is running...&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">NeverRunningService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Oh no! The &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; service is running!&quot;</span><span class="p">)</span>
+
+    <span class="n">start_condition</span><span class="p">:</span> <span class="n">AnyCondition</span> <span class="o">=</span> <span class="n">Not</span><span class="p">(</span>
+        <span class="n">ServiceFinished</span><span class="p">(</span><span class="s2">&quot;.post.named_group.running_service&quot;</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">RuntimeInfoPrintingService</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Service &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; runtime execution info:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model_dump_json</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">TOY_SCRIPT_KWARGS</span><span class="p">,</span>
+    <span class="n">pre_services</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">SimpleService</span><span class="p">(),</span>
+        <span class="c1"># This service will be named &quot;SimpleService#0&quot;</span>
+        <span class="n">SimpleService</span><span class="p">(),</span>
+        <span class="c1"># This service will be named &quot;SimpleService#1&quot;</span>
+    <span class="p">],</span>
+    <span class="c1"># this group is named &quot;pre&quot;</span>
+    <span class="n">post_services</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">ServiceGroup</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;named_group&quot;</span><span class="p">,</span>
+            <span class="n">components</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">SimpleService</span><span class="p">(</span>
+                    <span class="n">start_condition</span><span class="o">=</span><span class="n">All</span><span class="p">(</span>
+                        <span class="n">ServiceFinished</span><span class="p">(</span><span class="s2">&quot;.pre.SimpleService#0&quot;</span><span class="p">),</span>
+                        <span class="n">ServiceFinished</span><span class="p">(</span><span class="s2">&quot;.pre.SimpleService#1&quot;</span><span class="p">),</span>
+                    <span class="p">),</span>
+                    <span class="c1"># Alternative:</span>
+                    <span class="c1"># ServiceFinished(&quot;.pre&quot;)</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;running_service&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="c1"># This simple service is named &quot;running_service&quot;</span>
+                <span class="n">NeverRunningService</span><span class="p">(),</span>
+                <span class="c1"># this service will be named &quot;NeverRunningService&quot;</span>
+            <span class="p">],</span>
+            <span class="n">fully_concurrent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="c1"># Makes components in the group run asynchronously,</span>
+            <span class="c1"># unless one is waiting for another to complete,</span>
+            <span class="c1"># which is what happens with NeverRunningService.</span>
+        <span class="p">),</span>
+        <span class="n">RuntimeInfoPrintingService</span><span class="p">(),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">check_happy_path</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">HAPPY_PATH</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">printout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_interactive_mode</span><span class="p">():</span>
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+USER: text=&#39;Hi&#39;
+Service &#39;SimpleService#0&#39; is running...
+Service &#39;SimpleService#1&#39; is running...
+Service &#39;running_service&#39; is running...
+Service &#39;RuntimeInfoPrintingService&#39; runtime execution info:{
+    &#34;before_handler&#34;: {
+        &#34;functions&#34;: [],
+        &#34;timeout&#34;: null,
+        &#34;concurrent&#34;: false
+    },
+    &#34;after_handler&#34;: {
+        &#34;functions&#34;: [],
+        &#34;timeout&#34;: null,
+        &#34;concurrent&#34;: false
+    },
+    &#34;timeout&#34;: null,
+    &#34;concurrent&#34;: false,
+    &#34;start_condition&#34;: {
+        &#34;timeout&#34;: null,
+        &#34;root&#34;: true
+    },
+    &#34;name&#34;: &#34;RuntimeInfoPrintingService&#34;,
+    &#34;path&#34;: &#34;.post.RuntimeInfoPrintingService&#34;,
+    &#34;handler&#34;: null
+}
+BOT : text=&#39;Hi, how are you?&#39;
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorials.service.3_groups.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3. Service Groups</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tutorials.service.5_extra_handlers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5. Extra handlers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Component-paths">Component paths</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Computed-names">Computed names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Names-of-basic-components">Names of basic components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Component-start-condition">Component start condition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Component-status">Component status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ServiceFinished-condition">ServiceFinished condition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Code-explanation">Code explanation</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+    
+    
+    
+    
+    
+
+    <a href="https://colab.research.google.com/github/deeppavlov/chatsky/blob/gh-pages/feat/add_timeout/tutorials/tutorials.service.4_conditions_and_paths.ipynb" data-behavior="call-to-action-event" data-response="Run in Google Colab" target="_blank">
+        <div id="google-colab-link">
+            <span class="pytorch-colab call-to-action-any"></span>
+            <div class="call-to-action-desktop-view">Run in Google Colab</div>
+            <div class="call-to-action-mobile-view">Colab</div>
+        </div>
+    </a>
+
+    <a href="../tutorials/tutorials.service.4_conditions_and_paths.ipynb" data-behavior="call-to-action-event" data-response="Download Notebook">
+        <div id="download-notebook-link">
+            <span class="pytorch-download call-to-action-any"></span>
+            <div class="call-to-action-desktop-view">Download Notebook</div>
+            <div class="call-to-action-mobile-view">Notebook</div>
+        </div>
+    </a>
+
+    <a href="https://github.com/deeppavlov/chatsky/blob/feat/add_timeout/tutorials/service/4_conditions_and_paths.py" data-behavior="call-to-action-event" data-response="View on Github" target="_blank">
+        <div id="github-view-link">
+            <span class="pytorch-github call-to-action-any"></span>
+            <div class="call-to-action-desktop-view">View on GitHub</div>
+            <div class="call-to-action-mobile-view">GitHub</div>
+        </div>
+    </a>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

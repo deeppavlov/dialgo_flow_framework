@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/devel/json_serialization
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.utils.devel.json_serialization
+   :members:
+   :undoc-members:
+   :show-inheritance:

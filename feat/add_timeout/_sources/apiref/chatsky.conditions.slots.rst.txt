@@ -1,0 +1,7 @@
+:source_name: chatsky/conditions/slots
+:doc_version: feat/add_timeout/
+
+.. automodule:: chatsky.conditions.slots
+   :members:
+   :undoc-members:
+   :show-inheritance:
