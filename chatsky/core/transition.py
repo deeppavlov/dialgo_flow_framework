@@ -71,9 +71,8 @@ async def get_next_label(
     produces an exception, the corresponding transition is filtered out.
 
     :return: Label of the next node or ``None`` if no transition is left by the end of the process and
-    the transition that leads to the next node.
+        the transition that leads to the next node.
     """
-    
     filtered_transitions: List[Transition] = transitions.copy()
     condition_results = await asyncio.gather(*[transition.cnd.wrapped_call(ctx) for transition in filtered_transitions])
 
