@@ -1,0 +1,7 @@
+:source_name: chatsky/core/transition
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.core.transition
+   :members:
+   :undoc-members:
+   :show-inheritance:

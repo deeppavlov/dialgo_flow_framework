@@ -1,0 +1,7 @@
+:source_name: chatsky/core/service/actor
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.core.service.actor
+   :members:
+   :undoc-members:
+   :show-inheritance:

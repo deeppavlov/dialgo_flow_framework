@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/common/types
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.messengers.common.types
+   :members:
+   :undoc-members:
+   :show-inheritance:

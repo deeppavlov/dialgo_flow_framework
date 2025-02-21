@@ -1,0 +1,7 @@
+:source_name: chatsky/slots/llm
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.slots.llm
+   :members:
+   :undoc-members:
+   :show-inheritance:

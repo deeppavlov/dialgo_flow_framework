@@ -1,0 +1,7 @@
+:source_name: chatsky/messengers/console
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.messengers.console
+   :members:
+   :undoc-members:
+   :show-inheritance:

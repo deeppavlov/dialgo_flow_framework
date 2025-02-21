@@ -1,0 +1,7 @@
+:source_name: chatsky/context_storages/mongo
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.context_storages.mongo
+   :members:
+   :undoc-members:
+   :show-inheritance:

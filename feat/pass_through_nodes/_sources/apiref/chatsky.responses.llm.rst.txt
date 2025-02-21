@@ -1,0 +1,7 @@
+:source_name: chatsky/responses/llm
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.responses.llm
+   :members:
+   :undoc-members:
+   :show-inheritance:

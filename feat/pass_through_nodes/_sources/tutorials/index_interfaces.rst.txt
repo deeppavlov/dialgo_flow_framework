@@ -1,0 +1,23 @@
+:orphan:
+
+.. This is an auto-generated RST index file representing tutorials directory structure
+
+Interfaces
+==========
+
+Telegram
+--------
+
+.. nbgallery::
+   tutorials.messengers.telegram.1_basic.py
+   tutorials.messengers.telegram.2_attachments.py
+   tutorials.messengers.telegram.3_advanced.py
+
+Web API
+-------
+
+.. nbgallery::
+   tutorials.messengers.web_api_interface.1_fastapi.py
+   tutorials.messengers.web_api_interface.2_websocket_chat.py
+   tutorials.messengers.web_api_interface.3_load_testing_with_locust.py
+   tutorials.messengers.web_api_interface.4_streamlit_chat.py

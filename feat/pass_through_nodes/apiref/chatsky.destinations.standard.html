@@ -1,0 +1,1205 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>Standard Destinations &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apiref/chatsky.destinations.standard';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development Utils" href="index_development_utils.html" />
+    <link rel="prev" title="Destinations" href="index_destinations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_conditions.html">Conditions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.standard.html">Standard Conditions</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.slots.html">Slot Conditions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.service.html">Service Conditions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.conditions.llm.html">LLM Conditions</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_context_storages.html">Context Storages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.database.html">Database</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.sql.html">SQL</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.protocol.html">Protocol</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.mongo.html">Mongo</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.file.html">File</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.memory.html">Memory</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.ydb.html">Yandex DB</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.context_storages.redis.html">Redis</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_core.html">Core</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.transition.html">Transition</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script_parsing.html">Pipeline File Import</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.pipeline.html">Pipeline</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.ctx_utils.html">Context Utils</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.context.html">Context</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script_function.html">Script Function</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.script.html">Script</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.node_label.html">Node Label</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.ctx_dict.html">Context Dict</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.message.html">Message</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.utils.html">Utils</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_core.service.html">Core.Service</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.types.html">Types</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.group.html">Service Group</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.extra.html">Extra Handler</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.actor.html">Actor</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.component.html">Component</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.core.service.service.html">Service</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_db_benchmark.html">DB Benchmark</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.basic_config.html">Basic Config</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.report.html">Report</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.db_benchmark.benchmark.html">Context storage benchmarking</a></li>
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index_destinations.html">Destinations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Standard Destinations</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_development_utils.html">Development Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.async_helpers.html">Async Helpers</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.extra_field_helpers.html">Extra field helpers</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.devel.json_serialization.html">Serialization</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_llm_integration.html">LLM Integration</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.langchain_context.html">LLM Utils.</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.methods.html">LLM methods</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.llm_api.html">LLM responses.</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.filters.html">Filters</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.llm.prompt.html">Prompt position</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_messenger_interfaces.html">Messenger Interfaces</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.common.types.html">Types</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.telegram.interface.html">Telegram Interfaces</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.telegram.abstract.html">Telegram Base</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.common.interface.html">Message Interfaces</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.messengers.console.html"><code class="docutils literal notranslate"><span class="pre">CLIMessengerInterface</span></code></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_processing.html">Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.processing.slots.html">Slot Processing</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.processing.standard.html">Standard Processing</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_responses.html">Responses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.slots.html">Slot Responses</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.llm.html">LLM responses</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.responses.standard.html">Standard Responses</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_slots.html">Slots</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.slots.slots.html">Slots</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.slots.llm.html">LLM Slots</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_stats.html">Stats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.instrumentor.html">Instrumentor</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.default_extractors.html">Default Extractors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.cli.html">Command Line Interface</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.stats.utils.html">Utils</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index_testing_utils.html">Testing Utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.toy_script.html">Toy script</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.cleanup_db.html">Cleanup DB</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chatsky.utils.testing.common.html">Common</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../reference.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index_destinations.html" class="nav-link">Destinations</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Standard Destinations</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="standard-destinations">
+<span id="module-chatsky.destinations.standard"></span><h1>Standard Destinations<a class="headerlink" href="#standard-destinations" title="Link to this heading">#</a></h1>
+<p>This module provides basic destinations.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#chatsky.destinations.standard.FromHistory" title="chatsky.destinations.standard.FromHistory"><code class="xref py py-class docutils literal notranslate"><span class="pre">FromHistory</span></code></a>, <a class="reference internal" href="#chatsky.destinations.standard.Current" title="chatsky.destinations.standard.Current"><code class="xref py py-class docutils literal notranslate"><span class="pre">Current</span></code></a> and <a class="reference internal" href="#chatsky.destinations.standard.Previous" title="chatsky.destinations.standard.Previous"><code class="xref py py-class docutils literal notranslate"><span class="pre">Previous</span></code></a> – history-based destinations;</p></li>
+<li><p><a class="reference internal" href="#chatsky.destinations.standard.Start" title="chatsky.destinations.standard.Start"><code class="xref py py-class docutils literal notranslate"><span class="pre">Start</span></code></a> and <a class="reference internal" href="#chatsky.destinations.standard.Fallback" title="chatsky.destinations.standard.Fallback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fallback</span></code></a> – config-based destinations;</p></li>
+<li><p><a class="reference internal" href="#chatsky.destinations.standard.Forward" title="chatsky.destinations.standard.Forward"><code class="xref py py-class docutils literal notranslate"><span class="pre">Forward</span></code></a> and <a class="reference internal" href="#chatsky.destinations.standard.Backward" title="chatsky.destinations.standard.Backward"><code class="xref py py-class docutils literal notranslate"><span class="pre">Backward</span></code></a> – script-based destinations.</p></li>
+</ul>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.FromHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FromHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#FromHistory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.FromHistory" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="chatsky.core.script_function.html#chatsky.core.script_function.BaseDestination" title="chatsky.core.script_function.BaseDestination"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDestination</span></code></a></p>
+<p>Return label of the node located at a certain position in the label history.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.FromHistory.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#chatsky.destinations.standard.FromHistory.position" title="Link to this definition">#</a></dt>
+<dd><p>Position of the label in label history.</p>
+<p>Should be negative:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> refers to the current node (same as <code class="docutils literal notranslate"><span class="pre">ctx.last_label</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-2</span></code> – to the previous node.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.FromHistory.call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#FromHistory.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.FromHistory.call" title="Link to this definition">#</a></dt>
+<dd><p>Implement this to create a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.NodeLabel" title="chatsky.core.node_label.NodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeLabel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Current">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Current" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.destinations.standard.FromHistory" title="chatsky.destinations.standard.FromHistory"><code class="xref py py-class docutils literal notranslate"><span class="pre">FromHistory</span></code></a></p>
+<p>Return label of the current node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Current.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#chatsky.destinations.standard.Current.position" title="Link to this definition">#</a></dt>
+<dd><p>Position is set to <code class="docutils literal notranslate"><span class="pre">-1</span></code> to get the last node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Previous">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Previous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Previous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Previous" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#chatsky.destinations.standard.FromHistory" title="chatsky.destinations.standard.FromHistory"><code class="xref py py-class docutils literal notranslate"><span class="pre">FromHistory</span></code></a></p>
+<p>Return label of the previous node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Previous.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#chatsky.destinations.standard.Previous.position" title="Link to this definition">#</a></dt>
+<dd><p>Position is set to <code class="docutils literal notranslate"><span class="pre">-2</span></code> to get the second to last node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Start">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Start" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="chatsky.core.script_function.html#chatsky.core.script_function.BaseDestination" title="chatsky.core.script_function.BaseDestination"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDestination</span></code></a></p>
+<p>Return <a class="reference internal" href="chatsky.core.pipeline.html#chatsky.core.pipeline.Pipeline.start_label" title="chatsky.core.pipeline.Pipeline.start_label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">start_label</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Start.call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Start.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Start.call" title="Link to this definition">#</a></dt>
+<dd><p>Implement this to create a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.NodeLabel" title="chatsky.core.node_label.NodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeLabel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Fallback">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Fallback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Fallback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Fallback" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="chatsky.core.script_function.html#chatsky.core.script_function.BaseDestination" title="chatsky.core.script_function.BaseDestination"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDestination</span></code></a></p>
+<p>Return <a class="reference internal" href="chatsky.core.pipeline.html#chatsky.core.pipeline.Pipeline.fallback_label" title="chatsky.core.pipeline.Pipeline.fallback_label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fallback_label</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Fallback.call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Fallback.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Fallback.call" title="Link to this definition">#</a></dt>
+<dd><p>Implement this to create a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.NodeLabel" title="chatsky.core.node_label.NodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeLabel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.get_next_node_in_flow">
+<span class="sig-name descname"><span class="pre">get_next_node_in_flow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">increment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#get_next_node_in_flow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.get_next_node_in_flow" title="Link to this definition">#</a></dt>
+<dd><p>Function that returns node label of a node in the same flow after shifting the index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.AbsoluteNodeLabel" title="chatsky.core.node_label.AbsoluteNodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbsoluteNodeLabel</span></code></a></span>) – Label of the node to shift from.</p></li>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chatsky.core.context.html#chatsky.core.context.Context" title="chatsky.core.context.Context"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></a></span>) – Dialog context.</p></li>
+<li><p><strong>increment</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If it is <cite>True</cite>, label index is incremented by <cite>1</cite>,
+otherwise it is decreased by <cite>1</cite>.</p></li>
+<li><p><strong>loop</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – If it is <cite>True</cite> the iteration over the label list is going cyclically
+(i.e. Backward in the first node returns the last node).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.AbsoluteNodeLabel" title="chatsky.core.node_label.AbsoluteNodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbsoluteNodeLabel</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The tuple that consists of <cite>(flow_label, label, priority)</cite>.
+If fallback is executed <cite>(flow_fallback_label, fallback_label, priority)</cite> are returned.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Forward">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Forward" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="chatsky.core.script_function.html#chatsky.core.script_function.BaseDestination" title="chatsky.core.script_function.BaseDestination"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDestination</span></code></a></p>
+<p>Return the next node relative to the current node in the current flow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Forward.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#chatsky.destinations.standard.Forward.loop" title="Link to this definition">#</a></dt>
+<dd><p>Whether to return the first node of the flow if the current node is the last one.
+Otherwise and exception is raised (and transition is considered unsuccessful).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Forward.call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Forward.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Forward.call" title="Link to this definition">#</a></dt>
+<dd><p>Implement this to create a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.NodeLabel" title="chatsky.core.node_label.NodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeLabel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Backward">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Backward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Backward" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="chatsky.core.script_function.html#chatsky.core.script_function.BaseDestination" title="chatsky.core.script_function.BaseDestination"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDestination</span></code></a></p>
+<p>Return the previous node relative to the current node in the current flow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Backward.loop">
+<span class="sig-name descname"><span class="pre">loop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#chatsky.destinations.standard.Backward.loop" title="Link to this definition">#</a></dt>
+<dd><p>Whether to return the last node of the flow if the current node is the first one.
+Otherwise and exception is raised (and transition is considered unsuccessful).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chatsky.destinations.standard.Backward.call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/chatsky/destinations/standard.html#Backward.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chatsky.destinations.standard.Backward.call" title="Link to this definition">#</a></dt>
+<dd><p>Implement this to create a custom function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="chatsky.core.node_label.html#chatsky.core.node_label.NodeLabel" title="chatsky.core.node_label.NodeLabel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeLabel</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index_destinations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Destinations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="index_development_utils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development Utils</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Standard Destinations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.FromHistory"><code class="docutils literal notranslate"><span class="pre">FromHistory</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.FromHistory.position"><code class="docutils literal notranslate"><span class="pre">FromHistory.position</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.FromHistory.call"><code class="docutils literal notranslate"><span class="pre">FromHistory.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Current"><code class="docutils literal notranslate"><span class="pre">Current</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Current.position"><code class="docutils literal notranslate"><span class="pre">Current.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Previous"><code class="docutils literal notranslate"><span class="pre">Previous</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Previous.position"><code class="docutils literal notranslate"><span class="pre">Previous.position</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Start"><code class="docutils literal notranslate"><span class="pre">Start</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Start.call"><code class="docutils literal notranslate"><span class="pre">Start.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Fallback"><code class="docutils literal notranslate"><span class="pre">Fallback</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Fallback.call"><code class="docutils literal notranslate"><span class="pre">Fallback.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.get_next_node_in_flow"><code class="docutils literal notranslate"><span class="pre">get_next_node_in_flow()</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Forward"><code class="docutils literal notranslate"><span class="pre">Forward</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Forward.loop"><code class="docutils literal notranslate"><span class="pre">Forward.loop</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Forward.call"><code class="docutils literal notranslate"><span class="pre">Forward.call()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Backward"><code class="docutils literal notranslate"><span class="pre">Backward</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Backward.loop"><code class="docutils literal notranslate"><span class="pre">Backward.loop</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chatsky.destinations.standard.Backward.call"><code class="docutils literal notranslate"><span class="pre">Backward.call()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+    
+    
+
+    <a href="https://github.com/deeppavlov/chatsky/blob/feat/pass_through_nodes/chatsky/destinations/standard.py" data-behavior="call-to-action-event" data-response="View on Github" target="_blank">
+        <div id="github-view-link">
+            <span class="pytorch-github call-to-action-any"></span>
+            <div class="call-to-action-desktop-view">View on GitHub</div>
+            <div class="call-to-action-mobile-view">GitHub</div>
+        </div>
+    </a>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

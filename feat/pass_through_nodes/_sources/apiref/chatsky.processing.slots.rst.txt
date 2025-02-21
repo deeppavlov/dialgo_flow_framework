@@ -1,0 +1,7 @@
+:source_name: chatsky/processing/slots
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.processing.slots
+   :members:
+   :undoc-members:
+   :show-inheritance:

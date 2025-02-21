@@ -1,0 +1,12 @@
+:orphan:
+
+.. This is an auto-generated RST file representing documentation source directory structure
+
+Processing
+==========
+
+.. autosummary::
+   :toctree:
+
+   chatsky.processing.slots
+   chatsky.processing.standard

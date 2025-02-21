@@ -1,0 +1,11 @@
+:orphan:
+
+.. This is an auto-generated RST file representing documentation source directory structure
+
+Destinations
+============
+
+.. autosummary::
+   :toctree:
+
+   chatsky.destinations.standard

@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/db_benchmark/basic_config
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.utils.db_benchmark.basic_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/testing/toy_script
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.utils.testing.toy_script
+   :members:
+   :undoc-members:
+   :show-inheritance:

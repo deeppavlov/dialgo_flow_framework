@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.core.context &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/core/context';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.core.context</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.core.context</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Context</span>
+<span class="sd">-------</span>
+<span class="sd">Context is a data structure that is used to store information about the current state of a conversation.</span>
+
+<span class="sd">It is used to keep track of the user&#39;s input, the current stage of the conversation, and any other</span>
+<span class="sd">information that is relevant to the current context of a dialog.</span>
+
+<span class="sd">The Context data structure provides several key features to make working with data easier.</span>
+<span class="sd">Developers can use the context to store any information that is relevant to the current conversation,</span>
+<span class="sd">such as user data, session data, conversation history, e.t.c.</span>
+<span class="sd">This allows developers to easily access and use this data throughout the conversation flow.</span>
+
+<span class="sd">Another important feature of the context is data serialization.</span>
+<span class="sd">The context can be easily serialized to a format that can be stored or transmitted, such as JSON.</span>
+<span class="sd">This allows developers to save the context data and resume the conversation later.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">gather</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time_ns</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">overload</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">PrivateAttr</span><span class="p">,</span> <span class="n">TypeAdapter</span><span class="p">,</span> <span class="n">model_validator</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.context_storages.database</span> <span class="kn">import</span> <span class="n">DBContextStorage</span><span class="p">,</span> <span class="n">NameConfig</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.message</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.node_label</span> <span class="kn">import</span> <span class="n">AbsoluteNodeLabel</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.ctx_dict</span> <span class="kn">import</span> <span class="n">LabelContextDict</span><span class="p">,</span> <span class="n">MessageContextDict</span>
+<span class="kn">from</span> <span class="nn">chatsky.core.ctx_utils</span> <span class="kn">import</span> <span class="n">ContextError</span><span class="p">,</span> <span class="n">FrameworkData</span><span class="p">,</span> <span class="n">ContextMainInfo</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">chatsky.core.script</span> <span class="kn">import</span> <span class="n">Node</span>
+    <span class="kn">from</span> <span class="nn">chatsky.core.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Context">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context">[docs]</a>
+<span class="k">class</span> <span class="nc">Context</span><span class="p">(</span><span class="n">ContextMainInfo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A structure that is used to store data about the context of a dialog.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">()),</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `id` is the unique context identifier. By default, randomly generated using `uuid4` is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="n">LabelContextDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">LabelContextDict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `labels` stores dialog labels.</span>
+<span class="sd">    A new label is stored in the dictionary on every turn, the keys are consecutive integers.</span>
+<span class="sd">    The first ever (initial) has key `0`.</span>
+
+<span class="sd">        - key - Label identification numbers.</span>
+<span class="sd">        - value - Label data: `AbsoluteNodeLabel`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">requests</span><span class="p">:</span> <span class="n">MessageContextDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">MessageContextDict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `requests` stores dialog requests.</span>
+<span class="sd">    A new request is stored in the dictionary on every turn, the keys are consecutive integers.</span>
+<span class="sd">    The first ever (initial) has key `1`.</span>
+
+<span class="sd">        - key - Request identification numbers.</span>
+<span class="sd">        - value - Request data: `Message`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">responses</span><span class="p">:</span> <span class="n">MessageContextDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">MessageContextDict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `responses` stores dialog responses.</span>
+<span class="sd">    A new response is stored in the dictionary on every turn, the keys are consecutive integers.</span>
+<span class="sd">    The first ever (initial) has key `1`.</span>
+
+<span class="sd">        - key - Response identification numbers.</span>
+<span class="sd">        - value - Response data: `Message`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_storage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DBContextStorage</span><span class="p">]</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Context storage this context is connected to (if any).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Context.connected">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context.connected">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">connected</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">storage</span><span class="p">:</span> <span class="n">DBContextStorage</span><span class="p">,</span> <span class="n">start_label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AbsoluteNodeLabel</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Context</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create context **connected** to the given database storage.</span>
+<span class="sd">        If context ID is given, the corresponding context is loaded from the database.</span>
+<span class="sd">        If the context does not exist in database or ID is `None`, a new context with new ID is created.</span>
+<span class="sd">        A connected context can be later stored in the database.</span>
+
+<span class="sd">        :param storage: context storage to connect to.</span>
+<span class="sd">        :param start_label: new context start label (will be set only if the context is created).</span>
+<span class="sd">        :param id: context ID.</span>
+<span class="sd">        :return: context, connected to the database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Disconnected context created with uid: </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">requests</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="k">await</span> <span class="n">LabelContextDict</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">instance</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="n">start_label</span><span class="p">})</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
+            <span class="k">return</span> <span class="n">instance</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Id is not a string: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">. Converting to string.&quot;</span><span class="p">)</span>
+                <span class="nb">id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connected context created with uid: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">main</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">responses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">gather</span><span class="p">(</span>
+                <span class="n">storage</span><span class="o">.</span><span class="n">load_main_info</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span>
+                <span class="n">LabelContextDict</span><span class="o">.</span><span class="n">connected</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">),</span>
+                <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">connected</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">),</span>
+                <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">connected</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">main</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">crt_at</span> <span class="o">=</span> <span class="n">upd_at</span> <span class="o">=</span> <span class="n">time_ns</span><span class="p">()</span>
+                <span class="n">current_turn_id</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">misc</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                <span class="n">fw_data</span> <span class="o">=</span> <span class="n">FrameworkData</span><span class="p">()</span>
+                <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_label</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_turn_id</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">current_turn_id</span>
+                <span class="n">crt_at</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">created_at</span>
+                <span class="n">upd_at</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">updated_at</span>
+                <span class="n">misc</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">misc</span>
+                <span class="n">fw_data</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">framework_data</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context loaded with turns number: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span>
+                <span class="n">current_turn_id</span><span class="o">=</span><span class="n">current_turn_id</span><span class="p">,</span>
+                <span class="n">created_at</span><span class="o">=</span><span class="n">crt_at</span><span class="p">,</span>
+                <span class="n">updated_at</span><span class="o">=</span><span class="n">upd_at</span><span class="p">,</span>
+                <span class="n">misc</span><span class="o">=</span><span class="n">misc</span><span class="p">,</span>
+                <span class="n">framework_data</span><span class="o">=</span><span class="n">fw_data</span><span class="p">,</span>
+                <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+                <span class="n">requests</span><span class="o">=</span><span class="n">requests</span><span class="p">,</span>
+                <span class="n">responses</span><span class="o">=</span><span class="n">responses</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
+            <span class="k">return</span> <span class="n">instance</span></div>
+
+
+<div class="viewcode-block" id="Context.delete">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context.delete">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete connected context from the context storage and disconnect it.</span>
+<span class="sd">        Throw an error if the context is not connected.</span>
+<span class="sd">        No local context fields will be affected.</span>
+<span class="sd">        If the context is not connected, throw a runtime error.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">delete_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is not attached to any context storage.&quot;</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AbsoluteNodeLabel</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return label with the highest turn id that is present in :py:attr:`labels`.</span>
+
+<span class="sd">        This is not always the label of the transition made during the current turn.</span>
+<span class="sd">        For that, use ``ctx.labels[ctx.current_turn_id]``.</span>
+
+<span class="sd">        :return: Label with the highest turn id.</span>
+<span class="sd">        :raises ContextError: If there are no labels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ContextError</span><span class="p">(</span><span class="s2">&quot;Labels are empty.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_response</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Message</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return response with the highest turn id that is present in :py:attr:`responses`.</span>
+
+<span class="sd">        This is not always the response produced during the current turn.</span>
+<span class="sd">        For that, use ``ctx.responses[ctx.current_turn_id]``.</span>
+
+<span class="sd">        :return: Response with the highest turn id or ``None`` if there are no responses.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">last_request</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Message</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return request with the highest turn id that is present in :py:attr:`requests`.</span>
+
+<span class="sd">        This is not always the request that initiated the current turn.</span>
+<span class="sd">        For that, use ``ctx.requests[ctx.current_turn_id]``.</span>
+
+<span class="sd">        :return: Request with the highest turn id.</span>
+<span class="sd">        :raises ContextError: If there are no requests.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ContextError</span><span class="p">(</span><span class="s2">&quot;Requests are empty.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">_items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pipeline</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return :py:attr:`.FrameworkData.pipeline`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">pipeline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">framework_data</span><span class="o">.</span><span class="n">pipeline</span>
+        <span class="k">if</span> <span class="n">pipeline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ContextError</span><span class="p">(</span><span class="s2">&quot;Pipeline is not set.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pipeline</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">current_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return :py:attr:`.FrameworkData.current_node`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">framework_data</span><span class="o">.</span><span class="n">current_node</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ContextError</span><span class="p">(</span><span class="s2">&quot;Current node is not set.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+<div class="viewcode-block" id="Context._Turns">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context._Turns">[docs]</a>
+    <span class="k">class</span> <span class="nc">_Turns</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An instance of class is returned by :py:attr:`~Context.turns`.</span>
+
+<span class="sd">        This class only defines a ``__getitem__`` method.</span>
+
+<span class="sd">        Key for the method may be a single value or a slice.</span>
+
+<span class="sd">        Keep in mind that the turn id 0 is reserved for</span>
+<span class="sd">        ``start_label`` and does not have a request or response.</span>
+
+<span class="sd">        If key is a single value, a tuple of the following is returned:</span>
+
+<span class="sd">        1. Request that initiated that turn;</span>
+<span class="sd">        2. Label of the destination made due to the request;</span>
+<span class="sd">        3. Response generated by the destination node.</span>
+
+<span class="sd">        If any of the items are missing, they are replaced by ``None``.</span>
+<span class="sd">        If key is negative, corresponding turn is counted from the end</span>
+<span class="sd">        (e.g. ``ctx.turns[-1]`` is the last turn).</span>
+
+<span class="sd">        If key is a slice, the slice is applied to the range of all turn ids from</span>
+<span class="sd">        0 to the current turn id, and an iterable of tuples described above is returned.</span>
+
+<span class="sd">        **Examples:**</span>
+
+<span class="sd">            1. ``await ctx.turns[0] == None, start_label, None``;</span>
+<span class="sd">            2. ``await ctx.turns[-2]`` -- request, label, response of the second to last turn;</span>
+<span class="sd">            3. ``for request, label, response in await ctx.turns[-5:]`` -- iterate over the last 5 turns.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span> <span class="o">=</span> <span class="n">ctx</span>
+
+        <span class="nd">@overload</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Message</span><span class="p">,</span> <span class="n">AbsoluteNodeLabel</span><span class="p">,</span> <span class="n">Message</span><span class="p">]:</span>
+            <span class="k">pass</span>
+
+        <span class="nd">@overload</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Message</span><span class="p">,</span> <span class="n">AbsoluteNodeLabel</span><span class="p">,</span> <span class="n">Message</span><span class="p">]]:</span>
+            <span class="k">pass</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+            <span class="n">turn_ids</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">current_turn_id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">gather</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">turn_ids</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">turn_ids</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctx</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">turn_ids</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+                <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">turns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_Turns</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a :py:class:`~Context._Turns` object used to slice turns in the context.</span>
+<span class="sd">        See the Turn class documentation for more details.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Turns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Context</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">id</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_turn_id</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">current_turn_id</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">labels</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">requests</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">responses</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">misc</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">misc</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">framework_data</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">framework_data</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">_storage</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">copy</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="o">.</span><span class="n">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">copy</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
+        <span class="k">return</span> <span class="n">copy</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">copy</span> <span class="o">=</span> <span class="n">BaseModel</span><span class="o">.</span><span class="n">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+        <span class="n">copy</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
+        <span class="k">return</span> <span class="n">copy</span>
+
+<div class="viewcode-block" id="Context._validate_model">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context._validate_model">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;wrap&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_validate_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="s2">&quot;Context&quot;</span><span class="p">],</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Context&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Context</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
+            <span class="n">instance</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">labels_obj</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;labels&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">labels_obj</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
+                <span class="n">labels_obj</span> <span class="o">=</span> <span class="n">TypeAdapter</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">AbsoluteNodeLabel</span><span class="p">])</span><span class="o">.</span><span class="n">validate_python</span><span class="p">(</span><span class="n">labels_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">LabelContextDict</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">labels_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">_ctx_id</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span>
+            <span class="n">requests_obj</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requests&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">requests_obj</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
+                <span class="n">requests_obj</span> <span class="o">=</span> <span class="n">TypeAdapter</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Message</span><span class="p">])</span><span class="o">.</span><span class="n">validate_python</span><span class="p">(</span><span class="n">requests_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">requests</span> <span class="o">=</span> <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">requests_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">_ctx_id</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span>
+            <span class="n">responses_obj</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;responses&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">responses_obj</span><span class="p">,</span> <span class="n">Dict</span><span class="p">):</span>
+                <span class="n">responses_obj</span> <span class="o">=</span> <span class="n">TypeAdapter</span><span class="p">(</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Message</span><span class="p">])</span><span class="o">.</span><span class="n">validate_python</span><span class="p">(</span><span class="n">responses_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="n">MessageContextDict</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">responses_obj</span><span class="p">)</span>
+            <span class="n">instance</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">_ctx_id</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">id</span>
+            <span class="k">return</span> <span class="n">instance</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown type of Context value: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Context.store">
+<a class="viewcode-back" href="../../../apiref/chatsky.core.context.html#chatsky.core.context.Context.store">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">store</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Store connected context in the context storage.</span>
+<span class="sd">        Depending on the context storage settings (&quot;rewrite_existing&quot; flag in particular),</span>
+<span class="sd">        either only write new and deleted values or also modify the changed ones.</span>
+<span class="sd">        All the context storage tables are updated asynchronously and simultaneously.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Storing context: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+            <span class="n">main_into</span> <span class="o">=</span> <span class="n">ContextMainInfo</span><span class="p">(</span>
+                <span class="n">current_turn_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">current_turn_id</span><span class="p">,</span>
+                <span class="n">created_at</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span>
+                <span class="n">updated_at</span><span class="o">=</span><span class="n">time_ns</span><span class="p">(),</span>
+                <span class="n">misc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">misc</span><span class="p">,</span>
+                <span class="n">framework_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">framework_data</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">labels_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">extract_sync</span><span class="p">()</span>
+            <span class="n">requests_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">requests</span><span class="o">.</span><span class="n">extract_sync</span><span class="p">()</span>
+            <span class="n">responses_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">responses</span><span class="o">.</span><span class="n">extract_sync</span><span class="p">()</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">update_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">main_into</span><span class="p">,</span> <span class="p">[</span><span class="n">labels_data</span><span class="p">,</span> <span class="n">requests_data</span><span class="p">,</span> <span class="n">responses_data</span><span class="p">])</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context stored: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is not attached to any context storage.&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

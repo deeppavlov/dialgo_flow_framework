@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/testing/common
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.utils.testing.common
+   :members:
+   :undoc-members:
+   :show-inheritance:

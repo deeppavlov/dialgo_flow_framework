@@ -1,0 +1,7 @@
+:source_name: chatsky/stats/utils
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.stats.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

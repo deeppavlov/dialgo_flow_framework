@@ -1,0 +1,7 @@
+:source_name: chatsky/core/script_function
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.core.script_function
+   :members:
+   :undoc-members:
+   :show-inheritance:

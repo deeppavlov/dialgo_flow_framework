@@ -1,0 +1,7 @@
+:source_name: chatsky/context_storages/memory
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.context_storages.memory
+   :members:
+   :undoc-members:
+   :show-inheritance:

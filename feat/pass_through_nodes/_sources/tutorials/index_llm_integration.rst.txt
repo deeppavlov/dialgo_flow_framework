@@ -1,0 +1,12 @@
+:orphan:
+
+.. This is an auto-generated RST index file representing tutorials directory structure
+
+LLM Integration
+===============
+
+.. nbgallery::
+   tutorials.llm.1_basics.py
+   tutorials.llm.2_prompt_usage.py
+   tutorials.llm.3_filtering_history.py
+   tutorials.llm.4_structured_output.py

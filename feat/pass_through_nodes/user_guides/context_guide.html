@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>Context guide &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guides/context_guide';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Superset guide" href="superset_guide.html" />
+    <link rel="prev" title="Slot Extraction" href="slot_extraction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basic_conceptions.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_integration.html">LLM Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slot_extraction.html">Slot Extraction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Context guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superset_guide.html">Superset guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_guide.html">Optimization Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_import.html">Pipeline YAML import guide</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guides.html" class="nav-link">User guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Context guide</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="context-guide">
+<h1>Context guide<a class="headerlink" href="#context-guide" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Context</span></code> class is a backbone component of the Chatsky API.
+Like the name suggests, this data structure is used to store information
+about the current state, or context, of a particular conversation.
+Each individual user has their own <code class="docutils literal notranslate"><span class="pre">Context</span></code> instance and can be identified by it.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Context</span></code> is used to keep track of the user’s requests, bot’s replies,
+user-related and request-related annotations, and any other information
+that is relevant to the conversation with the user.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since most callback functions used in Chatsky script and Chatsky pipeline (see the <a class="reference internal" href="basic_conceptions.html"><span class="doc">basic guide</span></a>)
+need to either read or update the current dialog state,
+the framework-level convention is that all functions of this kind
+use <code class="docutils literal notranslate"><span class="pre">Context</span></code> as their first parameter. This dependency is being
+injected by the pipeline during its run.
+Thus, understanding the <code class="docutils literal notranslate"><span class="pre">Context</span></code> class is essential for developing custom conversation logic
+which is mostly made up by the said functions.</p>
+</div>
+<p>As a callback parameter, <code class="docutils literal notranslate"><span class="pre">Context</span></code> provides a convenient interface for working with data,
+allowing developers to easily add, retrieve,
+and manipulate data as the conversation progresses.</p>
+<p>Let’s consider some of the built-in callback instances to see how the context can be leveraged:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">class</span> <span class="nc">Regexp</span><span class="p">(</span><span class="n">BaseCondition</span><span class="p">):</span>
+<span class="linenos"> 2</span>    <span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>    <span class="nd">@cached_property</span>
+<span class="linenos"> 5</span>    <span class="k">def</span> <span class="nf">re_object</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pattern</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos"> 9</span>        <span class="n">request</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">last_request</span>
+<span class="linenos">10</span>        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">11</span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos">12</span>        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">re_object</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The code above is a condition function (see the <a class="reference internal" href="../tutorials/tutorials.script.core.2_conditions.html"><span class="doc">conditions tutorial</span></a>)
+that belongs to the <code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code> section of the script and returns <cite>True</cite> or <cite>False</cite>
+depending on whether the current user request matches the given pattern.</p>
+<p>As can be seen from the code block, the current
+request (<code class="docutils literal notranslate"><span class="pre">last_request</span></code>) can be retrieved as one of the attributes of the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object.
+Likewise, the <code class="docutils literal notranslate"><span class="pre">last_response</span></code> (bot’s current reply) or the <code class="docutils literal notranslate"><span class="pre">last_label</span></code>
+(the name of the current node) attributes can be used in the same manner.</p>
+<p>Another common use case is leveraging the <code class="docutils literal notranslate"><span class="pre">misc</span></code> field (see below for a detailed description):
+pipeline functions or <code class="docutils literal notranslate"><span class="pre">PROCESSING</span></code> callbacks can write arbitrary values to the misc field,
+making those available for other context-dependent functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">urllib.error</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">class</span> <span class="nc">PingExample</span><span class="p">(</span><span class="n">BaseProcessing</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 7</span>            <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://example.com/&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">webpage</span><span class="p">:</span>
+<span class="linenos"> 8</span>                <span class="n">web_content</span> <span class="o">=</span> <span class="n">webpage</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+<span class="linenos"> 9</span>                    <span class="n">webpage</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get_content_charset</span><span class="p">()</span>
+<span class="linenos">10</span>                <span class="p">)</span>
+<span class="linenos">11</span>                <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;Example Domain&quot;</span> <span class="ow">in</span> <span class="n">web_content</span>
+<span class="linenos">12</span>        <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">:</span>
+<span class="linenos">13</span>            <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos">14</span>        <span class="n">ctx</span><span class="o">.</span><span class="n">misc</span><span class="p">[</span><span class="s2">&quot;can_ping_example_com&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
+<p>This sections describes the API of the <code class="docutils literal notranslate"><span class="pre">Context</span></code> class.</p>
+<p>For more information, such as method signatures, see
+<a class="reference external" href="../apiref/chatsky.core.context.html#chatsky.core.context.Context">API reference</a>.</p>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>id</strong>: This attribute represents the unique context identifier. By default, it is randomly generated using uuid4.
+In most cases, this attribute will be used to identify a user.</p></li>
+<li><p><strong>labels</strong>: The labels attribute stores the history of all passed labels within the conversation.
+It maps turn IDs to labels. The is a special dynamically-loaded collection of type
+<a class="reference external" href="../apiref/chatsky.core.ctx_dict.html#chatsky.core.ctx_dict.ContextDict">ContextDict</a>,
+so some of its methods are asynchronous.
+In particular, it is required to await when getting items (e.g. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">ctx.labels[1]</span></code>).</p></li>
+<li><p><strong>requests</strong>: The requests attribute maintains the history of all received requests by the agent.
+It also maps turn IDs to requests. The is a special dynamically-loaded collection of type
+<a class="reference external" href="../apiref/chatsky.core.ctx_dict.html#chatsky.core.ctx_dict.ContextDict">ContextDict</a>,
+so some of its methods are asynchronous.
+In particular, it is required to await when getting items (e.g. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">ctx.requests[1]</span></code>).</p></li>
+<li><p><strong>responses</strong>: This attribute keeps a record of all agent responses, mapping turn IDs to responses.
+The is a special dynamically-loaded collection of type
+<a class="reference external" href="../apiref/chatsky.core.ctx_dict.html#chatsky.core.ctx_dict.ContextDict">ContextDict</a>,
+so some of its methods are asynchronous.
+In particular, it is required to await when getting items (e.g. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">ctx.responses[1]</span></code>).</p></li>
+<li><p><strong>current_turn_id</strong>: ID of the current turn. Can be used to access specific labels/requests/responses.
+E.g. <code class="docutils literal notranslate"><span class="pre">ctx.requests[ctx.current_turn_id</span> <span class="pre">-</span> <span class="pre">1]</span></code> gives the request received on the previous turn.</p>
+<p>Turn ids are integers that go up by 1 every turn.
+Turn id 0 is reserved for start label and does not have any associated response or request.
+The first request from user has the turn id of 1.</p>
+</li>
+<li><p><strong>misc</strong>: The misc attribute is a dictionary object for storing custom data. This field is not used by any of the
+built-in Chatsky classes or functions, so the values that you write there are guaranteed to persist
+throughout the lifetime of the <code class="docutils literal notranslate"><span class="pre">Context</span></code> object.</p></li>
+<li><p><strong>framework_data</strong>: This attribute is used for storing custom data required for pipeline execution.
+It is meant to be used by the framework only. Accessing it may result in pipeline breakage.
+But there are some methods that provide access to specific fields of framework data.
+These methods are described in the next section.</p></li>
+</ul>
+</section>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h3>
+<p>The most useful methods of the <code class="docutils literal notranslate"><span class="pre">Context</span></code> class are the following:</p>
+<ul>
+<li><p><strong>last_request</strong>: Return the last request of the context.</p></li>
+<li><p><strong>last_response</strong>: Return the last response of the context, or <cite>None</cite> if the <code class="docutils literal notranslate"><span class="pre">responses</span></code> field is empty.</p>
+<p>Responses are added at the end of each turn, so an empty <code class="docutils literal notranslate"><span class="pre">response</span></code> field is something you should definitely consider.</p>
+</li>
+<li><p><strong>last_label</strong>: Return the last node label of the context (i.e. name of the current node).</p></li>
+<li><p><strong>current_node</strong>: Return the current node of the context.
+Use this property to access properties of the current node.
+You can safely modify properties of this. The changes will be reflected in
+bot behaviour during this turn, bot are not permanent (the node stored inside the script is not changed).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference internal" href="../tutorials/tutorials.script.core.7_pre_response_processing.html"><span class="doc">preprocessing tutorial</span></a>.</p>
+</div>
+</li>
+<li><p><strong>pipeline</strong>: Return <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> object that is used to process this context.
+This can be used to get <code class="docutils literal notranslate"><span class="pre">Script</span></code>, <code class="docutils literal notranslate"><span class="pre">start_label</span></code> or <code class="docutils literal notranslate"><span class="pre">fallback_label</span></code>.</p></li>
+<li><p><strong>turns</strong>: A list-like property that allows iterating over requests, labels and responses by turn id.</p></li>
+</ul>
+</section>
+</section>
+<section id="context-storages">
+<h2>Context storages<a class="headerlink" href="#context-storages" title="Link to this heading">#</a></h2>
+<p>Since context instances contain all the information, relevant for a particular user, there needs to be a way
+to persistently store that information and to make it accessible in different user sessions.
+This functionality is implemented by the <code class="docutils literal notranslate"><span class="pre">context</span> <span class="pre">storages</span></code> module that provides
+the uniform <code class="docutils literal notranslate"><span class="pre">DBContextStorage</span></code> interface as well as child classes thereof that integrate
+various database types (see the
+<a class="reference external" href="../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.DBContextStorage">api reference</a>).</p>
+<p>The supported storage options are as follows:</p>
+<ul class="simple">
+<li><p><cite>In-memory storage</cite></p></li>
+<li><p><a class="reference external" href="https://www.json.org/json-en.html">JSON</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/pickle.html">pickle</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/shelve.html">shelve</a></p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org/index.html">SQLite</a></p></li>
+<li><p><a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a></p></li>
+<li><p><a class="reference external" href="https://www.mysql.com/">MySQL</a></p></li>
+<li><p><a class="reference external" href="https://www.mongodb.com/">MongoDB</a></p></li>
+<li><p><a class="reference external" href="https://redis.io/">Redis</a></p></li>
+<li><p><a class="reference external" href="https://ydb.tech/">Yandex DataBase</a></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">DBContextStorage</span></code> instances can be uniformly constructed using the <code class="docutils literal notranslate"><span class="pre">context_storage_factory</span></code> function.
+The function’s only parameter is a connection string that specifies both the database type
+and the connection parameters, for example, <em>mongodb://admin:pass&#64;localhost:27016/admin</em>.
+(<a class="reference external" href="../apiref/chatsky.context_storages.database.html#chatsky.context_storages.database.context_storage_factory">see the reference</a>)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To learn how to use <code class="docutils literal notranslate"><span class="pre">context_storage_factory</span></code> in your pipeline, see our <a class="reference external" href="../tutorials/index_context_storages.html">Context Storage Tutorials</a>.</p>
+</div>
+<p>The GitHub-based distribution of Chatsky includes Docker images for each of the supported database types.
+Therefore, the easiest way to deploy your service together with a database is to clone the GitHub
+distribution and to take advantage of the packaged <a class="extlink-github_source_link reference external" href="https://github.com/deeppavlov/chatsky/blob/feat/pass_through_nodes/compose.yml">docker compose file</a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/deeppavlov/chatsky.git
+<span class="linenos">2</span><span class="nb">cd</span><span class="w"> </span>chatsky
+<span class="linenos">3</span><span class="c1"># assuming we need to deploy mongodb</span>
+<span class="linenos">4</span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>mongo
+</pre></div>
+</div>
+<p>The images can be configured using the docker compose file or the
+<a class="extlink-github_source_link reference external" href="https://github.com/deeppavlov/chatsky/blob/feat/pass_through_nodes/.env_file">environment file</a>,
+also available in the distribution. Consult these files for more options.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="slot_extraction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Slot Extraction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="superset_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Superset guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-storages">Context storages</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

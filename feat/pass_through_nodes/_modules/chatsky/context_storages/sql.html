@@ -1,0 +1,946 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.context_storages.sql &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/context_storages/sql';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.context_storages.sql</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.context_storages.sql</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">SQL</span>
+<span class="sd">---</span>
+<span class="sd">The SQL module provides a SQL-based version of the :py:class:`.DBContextStorage` class.</span>
+<span class="sd">This class is used to store and retrieve context data from SQL databases.</span>
+<span class="sd">It allows Chatsky to easily store and retrieve context data in a format that is highly scalable</span>
+<span class="sd">and easy to work with.</span>
+
+<span class="sd">The SQL module provides the ability to choose the backend of your choice from</span>
+<span class="sd">MySQL, PostgreSQL, or SQLite. You can choose the one that is most suitable for your use case and environment.</span>
+<span class="sd">MySQL and PostgreSQL are widely used open-source relational databases that are known for their</span>
+<span class="sd">reliability and scalability. SQLite is a self-contained, high-reliability, embedded, full-featured,</span>
+<span class="sd">public-domain, SQL database engine.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">gather</span>
+<span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">import_module</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="p">(</span>
+        <span class="n">Table</span><span class="p">,</span>
+        <span class="n">MetaData</span><span class="p">,</span>
+        <span class="n">Column</span><span class="p">,</span>
+        <span class="n">LargeBinary</span><span class="p">,</span>
+        <span class="n">String</span><span class="p">,</span>
+        <span class="n">BigInteger</span><span class="p">,</span>
+        <span class="n">ForeignKey</span><span class="p">,</span>
+        <span class="n">Integer</span><span class="p">,</span>
+        <span class="n">Index</span><span class="p">,</span>
+        <span class="n">Insert</span><span class="p">,</span>
+        <span class="n">inspect</span><span class="p">,</span>
+        <span class="n">select</span><span class="p">,</span>
+        <span class="n">delete</span><span class="p">,</span>
+        <span class="n">event</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">sqlalchemy.ext.asyncio</span> <span class="kn">import</span> <span class="n">create_async_engine</span>
+
+    <span class="n">sqlalchemy_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
+    <span class="n">sqlalchemy_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">asyncpg</span>
+
+    <span class="n">_</span> <span class="o">=</span> <span class="n">asyncpg</span>
+
+    <span class="n">postgres_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
+    <span class="n">postgres_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">asyncmy</span>
+
+    <span class="n">_</span> <span class="o">=</span> <span class="n">asyncmy</span>
+
+    <span class="n">mysql_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
+    <span class="n">mysql_available</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">aiosqlite</span>
+
+    <span class="n">_</span> <span class="o">=</span> <span class="n">aiosqlite</span>
+
+    <span class="n">sqlite_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
+    <span class="n">sqlite_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.core.ctx_utils</span> <span class="kn">import</span> <span class="n">ContextMainInfo</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">DBContextStorage</span><span class="p">,</span> <span class="n">_SUBSCRIPT_DICT</span><span class="p">,</span> <span class="n">NameConfig</span>
+<span class="kn">from</span> <span class="nn">.protocol</span> <span class="kn">import</span> <span class="n">get_protocol_install_suggestion</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">sqlalchemy_available</span><span class="p">:</span>
+    <span class="n">postgres_available</span> <span class="o">=</span> <span class="n">sqlite_available</span> <span class="o">=</span> <span class="n">mysql_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="_sqlite_enable_foreign_key">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql._sqlite_enable_foreign_key">[docs]</a>
+<span class="k">def</span> <span class="nf">_sqlite_enable_foreign_key</span><span class="p">(</span><span class="n">dbapi_con</span><span class="p">,</span> <span class="n">con_record</span><span class="p">):</span>
+    <span class="n">dbapi_con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;pragma foreign_keys=ON&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="_import_insert_for_dialect">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql._import_insert_for_dialect">[docs]</a>
+<span class="k">def</span> <span class="nf">_import_insert_for_dialect</span><span class="p">(</span><span class="n">dialect</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Table</span><span class="p">],</span> <span class="s2">&quot;Insert&quot;</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sqlalchemy.dialects.</span><span class="si">{</span><span class="n">dialect</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="s2">&quot;insert&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="_get_upsert_stmt">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql._get_upsert_stmt">[docs]</a>
+<span class="k">def</span> <span class="nf">_get_upsert_stmt</span><span class="p">(</span><span class="n">dialect</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">insert_stmt</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">unique</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">dialect</span> <span class="o">==</span> <span class="s2">&quot;postgresql&quot;</span> <span class="ow">or</span> <span class="n">dialect</span> <span class="o">==</span> <span class="s2">&quot;sqlite&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">update_stmt</span> <span class="o">=</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">on_conflict_do_update</span><span class="p">(</span>
+                <span class="n">index_elements</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span> <span class="n">set_</span><span class="o">=</span><span class="p">{</span><span class="n">column</span><span class="p">:</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">excluded</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">update_stmt</span> <span class="o">=</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">on_conflict_do_nothing</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">dialect</span> <span class="o">==</span> <span class="s2">&quot;mysql&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">update_stmt</span> <span class="o">=</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">on_duplicate_key_update</span><span class="p">(</span>
+                <span class="o">**</span><span class="p">{</span><span class="n">column</span><span class="p">:</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">inserted</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">update_stmt</span> <span class="o">=</span> <span class="n">insert_stmt</span><span class="o">.</span><span class="n">prefix_with</span><span class="p">(</span><span class="s2">&quot;IGNORE&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">update_stmt</span> <span class="o">=</span> <span class="n">insert_stmt</span>
+    <span class="k">return</span> <span class="n">update_stmt</span></div>
+
+
+
+<div class="viewcode-block" id="SQLContextStorage">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage">[docs]</a>
+<span class="k">class</span> <span class="nc">SQLContextStorage</span><span class="p">(</span><span class="n">DBContextStorage</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    SQL-based version of the :py:class:`.DBContextStorage`.</span>
+<span class="sd">    Compatible with MySQL, Postgresql, Sqlite.</span>
+<span class="sd">    When using Sqlite on a Windows system, keep in mind that you have to use double backslashes &#39;\\&#39;</span>
+<span class="sd">    instead of forward slashes &#39;/&#39; in the file path.</span>
+
+<span class="sd">    `MAIN` table is represented by `main` table.</span>
+<span class="sd">    Columns of the table are: `id`, `current_turn_id`, `created_at` `updated_at`, `misc` and `framework_data`.</span>
+
+<span class="sd">    `TURNS` table is represented by `turns` table.</span>
+<span class="sd">    Columns of the table are: `id`, `key`, `label`, `request` and `response`.</span>
+
+<span class="sd">    :param path: Standard sqlalchemy URI string.</span>
+<span class="sd">        Examples: `sqlite+aiosqlite://path_to_the_file/file_name`,</span>
+<span class="sd">        `mysql+asyncmy://root:pass@localhost:3306/test`,</span>
+<span class="sd">        `postgresql+asyncpg://postgres:pass@localhost:5430/test`.</span>
+<span class="sd">    :param rewrite_existing: Whether `TURNS` modified locally should be updated in database or not.</span>
+<span class="sd">    :param partial_read_config: Dictionary of subscripts for all possible turn items.</span>
+<span class="sd">    :param table_name_prefix: &quot;namespace&quot; prefix for the two tables created for context storing.</span>
+<span class="sd">    :param database_id_length: Length of context ID column in the database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rewrite_existing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">partial_read_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_SUBSCRIPT_DICT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">table_name_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;chatsky_table&quot;</span><span class="p">,</span>
+        <span class="n">database_id_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">DBContextStorage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">rewrite_existing</span><span class="p">,</span> <span class="n">partial_read_config</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_availability</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">full_path</span><span class="p">,</span> <span class="n">pool_pre_ping</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_INSERT_CALLABLE</span> <span class="o">=</span> <span class="n">_import_insert_for_dialect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dialect</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span> <span class="o">==</span> <span class="s2">&quot;sqlite&quot;</span><span class="p">:</span>
+            <span class="n">event</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">sync_engine</span><span class="p">,</span> <span class="s2">&quot;connect&quot;</span><span class="p">,</span> <span class="n">_sqlite_enable_foreign_key</span><span class="p">)</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name_prefix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_main_table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="p">,</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="n">database_id_length</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="p">,</span> <span class="n">BigInteger</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="p">,</span> <span class="n">LargeBinary</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="p">,</span> <span class="n">LargeBinary</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name_prefix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_turns_table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="p">,</span>
+            <span class="n">Column</span><span class="p">(</span>
+                <span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span>
+                <span class="n">String</span><span class="p">(</span><span class="n">database_id_length</span><span class="p">),</span>
+                <span class="n">ForeignKey</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">),</span>
+                <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">,</span> <span class="n">LargeBinary</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">,</span> <span class="n">LargeBinary</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+            <span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">,</span> <span class="n">LargeBinary</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+            <span class="n">Index</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_turns_table</span><span class="si">}</span><span class="s2">_index&quot;</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_concurrent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span> <span class="o">!=</span> <span class="s2">&quot;sqlite&quot;</span>
+
+<div class="viewcode-block" id="SQLContextStorage._connect">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._connect">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sync_conn</span><span class="p">:</span> <span class="n">inspect</span><span class="p">(</span><span class="n">sync_conn</span><span class="p">)</span><span class="o">.</span><span class="n">has_table</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="p">)):</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SQL table created: </span><span class="si">{</span><span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">create</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SQL table already exists: </span><span class="si">{</span><span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._check_availability">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._check_availability">[docs]</a>
+    <span class="k">def</span> <span class="nf">_check_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Chech availability of the specified backend, raise error if not available.</span>
+
+<span class="sd">        :param custom_driver: custom driver is requested - no checks will be performed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;postgresql&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">postgres_available</span><span class="p">:</span>
+            <span class="n">install_suggestion</span> <span class="o">=</span> <span class="n">get_protocol_install_suggestion</span><span class="p">(</span><span class="s2">&quot;postgresql&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Packages `sqlalchemy` and/or `asyncpg` are missing.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">install_suggestion</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">mysql_available</span><span class="p">:</span>
+            <span class="n">install_suggestion</span> <span class="o">=</span> <span class="n">get_protocol_install_suggestion</span><span class="p">(</span><span class="s2">&quot;mysql&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Packages `sqlalchemy` and/or `asyncmy` are missing.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">install_suggestion</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sqlite&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sqlite_available</span><span class="p">:</span>
+            <span class="n">install_suggestion</span> <span class="o">=</span> <span class="n">get_protocol_install_suggestion</span><span class="p">(</span><span class="s2">&quot;sqlite&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Package `sqlalchemy` and/or `aiosqlite` is missing.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">install_suggestion</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._load_main_info">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._load_main_info">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_main_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]:</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="kc">None</span>
+                <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">ContextMainInfo</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span>
+                    <span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">get_context_main_fields</span><span class="p">)}</span>
+                <span class="p">)</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._update_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._update_context">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_update_context</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ctx_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">],</span>
+        <span class="n">field_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]]]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">main_update_stmt</span><span class="p">,</span> <span class="n">turns_update_stmts</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ctx_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ctx_info_dump</span> <span class="o">=</span> <span class="n">ctx_info</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+            <span class="n">main_insert_stmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_INSERT_CALLABLE</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="o">|</span> <span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="n">ctx_info_dump</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">get_context_main_fields</span><span class="p">}</span>
+            <span class="p">)</span>
+            <span class="n">main_update_stmt</span> <span class="o">=</span> <span class="n">_get_upsert_stmt</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span><span class="p">,</span>
+                <span class="n">main_insert_stmt</span><span class="p">,</span>
+                <span class="p">[</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="p">,</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="p">,</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="p">,</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="p">,</span>
+                <span class="p">],</span>
+                <span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">field_info</span><span class="p">:</span>
+            <span class="n">turns_insert_values</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                    <span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+                    <span class="n">field_name</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">items</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">turns_insert_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">turns_insert_stmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_INSERT_CALLABLE</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">turns_insert_values</span><span class="p">)</span>
+                <span class="n">turns_update_stmts</span> <span class="o">+=</span> <span class="p">[</span>
+                    <span class="n">_get_upsert_stmt</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span><span class="p">,</span>
+                        <span class="n">turns_insert_stmt</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">field_name</span><span class="p">],</span>
+                        <span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">],</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">main_update_stmt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">main_update_stmt</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">turns_update_stmt</span> <span class="ow">in</span> <span class="n">turns_update_stmts</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">turns_update_stmt</span><span class="p">)</span></div>
+
+
+    <span class="c1"># TODO: use foreign keys instead maybe?</span>
+<div class="viewcode-block" id="SQLContextStorage._delete_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._delete_context">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_delete_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">gather</span><span class="p">(</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)),</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)),</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._load_field_latest">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._load_field_latest">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_latest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># noqa: E711</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">],</span> <span class="n">Set</span><span class="p">):</span>
+            <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">]</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">]))</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">((</span><span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._load_field_keys">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._load_field_keys">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">])</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># noqa: E711</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">(</span><span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._load_field_items">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._load_field_items">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx_id</span><span class="p">)</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">]</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">keys</span><span class="p">)))</span>
+        <span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># noqa: E711</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">((</span><span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">))</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="SQLContextStorage._clear_all">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.sql.html#chatsky.context_storages.sql.SQLContextStorage._clear_all">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_clear_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">gather</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)),</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)))</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+:source_name: chatsky/core/ctx_dict
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.core.ctx_dict
+   :members:
+   :undoc-members:
+   :show-inheritance:

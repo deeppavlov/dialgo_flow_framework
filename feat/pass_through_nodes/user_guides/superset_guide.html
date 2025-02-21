@@ -1,0 +1,838 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../_static/images/Chatsky-min-light.svg" rel="icon" type="image/svg+xml">
+    <title>Superset guide &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=82662543"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guides/superset_guide';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimization Guide" href="optimization_guide.html" />
+    <link rel="prev" title="Context guide" href="context_guide.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basic_conceptions.html">Basic Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="llm_integration.html">LLM Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slot_extraction.html">Slot Extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_guide.html">Context guide</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Superset guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_guide.html">Optimization Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline_import.html">Pipeline YAML import guide</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guides.html" class="nav-link">User guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Superset guide</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="superset-guide">
+<h1>Superset guide<a class="headerlink" href="#superset-guide" title="Link to this heading">#</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line">The Chatsky Stats module can be used to obtain and visualize usage statistics for your service.</div>
+<div class="line">The module relies on several open source solutions that allow for data persistence and visualization</div>
+</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://clickhouse.com/">Clickhouse</a> serves as an OLAP storage for data.</p></li>
+<li><p>Batching and preprocessing data is based on <a class="reference external" href="https://opentelemetry.io/docs/what-is-opentelemetry/">OpenTelemetry protocol</a> and the <a class="reference external" href="https://opentelemetry.io/docs/collector/">OpenTelemetry collector</a>.</p></li>
+<li><p>Interactive visualization is powered by <a class="reference external" href="https://superset.apache.org/">Apache Superset</a>.</p></li>
+</ul>
+<p>All the mentioned services are shipped as Docker containers, including a pre-built Superset image that ensures API compatibility.</p>
+</section>
+<section id="collection-procedure">
+<h2>Collection procedure<a class="headerlink" href="#collection-procedure" title="Link to this heading">#</a></h2>
+<p><strong>Installation</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># clone the original repository to access the docker compose file</span>
+<span class="linenos">2</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/deeppavlov/chatsky.git
+<span class="linenos">3</span><span class="c1"># install with the stats extra</span>
+<span class="linenos">4</span><span class="nb">cd</span><span class="w"> </span>chatsky
+<span class="linenos">5</span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="o">[</span>stats<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Launching services</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># clone the original repository to access the docker compose file</span>
+<span class="linenos">2</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/deeppavlov/chatsky.git
+<span class="linenos">3</span><span class="c1"># launch the required services</span>
+<span class="linenos">4</span><span class="nb">cd</span><span class="w"> </span>chatsky
+<span class="linenos">5</span>docker<span class="w"> </span>compose<span class="w"> </span>--profile<span class="w"> </span>stats<span class="w"> </span>up
+</pre></div>
+</div>
+<p><strong>Collecting data</strong></p>
+<p>Collecting data is done by means of instrumenting your conversational service before you run it.
+Chatsky tutorials (<a class="reference internal" href="../tutorials/tutorials.stats.1_extractor_functions.html"><span class="doc">1</span></a>, <a class="reference internal" href="../tutorials/tutorials.stats.2_pipeline_integration.html"><span class="doc">2</span></a>)
+showcase all the steps needed to achieve that. We will run
+a special script in order to obtain richly-annotated sample data points to visualize.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>utils/stats/sample_data_provider.py
+</pre></div>
+</div>
+</section>
+<section id="displaying-the-data">
+<h2>Displaying the data<a class="headerlink" href="#displaying-the-data" title="Link to this heading">#</a></h2>
+<p>In order to display the Superset dashboard, you should update the default configuration with the credentials of your database.
+The configuration can be optionally saved as a zip archive for inspection / debug.</p>
+<p>You can set most of the configuration options using a YAML file.
+The default example file can be found in the <cite>tutorials/stats</cite> directory:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># tutorials/stats/example_config.yaml</span>
+<span class="linenos">2</span><span class="nt">db</span><span class="p">:</span>
+<span class="linenos">3</span><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clickhousedb+connect</span>
+<span class="linenos">4</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="linenos">5</span><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username</span>
+<span class="linenos">6</span><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clickhouse</span>
+<span class="linenos">7</span><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8123</span>
+<span class="linenos">8</span><span class="w">    </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">otel_logs</span>
+</pre></div>
+</div>
+<p>The file can then be used to parametrize the configuration script.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>chatsky.stats<span class="w"> </span>tutorials/stats/example_config.yaml<span class="w"> </span>-P<span class="w"> </span>superset<span class="w"> </span>-dP<span class="w"> </span>pass<span class="w"> </span>-U<span class="w"> </span>superset<span class="w"> </span>--outfile<span class="o">=</span>config_artifact.zip
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Here we passed passwords via CLI, which is not recommended. For enhanced security, call the command above omitting the passwords (<cite>chatsky.stats -P -dP -U superset …</cite>) and you will be prompted to enter them interactively.</p>
+</div>
+<p>Running the command will automatically import the dashboard as well as the data sources
+into the running superset server. If you are using a version of Superset different from the one
+shipped with Chatsky, make sure that your access rights are sufficient to edit the workspace.</p>
+</section>
+<section id="using-superset">
+<h2>Using Superset<a class="headerlink" href="#using-superset" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line">In order to view the imported dashboard, log into <a class="reference external" href="http://localhost:8088/">Superset</a> using your username and password (which are both <cite>superset</cite> by default and can be configured via <cite>.env_file</cite>).</div>
+<div class="line">The dashboard will then be available in the <strong>Dashboards</strong> section of the Superset UI under the name of <strong>Chatsky stats</strong>.</div>
+<div class="line">The dashboard is split into four sections based on the types of charts and on the chart topic.</div>
+</div>
+<ul class="simple">
+<li><p>The <strong>Overview</strong> section summarizes the information about user interaction with your script. And displays a weighted graph of transitions from one node to another. The data is also shown in the form of a table for better introspection capabilities.</p></li>
+</ul>
+<figure class="align-default" id="id3">
+<img alt="../_images/overview.png" src="../_images/overview.png" />
+<figcaption>
+<p><span class="caption-text">Overview plots.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>The data displayed in the <strong>Node stats</strong> section reports, how frequent each of the nodes in your script was visited by users. The information is aggregated in several forms for better interpretability.</p></li>
+</ul>
+<figure class="align-default" id="id4">
+<img alt="../_images/general_stats.png" src="../_images/general_stats.png" />
+<figcaption>
+<p><span class="caption-text">Node stats plots.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>General service load data aggregated over time can be found in the <strong>Service stats</strong> section.</p></li>
+</ul>
+<figure class="align-default" id="id5">
+<img alt="../_images/service_stats.png" src="../_images/service_stats.png" />
+<figcaption>
+<p><span class="caption-text">Service stats plots.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>The <strong>Annotations</strong> section contains example charts that show how annotations from supplemental pipeline services can be viewed and analyzed.</p></li>
+</ul>
+<figure class="align-default" id="id6">
+<img alt="../_images/annotations.png" src="../_images/annotations.png" />
+<figcaption>
+<p><span class="caption-text">Plots for pipeline-produced dialog annotations.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>On some occasions, Superset can show warnings about the database connection being faulty.
+In that case, you can navigate to the <cite>Database Connections</cite> section through the <cite>Settings</cite> menu and edit the <cite>chatsky_database</cite> instance updating the credentials.</p>
+<figure class="align-default" id="id7">
+<img alt="../_images/databases.png" src="../_images/databases.png" />
+<figcaption>
+<p><span class="caption-text">Locate the database settings in the right corner of the screen.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="customizing-the-dashboard">
+<h2>Customizing the dashboard<a class="headerlink" href="#customizing-the-dashboard" title="Link to this heading">#</a></h2>
+<p>The most notable advantage of using Superset as a visualization tool is that it provides
+an easy and intuitive way to create your own charts and to customize the dashboard.</p>
+<p><strong>Datasets</strong></p>
+<p>If you aim to create your own chart, Superset will prompt you to select a dataset to draw data from.
+The current configuration provides three datasets <cite>chatsky-node-stats</cite>, <cite>chatsky-stats</cite>, and <cite>chatsky-final-nodes</cite>.
+However, in most cases, you would use <cite>chatsky-stats</cite> or <cite>chatsky-node-stats</cite>. The former contains all data points,
+while the latter only includes the logs produced by <cite>get_current_label</cite> extractor
+(<a class="reference external" href="../apiref/chatsky.stats.default_extractors.html#chatsky.stats.default_extractors.get_current_label">see the API reference</a>).
+<cite>chatsky-final-nodes</cite> contains the same information as the said datasources,
+but only aggregates the labels of nodes visited at the end of dialog graph traversal,
+i.e. nodes that terminate the dialog.</p>
+<p><cite>chatsky-nodes-stats</cite> uses the following variables to store the data:</p>
+<ul class="simple">
+<li><p>The <cite>context_id</cite> field can be used to distinguish dialog contexts from each other and serves as a user identifier.</p></li>
+<li><p><cite>request_id</cite> is the number of the dialog turn at which the data record was emitted. The data points can be aggregated over this field, showing the distribution of a variable over the dialog history.</p></li>
+<li><p>The <cite>data_key</cite> field contains the name of the extractor function that emitted the given record. Since in most cases you will only need the output of one extractor, you can filter out all the other records using filters.</p></li>
+<li><p>Finally, the <cite>data</cite> field is a set of JSON-encoded key-value pairs. The keys and values differ depending on the extractor function that emitted the data (you can essentially save arbitrary data under arbitrary keys), which makes filtering the data rows by their <cite>data_key</cite> all the more important. The JSON format implies that individual values need to be extracted using the Superset SQL functions (see below).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">JSON_VALUE</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;$.key&#39;</span><span class="p">)</span>
+<span class="n">JSON_VALUE</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;$.outer_key.nested_key&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Chart creation</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chart creation is described in detail in the official Superset documentation.
+We suggest that you consult it in addition to this section:
+<a class="reference external" href="https://superset.apache.org/docs/creating-charts-dashboards/exploring-data/#pivot-table">link</a>.</p>
+</div>
+<p>Creating your own chart is as easy as navigating to the <cite>Charts</cite> section of the Superset app
+and pressing the <cite>Create</cite> button.</p>
+<p>Initially, you will be prompted for the dataset that you want to use as well as for the chart type.
+The Superset GUI provides comprehensive previews of each chart type making it very easy
+to find the exact kind that you need.</p>
+<p>At the next step, you will be redirected to the chart creation interface.
+Depending on the kind of chat that you have chosen previously, menus will be available
+to choose a column for the x-axis and, optionally, a column for the y-axis. As mentioned above,
+a separate menu for data filters will also be available. If you need to use the data
+from the <cite>data</cite> column, you will need to find the <cite>custom_sql</cite> option when adding the column
+and put in the extraction expression, as shown in the examples above.</p>
+<p><strong>Exporting the chart configuration</strong></p>
+<p>The configuration of a Superset dashboard can be easily exported and then reused
+in other Superset instances. This can be done using the GUI: navigate to the
+<cite>Dashboards</cite> section of the Superset application, locate your dashboard (named <cite>Chatsky statistics</cite> per default).
+Then press the <cite>export</cite> button on the right and save the zip file to any convenient location.</p>
+<p><strong>Importing existing configuration files</strong></p>
+<p>If you need to restore your dashboard or update the configuration, you can import a configuration archive
+that has been saved in the manner described below.</p>
+<p>Log in to Superset, open the <cite>Dashboards</cite> tab and press the import button on the right of the screen.
+You will be prompted for the database password. If the database credentials match,
+the updated dashboard will appear in the dashboard list.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="context_guide.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Context guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="optimization_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimization Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collection-procedure">Collection procedure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-the-data">Displaying the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-superset">Using Superset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-the-dashboard">Customizing the dashboard</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

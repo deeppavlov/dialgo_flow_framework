@@ -1,0 +1,7 @@
+:source_name: chatsky/utils/devel/extra_field_helpers
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.utils.devel.extra_field_helpers
+   :members:
+   :undoc-members:
+   :show-inheritance:

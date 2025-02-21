@@ -1,0 +1,986 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatsky.context_storages.ydb &#8212; chatsky 0.10.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/katex-math.css?v=91adb8b6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b77b6cac" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../_static/documentation_options.js?v=82662543"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/katex.min.js?v=be8ff15f"></script>
+    <script src="../../../_static/auto-render.min.js?v=ad136472"></script>
+    <script src="../../../_static/katex_autorenderer.js?v=bebc588a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/chatsky/context_storages/ydb';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://deeppavlov.github.io/chatsky/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'feat/pass_through_nodes';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.10" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-light" alt="chatsky 0.10.0 documentation - Home"/>
+    <img src="../../../_static/Chatsky-full-dark.svg" class="logo__image only-dark pst-js-only" alt="chatsky 0.10.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+        </div>
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+    </div>
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../get_started.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guides.html">
+    User guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../reference.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community.html">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_us.html">
+    About us
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forum.deeppavlov.ai" title="DeepPavlov Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><img src="../../../_static/images/logo-deeppavlov.svg" class="icon-link-image" alt="DeepPavlov Forum"/></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://t.me/DeepPavlovDreamDiscussions" title="Telegram" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-telegram fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Telegram</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/deeppavlov/chatsky" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">chatsky.context_storages.ydb</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for chatsky.context_storages.ydb</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Yandex DB</span>
+<span class="sd">---------</span>
+<span class="sd">The Yandex DB module provides a version of the :py:class:`.DBContextStorage` class that designed to work with</span>
+<span class="sd">Yandex and other databases. Yandex DataBase is a fully-managed cloud-native SQL service that makes it easy to set up,</span>
+<span class="sd">operate, and scale high-performance and high-availability databases for your applications.</span>
+
+<span class="sd">The Yandex DB module uses the Yandex Cloud SDK, which is a python library that allows you to work</span>
+<span class="sd">with Yandex Cloud services using python. This allows Chatsky to easily integrate with the Yandex DataBase and</span>
+<span class="sd">take advantage of the scalability and high-availability features provided by the service.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">gather</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlsplit</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ydb</span> <span class="kn">import</span> <span class="p">(</span>
+        <span class="n">SerializableReadWrite</span><span class="p">,</span>
+        <span class="n">SchemeError</span><span class="p">,</span>
+        <span class="n">TableDescription</span><span class="p">,</span>
+        <span class="n">Column</span><span class="p">,</span>
+        <span class="n">OptionalType</span><span class="p">,</span>
+        <span class="n">PrimitiveType</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">ydb.aio</span> <span class="kn">import</span> <span class="n">Driver</span><span class="p">,</span> <span class="n">SessionPool</span>
+    <span class="kn">from</span> <span class="nn">ydb.table</span> <span class="kn">import</span> <span class="n">Session</span>
+
+    <span class="n">ydb_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">ydb_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="kn">from</span> <span class="nn">chatsky.core.ctx_utils</span> <span class="kn">import</span> <span class="n">ContextMainInfo</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">DBContextStorage</span><span class="p">,</span> <span class="n">_SUBSCRIPT_DICT</span><span class="p">,</span> <span class="n">NameConfig</span>
+<span class="kn">from</span> <span class="nn">.protocol</span> <span class="kn">import</span> <span class="n">get_protocol_install_suggestion</span>
+
+
+<div class="viewcode-block" id="YDBContextStorage">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage">[docs]</a>
+<span class="k">class</span> <span class="nc">YDBContextStorage</span><span class="p">(</span><span class="n">DBContextStorage</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Version of the :py:class:`.DBContextStorage` for YDB.</span>
+
+<span class="sd">    `CONTEXT` table is represented by `contexts` table.</span>
+<span class="sd">    Columns of the table are: `id`, `current_turn_id`, `created_at` `updated_at`, `misc` and `framework_data`.</span>
+
+<span class="sd">    `TURNS` table is represented by `turns` table.</span>
+<span class="sd">    olumns of the table are: `id`, `key`, `label`, `request` and `response`.</span>
+
+<span class="sd">    :param path: Standard sqlalchemy URI string. One of `grpc` or `grpcs` can be chosen as a protocol.</span>
+<span class="sd">        Example: `grpc://localhost:2134/local`.</span>
+<span class="sd">        NB! Do not forget to provide credentials in environmental variables</span>
+<span class="sd">        or set `YDB_ANONYMOUS_CREDENTIALS` variable to `1`!</span>
+<span class="sd">    :param rewrite_existing: Whether `TURNS` modified locally should be updated in database or not.</span>
+<span class="sd">    :param partial_read_config: Dictionary of subscripts for all possible turn items.</span>
+<span class="sd">    :param table_name_prefix: &quot;namespace&quot; prefix for the two tables created for context storing.</span>
+<span class="sd">    :param timeout: Waiting timeout for the database driver.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_LIMIT_VAR</span> <span class="o">=</span> <span class="s2">&quot;limit&quot;</span>
+    <span class="n">_KEY_VAR</span> <span class="o">=</span> <span class="s2">&quot;key&quot;</span>
+
+    <span class="n">is_concurrent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rewrite_existing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">partial_read_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_SUBSCRIPT_DICT</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">table_name_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;chatsky_table&quot;</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">DBContextStorage</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">rewrite_existing</span><span class="p">,</span> <span class="n">partial_read_config</span><span class="p">)</span>
+
+        <span class="n">protocol</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ydb_available</span><span class="p">:</span>
+            <span class="n">install_suggestion</span> <span class="o">=</span> <span class="n">get_protocol_install_suggestion</span><span class="p">(</span><span class="s2">&quot;grpc&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;`ydb` package is missing.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">install_suggestion</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_prefix</span> <span class="o">=</span> <span class="n">table_name_prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">protocol</span><span class="si">}</span><span class="s2">://</span><span class="si">{</span><span class="n">netloc</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<div class="viewcode-block" id="YDBContextStorage._connect">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._connect">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span> <span class="o">=</span> <span class="n">Driver</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">)</span>
+        <span class="n">client_settings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span><span class="o">.</span><span class="n">table_client</span><span class="o">.</span><span class="n">_table_client_settings</span><span class="o">.</span><span class="n">with_allow_truncated_result</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span><span class="o">.</span><span class="n">table_client</span><span class="o">.</span><span class="n">_table_client_settings</span> <span class="o">=</span> <span class="n">client_settings</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_driver</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">fail_fast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">SessionPool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_driver</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_table</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prefix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_main_table</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_prefix</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_turns_table</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_does_table_exist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">):</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_main_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_does_table_exist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">):</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_turns_table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._does_table_exist">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._does_table_exist">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_does_table_exist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">describe_table</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">))</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="n">SchemeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._create_main_table">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._create_main_table">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_main_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span>
+                <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">]),</span>
+                <span class="n">TableDescription</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Utf8</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Uint64</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Uint64</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Uint64</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">String</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">String</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_primary_key</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">),</span>
+            <span class="p">)</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._create_turns_table">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._create_turns_table">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_turns_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span>
+                <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">]),</span>
+                <span class="n">TableDescription</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Utf8</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">,</span> <span class="n">PrimitiveType</span><span class="o">.</span><span class="n">Uint32</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_labels_field</span><span class="p">,</span> <span class="n">OptionalType</span><span class="p">(</span><span class="n">PrimitiveType</span><span class="o">.</span><span class="n">String</span><span class="p">)))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_requests_field</span><span class="p">,</span> <span class="n">OptionalType</span><span class="p">(</span><span class="n">PrimitiveType</span><span class="o">.</span><span class="n">String</span><span class="p">)))</span>
+                <span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_responses_field</span><span class="p">,</span> <span class="n">OptionalType</span><span class="p">(</span><span class="n">PrimitiveType</span><span class="o">.</span><span class="n">String</span><span class="p">)))</span>
+                <span class="o">.</span><span class="n">with_primary_keys</span><span class="p">(</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="p">,</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">),</span>
+            <span class="p">)</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._load_main_info">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._load_main_info">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_main_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">]:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                SELECT </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="si">}</span>
+<span class="s2">                FROM </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="si">}</span>
+<span class="s2">                WHERE </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">                &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+            <span class="n">result_sets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                <span class="p">{</span>
+                    <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">ContextMainInfo</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span>
+                    <span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">get_context_main_fields</span><span class="p">}</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._update_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._update_context">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_update_context</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ctx_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContextMainInfo</span><span class="p">],</span>
+        <span class="n">field_info</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]]]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">transaction</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">SerializableReadWrite</span><span class="p">())</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ctx_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">ctx_info_dump</span> <span class="o">=</span> <span class="n">ctx_info</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="si">}</span><span class="s2"> AS Uint64;</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="si">}</span><span class="s2"> AS Uint64;</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="si">}</span><span class="s2"> AS Uint64;</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="si">}</span><span class="s2"> AS String;</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="si">}</span><span class="s2"> AS String;</span>
+<span class="s2">                    UPSERT INTO </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="si">}</span><span class="s2">)</span>
+<span class="s2">                    VALUES ($</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_current_turn_id_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_created_at_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_updated_at_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_misc_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_framework_data_column</span><span class="si">}</span><span class="s2">);</span>
+<span class="s2">                    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+                <span class="k">await</span> <span class="n">transaction</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                    <span class="p">{</span>
+                        <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                    <span class="p">}</span>
+                    <span class="o">|</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_info_dump</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">NameConfig</span><span class="o">.</span><span class="n">get_context_main_fields</span><span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">field_info</span><span class="p">:</span>
+                <span class="n">declare</span><span class="p">,</span> <span class="n">prepare</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">list</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+                    <span class="n">declare</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DECLARE $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> AS Uint32;&quot;</span><span class="p">]</span>
+                    <span class="n">prepare</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">})</span>
+                    <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">declare</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DECLARE $</span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> AS String;&quot;</span><span class="p">]</span>
+                        <span class="n">prepare</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
+                        <span class="n">value_param</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value_param</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+                    <span class="n">values</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;($</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">, $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">value_param</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">]</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                    </span><span class="si">{</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">declare</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">                    UPSERT INTO </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2">)</span>
+<span class="s2">                    VALUES </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">                    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+                <span class="k">await</span> <span class="n">transaction</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                    <span class="p">{</span>
+                        <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">prepare</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">await</span> <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._delete_context">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._delete_context">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_delete_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">construct_callee</span><span class="p">(</span><span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Session</span><span class="p">],</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]:</span>
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                    DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                    DELETE FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span>
+<span class="s2">                    WHERE </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">                    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                    <span class="p">{</span>
+                        <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                    <span class="p">},</span>
+                    <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">callee</span>
+
+        <span class="k">await</span> <span class="n">gather</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">construct_callee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">construct_callee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._load_field_latest">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._load_field_latest">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_latest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+            <span class="n">declare</span><span class="p">,</span> <span class="n">prepare</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">declare</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DECLARE $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_LIMIT_VAR</span><span class="si">}</span><span class="s2"> AS Uint64;&quot;</span><span class="p">]</span>
+                <span class="n">prepare</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_LIMIT_VAR</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">]})</span>
+                <span class="n">limit</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;LIMIT $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_LIMIT_VAR</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">],</span> <span class="n">Set</span><span class="p">):</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_subscripts</span><span class="p">[</span><span class="n">field_name</span><span class="p">]):</span>
+                    <span class="n">declare</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DECLARE $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> AS Uint32;&quot;</span><span class="p">]</span>
+                    <span class="n">prepare</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">})</span>
+                    <span class="n">values</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;AND </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2"> IN (</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                </span><span class="si">{</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">declare</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">                SELECT </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span>
+<span class="s2">                FROM </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="si">}</span>
+<span class="s2">                WHERE </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AND </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> IS NOT NULL </span><span class="si">{</span><span class="n">key</span><span class="si">}</span>
+<span class="s2">                ORDER BY </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2"> DESC </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">                &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+            <span class="n">result_sets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                <span class="p">{</span>
+                    <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">prepare</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="k">else</span> <span class="nb">list</span><span class="p">()</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._load_field_keys">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._load_field_keys">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                SELECT </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span>
+<span class="s2">                FROM </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="si">}</span>
+<span class="s2">                WHERE </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AND </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> IS NOT NULL;</span>
+<span class="s2">                &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+            <span class="n">result_sets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                <span class="p">{</span>
+                    <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">list</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._load_field_items">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._load_field_items">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_load_field_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]]:</span>
+            <span class="n">declare</span><span class="p">,</span> <span class="n">prepare</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+                <span class="n">declare</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;DECLARE $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> AS Uint32;&quot;</span><span class="p">]</span>
+                <span class="n">prepare</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_KEY_VAR</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">})</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                DECLARE $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AS Utf8;</span>
+<span class="s2">                </span><span class="si">{</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">declare</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">                SELECT </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span>
+<span class="s2">                FROM </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="si">}</span>
+<span class="s2">                WHERE </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> = $</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2"> AND </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> IS NOT NULL</span>
+<span class="s2">                AND </span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="si">}</span><span class="s2"> IN (</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prepare</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">);</span>
+<span class="s2">                &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+            <span class="n">result_sets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+                <span class="p">{</span>
+                    <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_id_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">ctx_id</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">prepare</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="n">NameConfig</span><span class="o">.</span><span class="n">_key_column</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                <span class="k">else</span> <span class="nb">list</span><span class="p">()</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">callee</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="YDBContextStorage._clear_all">
+<a class="viewcode-back" href="../../../apiref/chatsky.context_storages.ydb.html#chatsky.context_storages.ydb.YDBContextStorage._clear_all">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_clear_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">construct_callee</span><span class="p">(</span><span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Session</span><span class="p">],</span> <span class="n">Awaitable</span><span class="p">[</span><span class="kc">None</span><span class="p">]]:</span>
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">callee</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    PRAGMA TablePathPrefix(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;);</span>
+<span class="s2">                    DELETE FROM </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">                    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+                <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">transaction</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">query</span><span class="p">),</span> <span class="nb">dict</span><span class="p">(),</span> <span class="n">commit_tx</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">callee</span>
+
+        <span class="k">await</span> <span class="n">gather</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">construct_callee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_table</span><span class="p">)),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">retry_operation</span><span class="p">(</span><span class="n">construct_callee</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">turns_table</span><span class="p">)),</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022 - 2025, DeepPavlov.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

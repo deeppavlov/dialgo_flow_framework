@@ -1,0 +1,7 @@
+:source_name: chatsky/conditions/llm
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.conditions.llm
+   :members:
+   :undoc-members:
+   :show-inheritance:

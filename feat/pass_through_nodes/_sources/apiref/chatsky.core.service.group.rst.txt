@@ -1,0 +1,7 @@
+:source_name: chatsky/core/service/group
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.core.service.group
+   :members:
+   :undoc-members:
+   :show-inheritance:

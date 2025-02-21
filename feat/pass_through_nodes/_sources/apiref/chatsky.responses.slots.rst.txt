@@ -1,0 +1,7 @@
+:source_name: chatsky/responses/slots
+:doc_version: feat/pass_through_nodes/
+
+.. automodule:: chatsky.responses.slots
+   :members:
+   :undoc-members:
+   :show-inheritance:
