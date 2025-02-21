@@ -60,9 +60,12 @@ class Actor(PipelineComponent):
 
             logger.debug("Running transitions")
 
-            destination_result = await get_next_label(ctx, ctx.current_node.transitions, ctx.pipeline.default_priority)
+            destination_result, transition = await get_next_label(
+                ctx, ctx.current_node.transitions, ctx.pipeline.default_priority
+            )
             if destination_result is not None:
                 next_label = destination_result
+            ctx.framework_data.transition = transition
         except Exception as exc:
             logger.exception("Exception occurred during transition processing.", exc_info=exc)
 

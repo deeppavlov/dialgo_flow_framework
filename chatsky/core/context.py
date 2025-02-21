@@ -35,6 +35,7 @@ if TYPE_CHECKING:
     from chatsky.core.script import Node
     from chatsky.core.pipeline import Pipeline
 
+
 logger = logging.getLogger(__name__)
 
 
