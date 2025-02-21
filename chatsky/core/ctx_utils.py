@@ -65,7 +65,7 @@ class FrameworkData(BaseModel, arbitrary_types_allowed=True):
     "Enables complex stats collection across multiple turns."
     slot_manager: SlotManager = Field(default_factory=SlotManager)
     "Stores extracted slots."
-    transition: Optional[Transition] = Field(default=None)
+    transition: Optional[Transition] = Field(default=None, exclude=True)
     "Stores last transition's info."
 
 
