@@ -8,6 +8,7 @@ These functions allow dynamic script configuration and are essential to the scri
 
 from __future__ import annotations
 
+import asyncio
 from typing import Union, Tuple, ClassVar, Optional
 from typing_extensions import Annotated
 from abc import abstractmethod, ABC
@@ -30,6 +31,9 @@ class BaseScriptFunc(BaseModel, ABC, frozen=True):  # generic doesn't work well 
 
     Defines :py:meth:`wrapped_call` that wraps :py:meth:`call` and handles exceptions and types conversions.
     """
+
+    timeout: Optional[float] = None
+    """Sets timeout time in seconds for __call__"""
 
     return_type: ClassVar[Union[type, Tuple[type, ...]]]
     """Return type of the script function."""
@@ -63,8 +67,9 @@ class BaseScriptFunc(BaseModel, ABC, frozen=True):  # generic doesn't work well 
 
         :return: An instance of :py:attr:`return_type`.
         :raises TypeError: If :py:meth:`call` returned value of incorrect type.
+        :raises TimeoutError: If :py:attr:`timeout` occurs.
         """
-        result = await wrap_sync_function_in_async(self.call, ctx)
+        result = await asyncio.wait_for(wrap_sync_function_in_async(self.call, ctx), timeout=self.timeout)
         if not isinstance(self.return_type, tuple) and issubclass(self.return_type, BaseModel):
             result = self.return_type.model_validate(result, context={"ctx": ctx}).model_copy(deep=True)
         if not isinstance(result, self.return_type):
