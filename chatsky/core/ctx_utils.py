@@ -64,6 +64,11 @@ class FrameworkData(BaseModel, arbitrary_types_allowed=True):
     "Enables complex stats collection across multiple turns."
     slot_manager: SlotManager = Field(default_factory=SlotManager)
     "Stores extracted slots."
+    models_labels: Dict[str, Dict[str, float]] = Field(default_factory=dict)
+    """
+    Stores labels predicted by models.
+    The key is the model id, the value is a dictionary with labels and their probabilities.
+    """
 
 
 class ContextMainInfo(BaseModel):

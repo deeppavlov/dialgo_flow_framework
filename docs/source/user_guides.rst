@@ -57,6 +57,7 @@ objects -- from yaml or json files.
    user_guides/llm_integration
    user_guides/slot_extraction
    user_guides/context_guide
+   user_guides/extended_conditions
    user_guides/superset_guide
    user_guides/optimization_guide
    user_guides/pipeline_import

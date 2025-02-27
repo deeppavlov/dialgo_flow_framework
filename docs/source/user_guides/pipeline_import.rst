@@ -149,8 +149,8 @@ Call is made with the arguments passed as a value of the dictionary:
     * - .. code-block:: yaml
 
             chatsky.cnd.Regexp:
-                pattern: "yes"
-                flags: external:re.I
+              pattern: "yes"
+              flags: external:re.I
       - .. code-block:: python
 
             chatsky.cnd.Regexp(
@@ -162,8 +162,8 @@ Call is made with the arguments passed as a value of the dictionary:
     * - .. code-block:: yaml
 
             chatsky.proc.Extract:
-                - person.name
-                - person.age
+            - person.name
+            - person.age
       - .. code-block:: python
 
             chatsky.proc.Extract(

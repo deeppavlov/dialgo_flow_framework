@@ -44,6 +44,9 @@ def check_tutorial_dependencies(venv: "VirtualEnv", tutorial_source_code: str):
 @pytest.mark.parametrize("chatsky_tutorial_py_file", CHATSKY_TUTORIAL_PY_FILES)
 @pytest.mark.slow
 @pytest.mark.docker
+@pytest.mark.rasa
+@pytest.mark.dialogflow
+@pytest.mark.huggingface
 @pytest.mark.no_coverage
 @pytest.mark.needs_dependencies
 def test_tutorials(chatsky_tutorial_py_file, virtualenv):

@@ -1,0 +1,19 @@
+items:
+  - label: hello
+    samples:
+      - hi there
+      - hi
+      - hello
+      - hello there
+
+  - label: goodbye
+    samples:
+      - bye
+      - see you
+      - goodbye
+
+  - label: food
+    samples:
+      - something to eat
+      - have a snack
+      - have a meal

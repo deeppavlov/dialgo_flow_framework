@@ -175,6 +175,16 @@ services:
       - "4317:4317"    # OTLP over gRPC receiver
       - "4318:4318"    # OTLP over HTTP receiver
 
+  rasa:
+    env_file: [.env_file]
+    profiles:
+      - ext
+    build:
+      context: ./dff/utils/docker
+      dockerfile: dockerfile_extended_conditions
+    ports:
+      - "5005:5005"
+
 volumes:
   ch-data:
   dashboard-data:

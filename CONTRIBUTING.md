@@ -147,6 +147,7 @@ Tests are configured via [`.env_file`](.env_file).
 Chatsky uses docker images for two purposes:
 1. Database images for integration testing.
 2. Images for statistics collection.
+3. Setting up Rasa framework for working with extended conditions.
 
 The first group can be launched via
 
@@ -164,9 +165,15 @@ docker compose --profile stats up
 
 This will download and launch Superset Dashboard, Clickhouse, OpenTelemetry Collector.
 
-To launch both groups run
+The third group can be launched via
+
 ```bash
-docker compose --profile context_storage --profile stats up
+docker compose --profile ext up
+```
+
+To launch all groups run
+```bash
+docker compose --profile context_storage --profile stats --profile ext up
 ```
 
 This will be done automatically when running `poetry run poe test_all`.

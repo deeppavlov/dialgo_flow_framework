@@ -1,0 +1,50 @@
+items:
+  - label: hello
+    samples:
+      - hi there
+      - hi
+      - hello
+      - hello there
+
+  - label: consent
+    samples:
+      - indeed
+      - totally
+      - of course
+      - 'yes'
+      - ok
+      - okay
+      - yep
+      - yeah
+      - surely
+
+  - label: animals
+    samples:
+      - dog
+      - cat
+      - pet
+      - zoo
+      - kittens
+      - I like animals
+      - I like pets
+      - I like cats
+      - wildlife 
+  
+  - label: sport_news
+    samples:
+      - championship
+      - sports competition
+      - world cup
+      - sport
+      - athletics
+      - champion
+      - world championship
+  
+  - label: science_news
+    samples:
+      - discovery
+      - scientific progress
+      - science
+      - scientific inquiry
+      - studies
+      - recent studies

@@ -1,0 +1,7 @@
+FROM rasa/rasa:3.2.6-full
+USER root
+RUN apt update && apt install -y --no-install-recommends git
+USER 1001
+RUN git clone https://github.com/ruthenian8/rasa_sample_project.git
+RUN cd rasa_sample_project && rasa train nlu --out=/app/models
+ENTRYPOINT rasa run --enable-api -m models/$(ls /app/models) --auth $RASA_API_KEY
