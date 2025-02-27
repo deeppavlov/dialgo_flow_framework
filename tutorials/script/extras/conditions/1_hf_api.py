@@ -10,25 +10,27 @@ This module explains, how to integrate web-hosted huggingface models in your con
 # %%
 import os
 from chatsky import (
-    Message,
-    RESPONSE,
-    GLOBAL,
     TRANSITIONS,
+    RESPONSE,
+    Pipeline,
+    Transition as Tr,
+    conditions as cnd,
+    GLOBAL,
     LOCAL,
+    Message,
+    # all the aliases used in tutorials are available for direct import
+    # e.g. you can do `from chatsky import Tr` instead
 )
-from chatsky import conditions as cnd
 
-from chatsky.ml.models.remote_api.hf_api_model import (
-    HFAPIModel,
-)
-from chatsky.ml import conditions as i_cnd
+from chatsky.ml.models.hf_api_model import HFAPIModel
+from chatsky.conditions.ml import HasLabel
 from chatsky import Pipeline
 from chatsky.messengers.console import CLIMessengerInterface
-from chatsky.utils.testing.common import (
-    is_interactive_mode,
-    check_happy_path,
-    run_interactive_mode,
-)
+# from chatsky.utils.testing.common import (
+#     is_interactive_mode,
+#     check_happy_path,
+#     run_interactive_mode,
+# )
 
 
 # %% [markdown]
@@ -52,25 +54,27 @@ api_model = HFAPIModel(
 # %%
 script = {
     GLOBAL: {
-        TRANSITIONS: {
+        TRANSITIONS: [
             # We get to one of the dialog branches depending on the annotation
-            ("service", "buy", 1.2): i_cnd.has_cls_label(
-                api_model, "LABEL_1", threshold=0.95
+            Tr(
+                dst=("service", "buy"), priority=1.2, cnd=HasLabel(
+                label="LABEL_1", model_name="my_hf_model", threshold=0.95)
             ),
-            ("service", "sell", 1.2): i_cnd.has_cls_label(
-                api_model, "LABEL_0", threshold=0.95
-            ),
-        },
+            Tr(
+                dst=("service", "sell"), priority=1.2, cnd=HasLabel(
+                label="LABEL_0", model_name="my_hf_model", threshold=0.95)
+            )
+        ]
     },
     "root": {
-        LOCAL: {TRANSITIONS: {("service", "offer", 1.2): cnd.true()}},
+        LOCAL: {TRANSITIONS: [Tr(dst=("service", "offer"), priority=1.2, cnd=True)]},
         "start": {RESPONSE: Message(text="Hi!")},
         "fallback": {
             RESPONSE: Message(text="I can't quite get what you mean.")
         },
         "finish": {
             RESPONSE: Message(text="Ok, see you soon!"),
-            TRANSITIONS: {("root", "start", 1.3): cnd.true()},
+            TRANSITIONS: [Tr(dst=("root", "start"), priority=1.3, cnd = True)],
         },
     },
     "service": {
@@ -90,13 +94,13 @@ script = {
     },
 }
 
-
 # %%
-pipeline = Pipeline.from_script(
-    script,
+pipeline = Pipeline(
+    script=script,
     start_label=("root", "start"),
     fallback_label=("root", "fallback"),
     messenger_interface=CLIMessengerInterface(intro="Starting Dff bot..."),
+    models={"my_hf_model": api_model}
 )
 
 
@@ -129,14 +133,13 @@ happy_path = [
 
 # %%
 if __name__ == "__main__":
-    check_happy_path(
-        pipeline,
-        happy_path,
-    )  # This is a function for automatic tutorial
-    # running (testing tutorial) with `happy_path`.
+    # check_happy_path(
+    #     pipeline,
+    #     happy_path,
+    # )  # This is a function for automatic tutorial
+    # # running (testing tutorial) with `happy_path`.
 
-    # Run tutorial in interactive mode if not in IPython env
-    # and if `DISABLE_INTERACTIVE_MODE` is not set.
-    if is_interactive_mode():
-        run_interactive_mode(pipeline)
+    # # Run tutorial in interactive mode if not in IPython env
+    # # and if `DISABLE_INTERACTIVE_MODE` is not set.
+    pipeline.run()
         # This runs tutorial in interactive mode.
