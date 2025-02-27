@@ -63,6 +63,8 @@ class HFAPIModel(ExtrasBaseAPIModel):
         test_response = requests.get(self.url, headers=self.headers)  # assert that the model exists
         if not test_response.status_code == HTTPStatus.OK:
             raise requests.HTTPError(test_response.text)
+        
+    # TODO: Add `transform` method
 
     @alru_cache(maxsize=10)
     async def predict(self, request: str) -> dict:
