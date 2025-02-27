@@ -32,20 +32,18 @@ class HasLabel(BaseCondition):
     """
 
     label: str
-    model: ExtrasBaseAPIModel
+    model_name: str
     threshold: float = 0.9
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args)
-
     async def call(self, ctx: Context) -> bool:
+        model = ctx.pipeline.models[self.model_name]
         # Predict labels for the last request
         # and store them in framework_data with uuid of the model as a key
-        await self.model(ctx)
-        if self.model.model_id not in ctx.framework_data.models_labels:
+        await model(ctx)
+        if model.model_id not in ctx.framework_data.models_labels:
             return False
-        if self.model.model_id is not None:
-            return ctx.framework_data.models_labels.get(self.model.model_id, {}).get(self.label, 0) >= self.threshold
+        if model.model_id is not None:
+            return ctx.framework_data.models_labels.get(model.model_id, {}).get(self.label, 0) >= self.threshold
         scores = [item.get(self.label, 0) for item in ctx.framework_data.models_labels.values()]
         comparison_array = [item >= self.threshold for item in scores]
         return any(comparison_array)
@@ -63,7 +61,7 @@ class HasMatch(BaseCondition):
     :param threshold: Similarity threshold that triggers a positive response from the function.
     """
 
-    model: ExtrasBaseAPIModel
+    model_name: str
     positive_examples: Optional[List[str]]
     negative_examples: Optional[List[str]] = []
     threshold: float = 0.9
@@ -74,9 +72,12 @@ class HasMatch(BaseCondition):
     async def call(self, ctx: Context) -> bool:
         if not (ctx.last_request and ctx.last_request.text):
             return False
-        input_vector = self.model.transform(ctx.last_request.text)
-        positive_vectors = [self.model.transform(item) for item in self.positive_examples]
-        negative_vectors = [self.model.transform(item) for item in self.negative_examples]
+
+        model = ctx.pipeline.models[self.model_name]
+
+        input_vector = model.transform(ctx.last_request.text)
+        positive_vectors = [model.transform(item) for item in self.positive_examples]
+        negative_vectors = [model.transform(item) for item in self.negative_examples]
         positive_sims = [cosine_similarity(input_vector, item)[0][0] for item in positive_vectors]
         negative_sims = [cosine_similarity(input_vector, item)[0][0] for item in negative_vectors]
         max_pos_sim = max(positive_sims)
